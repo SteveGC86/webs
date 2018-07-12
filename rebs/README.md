@@ -68,9 +68,22 @@ The database that we will be using for our application will be MongoDb. The reas
 
 - Whether we have them or not
 
-## Provide your database schema design.
+## Discuss the database relations to be implemented.
 
-## Provide User stories for your App.
+The main collection in the database will be **Item** with the meaning **Workshop Item** collection. Can be also called **Workshop Instance** because it is instance of **Workshop** Collection.This collection will hold basic data on a Item like title, status and number of attendees. It will also include:
+-  **Bookings** embedded collection,  used to schedule classes and to book specified location (classroom). It's attributes will be start time and end time beside data on the location.
+ - **Facilitators** embedded collection, will be used to register teachers, assistants and eventually other staff who will facilitate the Workshop. Once registered by *admin application users* facilitator users will be able to accept the role by flagging their record in Facilitators embedded collection. This will automatically restrict others accepting the same role unless they cancel their role.
+
+## Provide your database schema design.
+The database will be document non-relational MongoDb database. It will hold the following Collection Objects. There will be no enforced relationship on a database model level.
+- **Workshop** Collection 
+- **Item** Collection will have embedded array of Facilitators (Users) and Bookings
+- **Users** Collection
+- **Organization** Collection will have embedded array of Locations and Rooms (classrooms)
+- **Skills** Collection
+- **Status** Collection
+- **Notification** Collection
+
 
 ### Admin - Sam & Sally
 
