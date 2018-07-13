@@ -6,29 +6,36 @@ const Header = function EventNewHeader() {
     );
 }
 
+
+
 class NewEventForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      value: ''
+      workshopName: '',
+      facilitatorName: ''
     };
     //Bind methods for inputs here
-    // this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this)
   }
   //Handle info functions
-  // handleChange(event) {
-  //   this.setState({value: event.target.value});
-  // }
+  handleChange (evt) {
+    // Get the evt.target.name (which will be the input name)
+    // Use it to target the key on our `state` object with the same name, using bracket syntax
+    this.setState({ [evt.target.name]: evt.target.value });
+  }
 
   render(){
     return (
       <form>
-        <input />
+        <input placeholder="Workshop" type="text" name="workshopName" onChange={this.handleChange} />
+        <input placeholder="Facilitator" type="text" name="facilitatorName" onChange={this.handleChange} />
+
       </form>
     )
   }
 }
 
-export { Header }
+export { Header, NewEventForm }
 
 // export default EventNewHeader
