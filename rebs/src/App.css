@@ -1,3 +1,19 @@
+:root {
+  --main-dark-color: #363637;
+  --main-light-blue: #45A7C5;
+  --main-dark-blue: #275480;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FAFAFA;
+}
+
 .App {
   text-align: center;
 }

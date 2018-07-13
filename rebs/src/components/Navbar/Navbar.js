@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import FontAwesome from 'react-fontawesome';
 import './Navbar.css';
 
-class App extends Component {
+class Navbar extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="Navbar">
+    <Link to="/events"><FontAwesome name="calendar-alt"/></Link>
+    <Link to="/facilitators"><FontAwesome name="users"/></Link>
+    <Link to="/events/new" id="blue-circle"><FontAwesome name="plus"/></Link>
+    <Link to="/organisations"><FontAwesome name="university"/></Link>
+    <Link to="/settings"><FontAwesome name="cog"/></Link>
       </div>
     );
   }
 }
 
-export default App;
+export default Navbar;
