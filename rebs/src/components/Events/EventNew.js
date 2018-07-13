@@ -28,9 +28,21 @@ class NewEventForm extends React.Component {
   render(){
     return (
       <form>
-        <input placeholder="Workshop" type="text" name="workshopName" onChange={this.handleChange} />
-        <input placeholder="Facilitator" type="text" name="facilitatorName" onChange={this.handleChange} />
-
+        <div>
+          <input placeholder="Workshop" type="text" name="workshopName" onChange={this.handleChange} value={this.state.value} />
+        </div>
+        <div>
+          <input placeholder="Facilitator" type="text" name="facilitatorName" onChange={this.handleChange} value={this.state.value}/>
+        </div>
+        <div>
+          <button name="createNewWorkshop ">Add Another Facilitator</button>
+        </div>
+        <div>
+          <button name="createNewWorkshop ">Create New Workshop</button>
+        </div>
+        <div>
+          <input type="checkbox" name="onsite" value="onsiteWorkshop" /> Onsite
+        </div>
       </form>
     )
   }
