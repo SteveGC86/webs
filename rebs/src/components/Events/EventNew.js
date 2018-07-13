@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = function EventNewHeader() {
     return (
-      <h1>New Workshop</h1>
+      <h1>New Event</h1>
     );
 }
 
@@ -12,37 +12,57 @@ class NewEventForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      workshopName: '',
-      facilitatorName: ''
+      notes: ''
     };
     //Bind methods for inputs here
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this);
   }
   //Handle info functions
-  handleChange (evt) {
-    // Get the evt.target.name (which will be the input name)
-    // Use it to target the key on our `state` object with the same name, using bracket syntax
-    this.setState({ [evt.target.name]: evt.target.value });
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
 
   render(){
     return (
       <form>
+        <select name="workshop">
+          <option value="memes101">Memes 101</option>
+          <option value="html_css">HTML/CSS</option>
+          <option value="javascript">Javascript</option>
+        </select>
+
+        <select name="facilitator">
+          <option value="teacher1">Teacher 1</option>
+          <option value="teacher2">Teacher 2</option>
+          <option value="teacher3">Teacher 3</option>
+        </select>
+
+          <button name="addFacilitator">Add Another Facilitator</button>
+          <button name="createShortCourse">Add New Short Course</button>
+
+          <input type="checkbox" name="onsite" value="onsiteCourse" /> Onsite
+
+        <select name="organisation">
+          <option value="coderAcademy">Coder Academy</option>
+          <option value="redhill">Redhill</option>
+        </select>
+
+        <select name="location">
+          <option value="melbourne">Melbourne</option>
+          <option value="Sydney">Sydney</option>
+        </select>
+
+        <input placeholder="Notes" type="text" name="notes" onChange={this.handleChange} value={this.state.value} />
+
         <div>
-          <input placeholder="Workshop" type="text" name="workshopName" onChange={this.handleChange} value={this.state.value} />
+          Start: <input type="datetime-local"/>
         </div>
+
         <div>
-          <input placeholder="Facilitator" type="text" name="facilitatorName" onChange={this.handleChange} value={this.state.value}/>
+          End: <input type="datetime-local"/>
         </div>
-        <div>
-          <button name="createNewWorkshop ">Add Another Facilitator</button>
-        </div>
-        <div>
-          <button name="createNewWorkshop ">Create New Workshop</button>
-        </div>
-        <div>
-          <input type="checkbox" name="onsite" value="onsiteWorkshop" /> Onsite
-        </div>
+
+        <button name="addDate">Add Date</button>
       </form>
     )
   }
