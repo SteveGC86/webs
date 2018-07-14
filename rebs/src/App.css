@@ -1,3 +1,32 @@
+:root {
+  --main-dark-color: #363637;
+  --main-light-blue: #45A7C5;
+  --main-dark-blue: #275480;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FAFAFA;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  width: 100%;
+  background-color: var(--main-dark-blue);
+  margin-bottom: 3vh;
+  color: #FFFFFF;
+  font-family: 'Alegreya Sans', sans-serif;
+  font-size: calc(16px + 4vw);
+}
+
 .App {
   text-align: center;
 }
