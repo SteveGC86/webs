@@ -6,6 +6,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import EventEdit from './components/Events/EventEdit';
+import EventView from './components/Events/EventView';
 
 
 class App extends Component {
@@ -14,7 +15,7 @@ class App extends Component {
     return (
       <div className="App">
       <Header/>
-       <EventEdit />
+       <EventView />
 
         <BrowserRouter>
           <Navbar/>
