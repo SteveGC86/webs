@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter} from 'react-router-dom';
 import './App.css';
+import { Header, NewEventForm } from './components/Events/EventNew'
 
 // IMPORT COMPONENTS
 import Header from './components/Header/Header';
