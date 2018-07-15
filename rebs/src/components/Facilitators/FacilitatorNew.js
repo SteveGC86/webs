@@ -24,13 +24,13 @@ class NewFacilitatorForm extends React.Component {
         e.preventDefault()
       }}>
 
-        <input placeholder="First Name" type="text" name="firstName" onChange={this.handleFacilitatorChange} value={this.state.value} />
+        <input placeholder="First Name" type="text" name="firstName" onChange={this.handleFacilitatorChange} value={this.state.value} required />
 
-        <input placeholder="Last Name" type="text" name="lastName" onChange={this.handleFacilitatorChange} value={this.state.value} />
+        <input placeholder="Last Name" type="text" name="lastName" onChange={this.handleFacilitatorChange} value={this.state.value} required />
 
-        <input placeholder="Email" type="text" name="email" onChange={this.handleFacilitatorChange} value={this.state.value} />
+        <input placeholder="Email" type="text" name="email" onChange={this.handleFacilitatorChange} value={this.state.value} required />
 
-        <input placeholder="Address" type="text" name="address" onChange={this.handleFacilitatorChange} value={this.state.value} />
+        <input placeholder="Address" type="text" name="address" onChange={this.handleFacilitatorChange} value={this.state.value} required />
 
         <select name="facilitatorRole">
           <option value="leadFacilitator">Lead Facilitator</option>
@@ -42,6 +42,8 @@ class NewFacilitatorForm extends React.Component {
           <option value="sydney">Sydney</option>
           <option value="brisbane">Brisbane</option>
         </select>
+
+        <input type="submit" value="Submit" />
 
       </form>
     )
