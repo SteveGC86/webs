@@ -24,17 +24,23 @@ class NewFacilitatorForm extends React.Component {
         e.preventDefault()
       }}>
 
-        <input placeholder="First Name" type="text" name="firstName" onChange={this.handleChange} value={this.state.value} />
+        <input placeholder="First Name" type="text" name="firstName" onChange={this.handleFacilitatorChange} value={this.state.value} />
 
-        <input placeholder="Last Name" type="text" name="lastName" onChange={this.handleChange} value={this.state.value} />
+        <input placeholder="Last Name" type="text" name="lastName" onChange={this.handleFacilitatorChange} value={this.state.value} />
 
-        <input placeholder="Email" type="text" name="email" onChange={this.handleChange} value={this.state.value} />
+        <input placeholder="Email" type="text" name="email" onChange={this.handleFacilitatorChange} value={this.state.value} />
 
-        <input placeholder="Address" type="text" name="address" onChange={this.handleChange} value={this.state.value} />
+        <input placeholder="Address" type="text" name="address" onChange={this.handleFacilitatorChange} value={this.state.value} />
 
-        <select name="role">
-          <option value="coderAcademy">Lead Facilitator</option>
-          <option value="redhill">Assistant Facilitator</option>
+        <select name="facilitatorRole">
+          <option value="leadFacilitator">Lead Facilitator</option>
+          <option value="assistantFacilitator">Assistant Facilitator</option>
+        </select>
+
+        <select name="defaultLocation">
+          <option value="melbourne">Melbourne</option>
+          <option value="sydney">Sydney</option>
+          <option value="brisbane">Brisbane</option>
         </select>
 
       </form>
