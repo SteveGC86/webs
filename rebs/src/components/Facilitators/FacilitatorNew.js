@@ -1,6 +1,6 @@
 import React from 'react';
 
-class NewFacilitatorForm extends React.Component() {
+class NewFacilitatorForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -31,6 +31,11 @@ class NewFacilitatorForm extends React.Component() {
         <input placeholder="Email" type="text" name="email" onChange={this.handleChange} value={this.state.value} />
 
         <input placeholder="Address" type="text" name="address" onChange={this.handleChange} value={this.state.value} />
+
+        <select name="role">
+          <option value="coderAcademy">Lead Facilitator</option>
+          <option value="redhill">Assistant Facilitator</option>
+        </select>
 
       </form>
     )
