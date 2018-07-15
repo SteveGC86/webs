@@ -6,8 +6,6 @@ const Header = function EventNewHeader() {
     );
 }
 
-
-
 class NewEventForm extends React.Component {
   constructor(props){
     super(props);
