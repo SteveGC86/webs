@@ -1,0 +1,52 @@
+/* Navbar component */
+
+.Navbar {
+    background: #363637;
+    color: #FAFAFA;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 9vh;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    
+}
+
+.Navbar a {
+    text-decoration: none;
+    color: #FAFAFA;
+    font-size: 5vh;
+}
+
+.Navbar p {
+    text-decoration: none;
+    color: #FAFAFA;
+    font-size: 5vh;
+}
+
+#blue-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #45A7C5;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+}
+
+#menu {
+    background-color: #363637;
+}
+
+.popup-content{
+    background-color: #275480 !important;
+    padding: 0px;
+    border: none;
+    min-width: 30vw !important;
+}
+
+.popup-content p {
+    font-size: 4vh;
+    padding: 2vh;
+}

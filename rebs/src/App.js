@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
-import EventEdit from './components/Events/EventEdit'
-import EventList from './components/Events/EventList'
+import { BrowserRouter} from 'react-router-dom';
 import './App.css';
 
+// IMPORT COMPONENTS
+import Header from './components/Header/Header';
+import Navbar from './components/Navbar/Navbar';
+import EventEdit from './components/Events/EventEdit';
+
+
 class App extends Component {
+
   render() {
     return (
       <div className="App">
-       {/* <EventEdit /> */}
-       <EventList />
+      <Header/>
+       <EventEdit />
+
+        <BrowserRouter>
+          <Navbar/>
+        </BrowserRouter>
+        
       </div>
     );
   }
