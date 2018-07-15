@@ -1,49 +1,48 @@
-import React, { Component} from 'react';
-import moment from 'moment';
-import Geocode from 'react-geocode';
+import React from 'react';
 
-
-class EventView extends Component {
-    state = {
-        events: null
-    }
-
-    async componentDidMount(){
-        const url = "http://localhost:3000/events"
-        fetch(url)
-        .then(events => events.json())
-        .then(allEvents => this.setState({
-            events: allEvents
-        }))
-    }
-
-    render(){
-        Geocode.setApiKey(process.env.REACT_APP_GEOCODER_API);
-
-
-        const events = this.state.events
-        if(!events){
-            return <h1>Loading...</h1>
-        } 
-        return (
-            <div className="eventView">
-            {console.log(events)}
-            {events.map(event => {
-                return <div key={event.id}>
-                    <h2>{event.title}</h2><br/>
-                    {event.facilitators.map(fac => {
-                        return <h4 key={fac.id}>{fac.role} - {fac.name} ({fac.confirmed ? "confirmed" : "pending"})<br/></h4>
-                    })}<br/>
-                    {event.bookings.map(booking => {
-                        return <p key={booking.id}><b>{moment(booking.start_time).format("dddd, MMMM Do YYYY")}</b> <br/>{moment(booking.start_time).format("h:mm:ss a")} - {moment(booking.end_time).format("h:mm:ss a")}<br/>
-                        {booking.location}<br/><br/></p>
-                    })}<br/>
-                </div>
-            })}
-        
-            </div>
-          )
-    }
+function Title(props) {
+  return <h1>{props.title}</h1>
 }
 
-export default EventView
+function Status(props) {
+  return <div>{props.status}</div>
+}
+
+function DateFrom(props) {
+  return <div>
+      <p>Date: </p> 
+      <p>{props.dateFrom}</p>
+    </div>
+}
+
+function DateTo(props) {
+  return <div>{props.dateTo}</div>
+}
+
+function Onsite(props) {
+  return <div>{props.onsite}</div>
+}
+
+function Location(props) {
+  return <div>
+      <p>Location:</p>
+      <p>{props.location}</p>
+    </div>
+}
+
+function Organisation(props) {
+  return <div>
+      <p>Organisation:</p>
+      <p>{props.organisation}</p>
+    </div>
+}
+
+function Attendees(props) {
+  return <div>
+      <p>Attendees:</p>
+      <p>{props.attendees}</p>
+    </div>
+}
+
+export { Title, Status, DateFrom, DateTo, Onsite, Location, Organisation, Attendees }
+
