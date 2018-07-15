@@ -1,1 +1,10 @@
-//This is a new file
+import React from 'react';
+
+function EventView() {
+  return(
+
+  )
+}
+
+export { EventView }
+
