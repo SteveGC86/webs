@@ -44,5 +44,5 @@ function Attendees(props) {
     </div>
 }
 
-export { Title, Status, DateFrom, DateTo, Onsite, Location, Organisation, Attendees }
+export default { Title, Status, DateFrom, DateTo, Onsite, Location, Organisation, Attendees }
 

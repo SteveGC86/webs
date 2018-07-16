@@ -1,0 +1,91 @@
+/* Edit Event form component */
+
+.form {
+  background: #FAFAFA;
+}
+
+div.onsite {
+  display: flex;
+  justify-content: center;
+}
+
+input[type="text"] {
+  width: 35vh;
+  height: 4vh;
+  border: 1px solid #363637;
+  border-radius: 3px;
+  margin-bottom: 2vh;
+}
+
+input[type="checkbox"] {
+  display: flex;
+  justify-content: start;
+  height: 18px;
+  width: 18px;
+  background-color: #FAFAFA;
+  margin-bottom: 2vh;
+}
+
+input[type="button"] {    /* :TODO  Add font to buttton  */
+  width: 30vh;
+  height: 4vh;
+  color: #FAFAFA;
+  border: none;
+  border-radius: 2px;
+  font-family: "Alegreya";
+  font-size: 2vh;
+  font-weight: normal;
+  background: #45A7C5;
+  margin-bottom: 2.5vh;
+}
+
+input[name="addFacilitator"] {    
+  width: 30vh;
+  height: 4vh;
+  color: #FAFAFA;
+  border: none;
+  border-radius: 2px;
+  font-family: "Alegreya";
+  font-size: 2vh;
+  font-weight: normal;
+  background: #45A7C5;
+  margin-bottom: 2.5vh;
+}
+
+input[name="addEvent"] {    
+  width: 30vh;
+  height: 4vh;
+  color: #FAFAFA;
+  border: none;
+  border-radius: 2px;
+  font-family: "Alegreya";
+  font-size: 2vh;
+  font-weight: normal;
+  background: #45A7C5;
+  margin-bottom: 2.5vh;
+}
+
+
+div.dates {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2vh;
+}
+
+input[name="startDate"] {
+  height: 4vh;
+  width: 15vh;
+  border: 1px solid #363637;
+  margin-right: 2.5vh;
+}
+
+input[name="endDate"] {
+  height: 4vh;
+  width: 15vh;
+  margin-left: 2.5vh;
+  border: 1px solid #363637
+}
+
+p {
+  color: #646464;
+}
