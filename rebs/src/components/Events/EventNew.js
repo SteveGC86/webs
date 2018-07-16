@@ -66,6 +66,45 @@ class NewEventForm extends React.Component {
   }
 }
 
-export { Header, NewEventForm }
+class NewEvent extends React.Component {
+  constructor(){
+    super();
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
+}
 
-// export default EventNewHeader
+export { Header, NewEventForm, NewEvent }
+
+// class NewEvent extends React.Component {
+//   state = {
+//       events: null,
+//   }
+
+//   componentDidMount(){
+//       fetch("https://webs-backend-alawjpzcis.now.sh/events")
+//       .then(res => res.json())
+//       .then(events => {
+//           this.setState({
+//               events
+//       })
+//   })
+//   }
+
+// render() {
+
+//   const events = this.state.events
+//   if(!events){
+//       return <h1>loading...</h1>
+//   }
+//   return (
+//       <div className="fetch">
+//           {
+//              events.map(singleEvent => {
+//                  return <div>{singleEvent._id}</div>
+//              })
+//           }
+//       </div>
+//   );
+// }
+// }
