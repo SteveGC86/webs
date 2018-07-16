@@ -71,6 +71,15 @@ class NewEvent extends React.Component {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  handleSubmit(e) {
+    e.preventDefault();
+    const eventData = new FormData(e.target);
+
+    fetch("https://webs-backend-alawjpzcis.now.sh/events", {
+      method: POST,
+      body: eventData,
+    });
+  }
   
 }
 
