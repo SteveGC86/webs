@@ -1,5 +1,5 @@
 ###
-POST https://webs-backend-alawjpzcis.now.sh/events/new
+POST https://webs-backend-kpbyniydyc.now.sh/events/new
 Content-Type: application/json
 
 {
@@ -16,20 +16,39 @@ Content-Type: application/json
 }
 
 ###
-PUT https://webs-backend-alawjpzcis.now.sh/events/5b4bf8627b2446004fb0f564/new
+GET https://webs-backend-kpbyniydyc.now.sh/events
+Content-Type: application/json
+###
+
+PATCH https://webs-backend-kpbyniydyc.now.sh/events/5b4c27b5e362fb0050ffd48c
+Content-Type: application/json
+
+{
+    "title": "FFFFF FFFFF",
+    "facilitators": "FFFFF Tyson Butler-Boschma ",
+    "attendees": 10,
+    "status": "FFFFF Pending",
+    "creator": "FFFFF",
+    "notes": "FFFFF DATA",
+    "onsite": false,
+    "price": 555000,
+    "organisation": "CA Mel FFFFF"
+}
+
+###
+PUT https://webs-backend-kpbyniydyc.now.sh/events/5b4c27b5e362fb0050ffd48c/new
 Content-Type: application/json
 
             {
-                "start": "12/22/2018 10:00",
-                "end": "12/22/2018 13:00",
+                "start": "12/24/2018 10:00",
+                "end": "12/24/2018 13:00",
                 "location": "Room 1212"
             }
-
-
 ###
-PUT https://webs-backend-alawjpzcis.now.sh/events/5b4bf8627b2446004fb0f564/5b4bf8997b2446004fb0f566/remove
+
+PUT https://webs-backend-kpbyniydyc.now.sh/events/5b4c27f8e362fb0050ffd48e/5b4c26d3e362fb0050ffd489/remove
 Content-Type: application/json
-
 ###
-DELETE https://webs-backend-alawjpzcis.now.sh/events/5b4bf8627b2446004fb0f564
+
+DELETE https://webs-backend-kpbyniydyc.now.sh/events/5b4c2590e362fb0050ffd488
 Content-Type: application/json
