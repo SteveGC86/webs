@@ -1,0 +1,50 @@
+/* Edit Event form component */
+
+.form {
+  background: #FAFAFA;
+}
+
+input[type="text"] {
+  width: 30vh;
+  height: 4vh;
+  border: 1px solid #363637;
+  border-radius: 3px;
+  margin-bottom: 2.2vh;
+}
+
+input[type="checkbox"] {
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #FAFAFA;
+  margin-bottom: 2vh;
+}
+
+input[type="button"] {    /* :TODO  Add font to buttton  */
+  width: 12vh;
+  height: 4vh;
+  color: #FAFAFA;
+  border: none;
+  border-radius: 2px;
+  font: Alegreya;
+  font-size: 2vh;
+  font-weight: normal;
+  background: #45A7C5;
+  margin-bottom: 2.5vh;
+}
+
+div.onsite {
+  display: flex;
+  justify-content: center;
+}
+
+div.dates {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2vh;
+}
+
+p {
+  color: #646464;
+}

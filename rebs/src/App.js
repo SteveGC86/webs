@@ -12,6 +12,7 @@ import EventView from './components/Events/EventView';
 import { NewEventForm } from './components/Events/EventNew'
 // import { Title, Status, DateFrom, DateTo, Onsite, Location, Organisation, Attendees } from './components/Events/EventView'
 import LoginForm from'./components/Login/LoginForm';
+import EventList from './components/Events/EventList'
 
 
 class App extends Component {
