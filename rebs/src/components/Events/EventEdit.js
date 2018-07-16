@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from '../Header/Header'
+import './EventEdit.css'
 
 
 class EventEdit extends Component {
@@ -7,21 +8,44 @@ class EventEdit extends Component {
   componentDidMount(){
     this.props.updateHeaderTitle("Edit Event");
   }
+
+  handleChange = (e) => {
+  const url = 'https://webs-backend-kpbyniydyc.now.sh/events/{this.props.work}' 
+  const data = {
+    workshop: e.target.workshop.value,
+    facilitator:  e.target.facilitator.value,
+    }
+    
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-Type': 'applications/json'
+      }
+    })
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Success:', response))
+  }
+  addFacilitator = (e) => {
+    const facilitator = document.getElementById('wrapper').innerHTML += '<br/> <input type="text" placeholder=" facilitator" name="facilitator" />'
+  }
+
   
-  render(){
+  render() {
     return (
       <div className="eventEdit">
         <h1>Edit Workshop</h1>
           <form onSubmit={(e) =>{
             e.preventDefault()
           }}>
-          <div id="wrapper">
             <input type="text" placeholder="   workshop" name="workshop" /><br/>
-            <input type="text" placeholder="   facilitator" name="facilitator" /><br/>
+          <div id="wrapper" >
+           <input type="text" placeholder="   facilitator" name="facilitator" /><br/>
           </div>
-            <button placeholder="Add Facilitator" className="AddFacilitator"></button>
+
             <div className="">
-              <input type="button" value="Add Facilitator" name="Add Facilitator" /><br />
+              <input type="button" value="Add Facilitator" name="Add Facilitator" onClick={this.addFacilitator}/><br />  
             </div>
               
               <div className="onsite">
