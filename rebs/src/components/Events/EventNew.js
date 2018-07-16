@@ -20,7 +20,10 @@ class NewEventForm extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
     
     const url = 'https://webs-backend-kpbyniydyc.now.sh/events/new'
-    const data = { title: event.target.title.value }
+    const data = { 
+      title: event.target.title.value,
+      course: document.getElementById('newEvent').value
+    }
 
     fetch(url, {
     method: 'POST', 
@@ -40,9 +43,9 @@ class NewEventForm extends React.Component {
         e.preventDefault();
         this.handleChange(e)}}>
 
-        <input placeholder="Title" type="text" name="title" />
+        <input placeholder="title" type="text" name="title" />
 
-        <select name="workshop">
+        <select id="newEvent" placeholder="newEvent" name="newEvent">
           <option value="memes101">Memes 101</option>
           <option value="html_css">HTML/CSS</option>
           <option value="javascript">Javascript</option>
