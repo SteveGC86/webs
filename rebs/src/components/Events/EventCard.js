@@ -1,18 +1,21 @@
 import React from 'react'
 
-class EventCard extends React.Component(){
-  constructor(props);
-  super(props);
+class EventCard extends React.Component {
+  
 
   // let event = this.props.event
 
   render() {
-    <div className="eventCard" key={this.props.event.id}>
-      <h4>{this.event.workshop}</h4>
-      <h5>{this.event.booking.location}</h5>
-      <input type="button">View</input> 
+    const singleEvent = this.props.singleEvent
+    return(
+    <div className="eventCard" >
+      <h4>{singleEvent.title}</h4>
+      {console.log(singleEvent)}
+      <h5>{singleEvent.bookings.map(booking => {
+        return booking.location})}</h5>
+      <button>View</button> 
     </div>
-  }
+    )}
 }
 
 export default EventCard

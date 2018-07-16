@@ -1,39 +1,39 @@
-import React from 'react'
-import EventCard from './EventCard'
+import React, { Component } from 'react';
+import EventCard from './EventCard';
 
-class EventList extends React.Component() {
-  render(){
-    
-  
-  // state = {
-  //   events: null
-  // }
-  
-  // componentDidMount() {
-  //   eventAPI()
-  //   .then(events => {          TODO: Add required api call  (steve)
-  //     this.setState({
-  //       events
-  //     })
-  //   })
-  //   .catch(err => {
-  //     console.error(err)
-  //   })
-  // }
-  
-  
 
-    const {events} = this.state
-    if(!events) return <h3>Loading...</h3>
-      return 
-          {
-            events.map(event => {
-              return 
-              <EventCard key={event.id} event={this.props.event} />
-            })
-          }
+
+class EventList extends Component {
+    state = {
+        events: null,
+    }
+
+    componentDidMount(){
+        fetch("https://webs-backend-oxjtbmatkg.now.sh/workshops")
+        .then(res => res.json())
+        .then(events => {
+            this.setState({
+                events
+        })
+    })
+    }
+
+  render() {
+
+    const events = this.state.events
+    if(!events){
+        return <h1>loading...</h1>
+    }
+    return (
+        <div className="fetch">
+            {
+               events.map(singleEvent => {
+                   return <EventCard key={singleEvent._id} singleEvent={singleEvent}/>
+               }) 
+            }
+        </div>
+    );
   }
 }
 
-
-export default EventList
+export default EventList;

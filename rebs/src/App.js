@@ -7,6 +7,7 @@ import {  NewEventForm } from './components/Events/EventNew'    //TODO:  Check i
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import EventEdit from './components/Events/EventEdit';
+import EventList from './components/Events/EventList'
 
 
 class App extends Component {
@@ -15,7 +16,7 @@ class App extends Component {
     return (
       <div className="App">
       <Header/>
-       <EventEdit />
+       <EventList />
 
         <BrowserRouter>
           <Navbar/>
