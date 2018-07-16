@@ -9,20 +9,26 @@ const Header = function EventNewHeader() {
 class NewEventForm extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      title: ''
-    };
+    // this.state = {
+    //   title: '',
+    //   facilitator: '' 
+    // };
     //Bind methods for inputs here
     this.handleChange = this.handleChange.bind(this);
   }
   //Handle info functions
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
-    
+    console.log(event.target.onsite.value)
+
     const url = 'https://webs-backend-kpbyniydyc.now.sh/events/new'
     const data = { 
       title: event.target.title.value,
-      course: document.getElementById('newEvent').value
+      newEvent: event.target.newEvent.value,
+      facilitators: event.target.facilitator.value,
+      onsite: event.target.onsite.checked,
+      organisation: event.target.organisation.value,
+      location: event.target.location.value
     }
 
     fetch(url, {
@@ -60,7 +66,7 @@ class NewEventForm extends React.Component {
           <button name="addFacilitator">Add Another Facilitator</button>
           <button name="createShortCourse">Add New Short Course</button>
 
-          <input type="checkbox" name="onsite" value="onsiteCourse" /> Onsite
+          <input type="checkbox" name="onsite" /> Onsite
 
         <select name="organisation">
           <option value="coderAcademy">Coder Academy</option>
@@ -92,17 +98,3 @@ class NewEventForm extends React.Component {
 }
 
 export { Header, NewEventForm }
-
-
-// var url = 'https://example.com/profile';
-// var data = {username: 'example'};
-
-// fetch(url, {
-//   method: 'POST', // or 'PUT'
-//   body: JSON.stringify(data), // data can be `string` or {object}!
-//   headers:{
-//     'Content-Type': 'application/json'
-//   }
-// }).then(res => res.json())
-// .catch(error => console.error('Error:', error))
-// .then(response => console.log('Success:', response));

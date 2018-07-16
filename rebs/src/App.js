@@ -3,7 +3,6 @@ import { BrowserRouter} from 'react-router-dom';
 import './App.css';
 import { NewEventForm } from './components/Events/EventNew'
 import { Title, Status, DateFrom, DateTo, Onsite, Location, Organisation, Attendees } from './components/Events/EventView'
-import { NewFacilitatorForm } from './components/Facilitators/FacilitatorNew'
 
 // IMPORT COMPONENTS
 import Header from './components/Header/Header';
@@ -22,8 +21,6 @@ class App extends Component {
         <BrowserRouter>
           <Navbar/>
         </BrowserRouter>
-
-        <NewEventForm/>
         
       </div>
     );
