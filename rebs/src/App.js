@@ -60,7 +60,9 @@ class App extends Component {
               <Route exact path="/events/:id/edit" render={() => {
                 return <EventEdit updateHeaderTitle={this.updateHeaderTitle} state={this.state}/>
               }}/> 
-              <Route path="/events/new" component={EventNew}/>
+              <Route exact path="/events/new" render={() => {
+                return <EventNew updateHeaderTitle={this.updateHeaderTitle} state={this.state}/>
+              }}/> 
               <Route exact path="/facilitators" component={EventEdit}/>
               <Route exact path="/facilitators/:id" component={EventEdit}/>
               <Route path="/facilitators/:id/edit" component={EventEdit}/>

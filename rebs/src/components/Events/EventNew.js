@@ -28,7 +28,8 @@ class EventNew extends React.Component {
       facilitators: event.target.facilitator.value,
       onsite: event.target.onsite.checked,
       organisation: event.target.organisation.value,
-      location: event.target.location.value
+      location: event.target.location.value,
+      notes: event.target.notes.value
     }
 
     fetch(url, {
