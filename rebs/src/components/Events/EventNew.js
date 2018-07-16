@@ -10,19 +10,38 @@ class NewEventForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      notes: ''
+      title: ''
     };
     //Bind methods for inputs here
     this.handleChange = this.handleChange.bind(this);
   }
   //Handle info functions
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
+    
+    const url = 'https://webs-backend-kpbyniydyc.now.sh/events/new'
+    const data = { title: event.target.title.value }
+
+    fetch(url, {
+    method: 'POST', 
+    body: JSON.stringify(data), // data can be `string` or {object}!
+    headers:{
+      'Content-Type': 'application/json'
+    }
+    })
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Success:', response));
   }
 
   render(){
     return (
-      <form>
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        this.handleChange(e)}}>
+
+        <input placeholder="Title" type="text" name="title" />
+
         <select name="workshop">
           <option value="memes101">Memes 101</option>
           <option value="html_css">HTML/CSS</option>
@@ -50,7 +69,7 @@ class NewEventForm extends React.Component {
           <option value="Sydney">Sydney</option>
         </select>
 
-        <input placeholder="Notes" type="text" name="notes" onChange={this.handleChange} value={this.state.value} />
+        <input placeholder="Notes" type="text" name="notes" />
 
         <div>
           Start: <input type="datetime-local"/>
@@ -61,59 +80,26 @@ class NewEventForm extends React.Component {
         </div>
 
         <button name="addDate">Add Date</button>
+
+        <button type="submit">Submit</button>
+        
       </form>
     )
   }
 }
 
-class NewEvent extends React.Component {
-  constructor(){
-    super();
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleSubmit(e) {
-    e.preventDefault();
-    const eventData = new FormData(e.target);
+export { Header, NewEventForm }
 
-    fetch("https://webs-backend-alawjpzcis.now.sh/events", {
-      method: POST,
-      body: eventData,
-    });
-  }
-  
-}
 
-export { Header, NewEventForm, NewEvent }
+// var url = 'https://example.com/profile';
+// var data = {username: 'example'};
 
-// class NewEvent extends React.Component {
-//   state = {
-//       events: null,
+// fetch(url, {
+//   method: 'POST', // or 'PUT'
+//   body: JSON.stringify(data), // data can be `string` or {object}!
+//   headers:{
+//     'Content-Type': 'application/json'
 //   }
-
-//   componentDidMount(){
-//       fetch("https://webs-backend-alawjpzcis.now.sh/events")
-//       .then(res => res.json())
-//       .then(events => {
-//           this.setState({
-//               events
-//       })
-//   })
-//   }
-
-// render() {
-
-//   const events = this.state.events
-//   if(!events){
-//       return <h1>loading...</h1>
-//   }
-//   return (
-//       <div className="fetch">
-//           {
-//              events.map(singleEvent => {
-//                  return <div>{singleEvent._id}</div>
-//              })
-//           }
-//       </div>
-//   );
-// }
-// }
+// }).then(res => res.json())
+// .catch(error => console.error('Error:', error))
+// .then(response => console.log('Success:', response));

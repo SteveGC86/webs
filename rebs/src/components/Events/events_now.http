@@ -1,0 +1,54 @@
+###
+POST https://webs-backend-kpbyniydyc.now.sh/events/new
+Content-Type: application/json
+
+{
+    "title": "XXXXX",
+    "facilitators": "XXXX Tyson Butler-Boschma ",
+    "attendees": 0,
+    "status": "Pending",
+    "creator": null,
+    "notes": "XXXXX DATA",
+    "onsite": true,
+    "price": 55000,
+    "organisation": "CA Mel",
+    "bookings": []
+}
+
+###
+GET https://webs-backend-kpbyniydyc.now.sh/events
+Content-Type: application/json
+
+###
+PATCH https://webs-backend-kpbyniydyc.now.sh/events/5b4c2590e362fb0050ffd488
+Content-Type: application/json
+
+{
+    "title": "FFFFF FFFFF",
+    "facilitators": "FFFFF Tyson Butler-Boschma ",
+    "attendees": 10,
+    "status": "FFFFF Pending",
+    "creator": "FFFFF",
+    "notes": "FFFFF DATA",
+    "onsite": false,
+    "price": 555000,
+    "organisation": "CA Mel FFFFF"
+}
+
+###
+PUT https://webs-backend-kpbyniydyc.now.sh/events/5b4c2590e362fb0050ffd488/new
+Content-Type: application/json
+
+            {
+                "start": "12/23/2018 10:00",
+                "end": "12/23/2018 13:00",
+                "location": "Room 1212"
+            }
+            
+###
+PUT https://webs-backend-kpbyniydyc.now.sh/events/5b4c2590e362fb0050ffd488/5b4c26d3e362fb0050ffd489/remove
+Content-Type: application/json
+
+###
+DELETE https://webs-backend-kpbyniydyc.now.sh/events/5b4c2590e362fb0050ffd488
+Content-Type: application/json
