@@ -27,6 +27,9 @@ body {
   font-size: calc(16px + 4vw);
 }
 
+h2 {
+  font-family: 'Alegreya', serif;
+}
 .App {
   text-align: center;
 }
