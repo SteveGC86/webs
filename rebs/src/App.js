@@ -9,7 +9,7 @@ import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import EventEdit from './components/Events/EventEdit';
 import EventView from './components/Events/EventView';
-import { NewEventForm } from './components/Events/EventNew'
+import { EventNew } from './components/Events/EventNew'
 // import { Title, Status, DateFrom, DateTo, Onsite, Location, Organisation, Attendees } from './components/Events/EventView'
 import LoginForm from'./components/Login/LoginForm';
 import EventList from './components/Events/EventList'
@@ -60,7 +60,7 @@ class App extends Component {
               <Route exact path="/events/:id/edit" render={() => {
                 return <EventEdit updateHeaderTitle={this.updateHeaderTitle} state={this.state}/>
               }}/> 
-              <Route path="/events/new" component={EventEdit}/>
+              <Route path="/events/new" component={EventNew}/>
               <Route exact path="/facilitators" component={EventEdit}/>
               <Route exact path="/facilitators/:id" component={EventEdit}/>
               <Route path="/facilitators/:id/edit" component={EventEdit}/>

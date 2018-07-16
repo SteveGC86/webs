@@ -6,7 +6,7 @@ const Header = function EventNewHeader() {
     );
 }
 
-class NewEventForm extends React.Component {
+class EventNew extends React.Component {
   constructor(props){
     super(props);
     // this.state = {
@@ -97,4 +97,4 @@ class NewEventForm extends React.Component {
   }
 }
 
-export { Header, NewEventForm }
+export { Header, EventNew }
