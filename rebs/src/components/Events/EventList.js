@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EventCard from './EventCard';
+import './EventCard.css'
 
 
 
@@ -12,6 +13,7 @@ class EventList extends Component {
         fetch("https://webs-backend-oxjtbmatkg.now.sh/workshops")
         .then(res => res.json())
         .then(events => {
+          console.log(events);
             this.setState({
                 events
         })
@@ -26,6 +28,7 @@ class EventList extends Component {
     }
     return (
         <div className="fetch">
+        <input type="button" value="Calender View" name="viewCalender" />
             {
                events.map(singleEvent => {
                    return <EventCard key={singleEvent._id} singleEvent={singleEvent}/>
