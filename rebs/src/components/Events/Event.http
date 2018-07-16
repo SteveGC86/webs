@@ -1,0 +1,35 @@
+###
+POST https://webs-backend-alawjpzcis.now.sh/events/new
+Content-Type: application/json
+
+{
+    "title": "XXXXX",
+    "facilitators": "XXXX Tyson Butler-Boschma ",
+    "attendees": 0,
+    "status": "Pending",
+    "creator": null,
+    "notes": "XXXXX DATA",
+    "onsite": true,
+    "price": 55000,
+    "organisation": "CA Mel",
+    "bookings": []
+}
+
+###
+PUT https://webs-backend-alawjpzcis.now.sh/events/5b4bf8627b2446004fb0f564/new
+Content-Type: application/json
+
+            {
+                "start": "12/22/2018 10:00",
+                "end": "12/22/2018 13:00",
+                "location": "Room 1212"
+            }
+
+
+###
+PUT https://webs-backend-alawjpzcis.now.sh/events/5b4bf8627b2446004fb0f564/5b4bf8997b2446004fb0f566/remove
+Content-Type: application/json
+
+###
+DELETE https://webs-backend-alawjpzcis.now.sh/events/5b4bf8627b2446004fb0f564
+Content-Type: application/json

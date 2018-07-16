@@ -1,18 +1,30 @@
 import React from 'react'
+import moment from 'moment'
+import './EventCard.css'
 
-class EventCard extends React.Component(){
-  constructor(props);
-  super(props);
-
-  // let event = this.props.event
+class EventCard extends React.Component {
 
   render() {
-    <div className="eventCard" key={this.props.event.id}>
-      <h4>{this.event.workshop}</h4>
-      <h5>{this.event.booking.location}</h5>
-      <input type="button">View</input> 
+    const singleEvent = this.props.singleEvent
+    return(
+    <div key={singleEvent._id} className="eventCard" >
+      <div className="eventDetails">
+        <h2>{singleEvent.title}</h2>
+        <h5>{singleEvent.facilitators}</h5>
+          {singleEvent.bookings.map(booking => {
+            return <p> 
+              {moment(booking.start).format("dddd, MMMM Do YYYY")}
+            </p>
+            })}
+          
+      </div>
+
+      <div className="confirmation">
+        <p>{singleEvent.status}</p>
+        <input type="button" value="View" name="viewEvent" />
+      </div>
     </div>
-  }
+    )}
 }
 
 export default EventCard
