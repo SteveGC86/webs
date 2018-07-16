@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter} from 'react-router-dom';
 import './App.css';
-import {  NewEventForm } from './components/Events/EventNew'    //TODO:  Check if header is needed
+import { NewEventForm } from './components/Events/EventNew'
+import { Title, Status, DateFrom, DateTo, Onsite, Location, Organisation, Attendees } from './components/Events/EventView'
 
 // IMPORT COMPONENTS
 import Header from './components/Header/Header';
