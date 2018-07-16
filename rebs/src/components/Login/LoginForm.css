@@ -1,0 +1,47 @@
+.logo {
+    margin-bottom: 15vh;
+}
+
+input{
+    text-align:center;
+    width: 70vw;
+    height: 5vh;
+    border-radius: 5px;
+    margin: 1vh;
+    font-size: 3vh;
+ }
+
+ button{
+     background-color: #45A7C5;
+     color: white;
+     text-align:center;
+    width: 70vw;
+    height: 5vh;
+    border-radius: 5px;
+    margin: 1vh;
+    font-size: 3vh;
+    font-family: 'Alegreya', serif;
+ }
+
+ @media only screen and (min-width: 800px) {
+    input{
+        text-align:center;
+        width: 40vw;
+        height: 5vh;
+        border-radius: 5px;
+        margin: 1vh;
+        font-size: 3vh;
+     }
+    
+     button{
+         background-color: #45A7C5;
+         color: white;
+         text-align:center;
+        width: 40vw;
+        height: 5vh;
+        border-radius: 5px;
+        margin: 1vh;
+        font-size: 3vh;
+        font-family: 'Alegreya', serif;
+     }
+ }

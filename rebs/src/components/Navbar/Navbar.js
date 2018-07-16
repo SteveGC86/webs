@@ -24,8 +24,8 @@ class Navbar extends Component {
             arrow={false}
             >
             <div className="menu">
-                <Link to="/events"><p>View All</p></Link>
                 <Link to="/events/new"><p>New Event</p></Link>
+                <Link to="/events"><p>View All</p></Link>
             </div>
             </Popup>
 
@@ -41,8 +41,8 @@ class Navbar extends Component {
             arrow={false}
             >
             <div className="menu">
-                <Link to="/facilitators"><p>View All</p></Link>
                 <Link to="/facilitators/new"><p>New Facilitator</p></Link>
+                <Link to="/facilitators"><p>View All</p></Link>
             </div>
             </Popup>
 
@@ -61,8 +61,8 @@ class Navbar extends Component {
             arrow={false}
             >
             <div className="menu">
-                <Link to="/orginisations"><p>View All</p></Link>
-                <Link to="/orginisations/new"><p>New Organisation</p></Link>
+                <Link to="/organisations/new"><p>New Organisation</p></Link>
+                <Link to="/organisations"><p>View All</p></Link>
             </div>
             </Popup>
 
