@@ -32,12 +32,12 @@ class NewFacilitatorForm extends React.Component {
 
         <input placeholder="Address" type="text" name="address" onChange={this.handleFacilitatorChange} value={this.state.value} required />
 
-        <select name="facilitatorRole">
+        <select required name="facilitatorRole">
           <option value="leadFacilitator">Lead Facilitator</option>
           <option value="assistantFacilitator">Assistant Facilitator</option>
         </select>
 
-        <select name="defaultLocation">
+        <select required name="defaultLocation">
           <option value="melbourne">Melbourne</option>
           <option value="sydney">Sydney</option>
           <option value="brisbane">Brisbane</option>
