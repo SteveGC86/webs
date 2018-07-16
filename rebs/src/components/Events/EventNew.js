@@ -1,13 +1,5 @@
 import React from 'react';
 
-const Header = function EventNewHeader() {
-    return (
-      <h1>New Event</h1>
-    );
-}
-
-
-
 class NewEventForm extends React.Component {
   constructor(props){
     super(props);
@@ -20,6 +12,10 @@ class NewEventForm extends React.Component {
   //Handle info functions
   handleChange(event) {
     this.setState({value: event.target.value});
+  }
+
+  componentDidMount(){
+    this.props.updateHeaderTitle("New Event");
   }
 
   render(){
@@ -68,6 +64,6 @@ class NewEventForm extends React.Component {
   }
 }
 
-export { Header, NewEventForm }
+export default NewEventForm
 
 // export default EventNewHeader

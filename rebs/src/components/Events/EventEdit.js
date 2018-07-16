@@ -1,49 +1,54 @@
 import React, { Component } from 'react'
-import Header from '../Header/Header'
 
 
 class EventEdit extends Component {
-
-  componentDidMount(){
-    this.props.updateHeaderTitle("Edit Event");
-  }
   
   render(){
+    const singleEvent = this.props.location.state.singleEvent
     return (
       <div className="eventEdit">
         <h1>Edit Workshop</h1>
           <form onSubmit={(e) =>{
             e.preventDefault()
+            const inputs = e.target
+            Object.entries(inputs).map(key => {
+              console.log(key[1].value)
+            })
           }}>
-            <input type="text" placeholder="   workshop" name="workshop" /><br/>
-            <input type="text" placeholder="   facilitator" name="facilitator" /><br/>
-            <button placeholder="Add Facilitator" className="AddFacilitator"></button>
+            <input type="text" value={singleEvent.title} name="title" /><br/>
+            <input type="text" value={singleEvent.facilitators} name="facilitator" /><br/>
             <div className="">
-              <input type="button" value="Add Facilitator" name="Add Facilitator" /><br />
+              <button value="Add Facilitator" name="Add Facilitator">Add Facilitator</button><br />
             </div>
               
               <div className="onsite">
-                <input type="checkbox" name="onsite"  />
+                <input type="checkbox" name="onsite" value={singleEvent.onsite} />
                 <p>Onsite</p>
               </div>
 
-            <input type="text" placeholder="   Organization" name="organization" /><br/>
-            <input type="text" placeholder="   location" name="location" /><br/>
-            <input type="text" placeholder="   Notes" name="Notes" /><br />
+            <input type="text" value={singleEvent.organisation} name="organisation" /><br/>
+            <input type="text" value={singleEvent.notes} name="Notes" /><br />
 
             <label>Start Date</label>
             <label>End Date</label><br />
             <div className="dates">
               <input type="datetime-local" value="Start Date" name="startDate" />             {/*TODO: Check datetime input*/}
-              <input type="datetime-local" value="End Date" name="endDate" />                 {/*TODO: Check datetime input*/}
+              <input type="datetime-local" value="End Date" name="endDate" />
+              <input type="text" value={singleEvent.location} name="location" /><br/>                 {/*TODO: Check datetime input*/}
             </div>
-
-            <input type="button" value="Add Another Date" name="addEvent" /><br />
+            <button value="Add Another Date" name="addEvent">Add Another Date</button>
 
               
           <p>Attendees: </p>
           <input type="number" placeholder="Attendance" /> <br />
-          <input type="button" value="submit"/>
+
+          <select name="status" value={singleEvent.status}>
+            <option value="confirmed">Confirmed</option>
+            <option value="pending" >Pending</option>
+            <option value="cancelled">Cancelled</option>
+          </select><br/>
+
+          <button value="submit">Submit</button>
           
           </form>
 

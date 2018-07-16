@@ -3,16 +3,26 @@ import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import './App.css';
 
 
-// IMPORT COMPONENTS
-import FetchEvent from './components/Events/FetchEvent'
+// IMPORT LAYOUT COMPONENTS
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
+import LoginForm from'./components/Login/LoginForm';
+
+// IMPORT EVENT COMPONENTS
 import EventEdit from './components/Events/EventEdit';
 import EventView from './components/Events/EventView';
-import { NewEventForm } from './components/Events/EventNew'
-// import { Title, Status, DateFrom, DateTo, Onsite, Location, Organisation, Attendees } from './components/Events/EventView'
-import LoginForm from'./components/Login/LoginForm';
-import EventList from './components/Events/EventList'
+import EventList from './components/Events/EventList';
+import NewEventForm from './components/Events/EventNew';
+
+// IMPORT OTHER COMPONENTS
+import Settings from './components/Settings/Settings';
+
+// IMPORT WORKSHOPS COMPONENTS
+import WorkshopsNew from './components/Workshops/WorkshopsNew';
+import WorkshopsList from './components/Workshops/WorkshopsList';
+import WorkshopsEdit from './components/Workshops/WorkshopsEdit';
+import WorkshopsView from './components/Workshops/WorkshopsView';
+
 
 
 class App extends Component {
@@ -26,7 +36,6 @@ class App extends Component {
     this.setState({
       title
     })
-    console.log(title)
   }
 
   handleLoginSubmit = (email) => {
@@ -46,32 +55,56 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Header title={this.state.title}/>
+        <Header title={this.state.title}/>
         <BrowserRouter>
           <div>
             <Navbar/>
             <Switch>
-            <Route exact path="/" render={() => {
+              {/* Login Form */}
+              <Route exact path="/" render={() => {
                 return <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>
               }}/> 
+              {/* View All Events */}
               <Route exact path="/events" render={() => {
-                return <EventEdit updateHeaderTitle={this.updateHeaderTitle}/>
+                return <EventList updateHeaderTitle={this.updateHeaderTitle}/>
               }}/> 
-              <Route path="/events/:id/edit" component={EventEdit}/>
-              <Route path="/events/new" component={EventEdit}/>
-              <Route exact path="/facilitators" component={EventEdit}/>
+              {/* View Single Event */}
+              <Route exact path="/events/:id/" component={EventView}/> 
+              {/* Edit Event */}
+              <Route exact path="/events/:id/edit" component={EventEdit}/>
+              {/* Add New Event */}
+              <Route exact path="/events/new" render={() => {
+                return <NewEventForm updateHeaderTitle={this.updateHeaderTitle}/>        
+              }}/> 
+              {/* <Route exact path="/facilitators" component={EventEdit}/>
               <Route exact path="/facilitators/:id" component={EventEdit}/>
               <Route path="/facilitators/:id/edit" component={EventEdit}/>
               <Route path="/facilitators/new" component={EventEdit}/>
               <Route exact path="/organisations" component={EventEdit}/>
               <Route exact path="/organisations/:id" component={EventEdit}/>
               <Route path="/organisations/:id/edit" component={EventEdit}/>
-              <Route path="/organisations/new" component={EventEdit}/>
-              <Route exact path="/workshops" component={EventEdit}/>
-              <Route exact path="/workshops/:id" component={EventEdit}/>
-              <Route path="/workshops/:id/edit" component={EventEdit}/>
-              <Route path="/workshops/new" component={EventEdit}/>
-              <Route path="/settings" component={EventEdit}/>
+              <Route path="/organisations/new" component={EventEdit}/> */}
+
+              {/* List All Workshops w/ Workshops Card*/}
+              <Route exact path="/workshops" render={() => {
+                return <WorkshopsList updateHeaderTitle={this.updateHeaderTitle}/>        
+              }}/>
+              {/* View Single Workshop */}
+              <Route exact path="/workshops/:id" render={() => {
+                return <WorkshopsView updateHeaderTitle={this.updateHeaderTitle}/>        
+              }}/>
+              {/* Edit Single Workshop */}
+              <Route path="/workshops/:id/edit" render={() => {
+                return <WorkshopsEdit updateHeaderTitle={this.updateHeaderTitle}/>        
+              }}/>
+              {/* Add New Workshop */}
+              <Route path="/workshops/new" render={() => {
+                return <WorkshopsNew updateHeaderTitle={this.updateHeaderTitle}/>        
+              }}/>
+              {/* Settings Page */}
+              <Route exact path="/settings" render={() => {
+                return <Settings updateHeaderTitle={this.updateHeaderTitle}/>        
+              }}/> 
             </Switch>
           </div>
         </BrowserRouter>

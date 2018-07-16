@@ -10,13 +10,14 @@ class EventList extends Component {
     }
 
     componentDidMount(){
-        fetch("https://webs-backend-oxjtbmatkg.now.sh/workshops")
+        this.props.updateHeaderTitle("Upcoming Events");
+        fetch("https://webs-backend-kpbyniydyc.now.sh/events")
         .then(res => res.json())
         .then(events => {
-          console.log(events);
             this.setState({
                 events
         })
+        
     })
     }
 
@@ -24,7 +25,7 @@ class EventList extends Component {
 
     const events = this.state.events
     if(!events){
-        return <h1>loading...</h1>
+        return <h1>Loading...</h1>
     }
     return (
         <div className="fetch">
