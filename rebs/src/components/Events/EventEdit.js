@@ -4,32 +4,79 @@ import './EventEdit.css'
 
 
 class EventEdit extends Component {
-
-  componentDidMount(){
-    this.props.updateHeaderTitle("Edit Event");
+  state = {
+    facilitator: 1,
   }
+  // constructor(props) {
+  //   super(props)
+  // }
 
-  handleChange = (e) => {
-  const url = 'https://webs-backend-kpbyniydyc.now.sh/events/{this.props.work}' 
-  const data = {
-    workshop: e.target.workshop.value,
-    facilitator:  e.target.facilitator.value,
-    }
+  // addWorkshop(workshop, facilitator) {
+  //   this.props.addWorkshop(workshop, facilitator)
+  // }
+
+  // removeWorkshop(workshop, facilitator) {
+  //   this.props.removeWorkshop(workshop, facilitator)
+  // // }
+
+  // componentDidMount(){
     
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers:{
-        'Content-Type': 'applications/json'
-      }
+  // }
+
+  // const data = {
+  //   workshop: e.target.workshop.value,
+  //   facilitator:  e.target.facilitator.value,
+  //   }
+  // handleChange = (e) => {
+  // const url = 'https://webs-backend-kpbyniydyc.now.sh/events/{this.props.work}' 
+    
+  //   fetch(url, {
+  //     method: 'POST',
+  //     body: JSON.stringify(data),
+  //     headers:{
+  //       'Content-Type': 'applications/json'
+  //     }
+  //   })
+  //   .then(res => res.json())
+  //   .catch(error => console.error('Error:', error))
+  //   .then(response => console.log('Success:', response))
+  // }
+  
+  addFacilitator = () => {
+    this.setState((prevState, props) => {
+      facilitator: prevState.facilitator ++ 
+      console.log(this.state.facilitator);
     })
-    .then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response))
+    
+    
+    
+    // const facilitator = document.getElementById('wrapper').innerHTML += '<br/> <input type="text" placeholder=" Facilitator"name="facilitator" />'
+    // // console.log(facilitator);
+    // {console.log(document.getElementById('wrapper'))}
+    // // {console.log(document.getElementById('wrapper').input)}
+    // const nodes = document.querySelectorAll("input[name='facilitator']")
+    // console.log(nodes)
   }
-  addFacilitator = (e) => {
-    const facilitator = document.getElementById('wrapper').innerHTML += '<br/> <input type="text" placeholder=" facilitator" name="facilitator" />'
+  removeFacilitator = () => {
+    this.setState((prevState, props) => {
+      facilitator: prevState.facilitator -- 
+      console.log(this.state.facilitator);
+    })
+    // const nodes = document.querySelectorAll("input[name='facilitator']")
+    // const remove = [].slice.call(nodes).pop()
+    // nodes.removeChild(  )
+    // var arr = Array.prototype.slice.call(nodes)
+    // console.log(arr)
+    // console.log(nodes);
+    //  -= '<br/> <input type="text" placeholder= "Facilitator" name="facilitator" />'
+    // console.log(remove)
   }
+  // const workshop = this.refs.workshop.value
+  // const facilitator = this.refs.facilitator.value
+
+  // if(!workshop || !facilitator) {
+  //   return;
+  // }
 
   
   render() {
@@ -39,13 +86,17 @@ class EventEdit extends Component {
           <form onSubmit={(e) =>{
             e.preventDefault()
           }}>
-            <input type="text" placeholder="   workshop" name="workshop" /><br/>
+            <input ref="workshop" type="text" placeholder="   workshop" name="workshop" /><br/>
           <div id="wrapper" >
-           <input type="text" placeholder="   facilitator" name="facilitator" /><br/>
+           <input ref="facilitator" type="text" placeholder="   facilitator" name="facilitator" />
           </div>
 
-            <div className="">
-              <input type="button" value="Add Facilitator" name="Add Facilitator" onClick={this.addFacilitator}/><br />  
+            <div className="button">
+              <input type="button" value="Add Facilitator" name="Add Facilitator" onClick={this.addFacilitator}/><br />
+              {this.state.facilitator <= 2 ? "" : <input type="button" value="Remove Facilitator" name="Remove Facilitator" onClick={this.removeFacilitator} />}
+                
+              
+              
             </div>
               
               <div className="onsite">

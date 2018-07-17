@@ -126,6 +126,11 @@ div.dates {
   margin-bottom: 2vh;
 }
 
+div.button {
+  display: flex;
+  justify-content: center;
+}
+
 input[name="startDate"] {
   height: 4vh; 
   border: 1px solid #363637;
