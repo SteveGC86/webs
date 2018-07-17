@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import './App.css';
+import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+import MomentUtils from 'material-ui-pickers/utils/moment-utils';
+import 'material-ui'
 
 
 // IMPORT LAYOUT COMPONENTS
@@ -55,7 +58,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header title={this.state.title}/>
+          <MuiPickersUtilsProvider utils={MomentUtils}>
+          <Header title={this.state.title}/>
         <BrowserRouter>
           <div>
             <Navbar/>
@@ -118,7 +122,7 @@ class App extends Component {
             </Switch>
           </div>
         </BrowserRouter>
-        
+          </MuiPickersUtilsProvider>
       </div>
     );
   }

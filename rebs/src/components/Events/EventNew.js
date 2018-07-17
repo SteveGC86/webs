@@ -1,8 +1,15 @@
 import React from 'react';
+import DateTimePicker from 'material-ui-pickers/DateTimePicker';
+
+
+
 
 class NewEventForm extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      selectedDate: new Date(),
+    }
     // this.state = {
     //   title: '',
     //   facilitator: '' 
@@ -44,7 +51,12 @@ class NewEventForm extends React.Component {
     this.props.updateHeaderTitle("New Event");
   }
 
+  handleDateChange = (date) => {
+    this.setState({ selectedDate: date });
+  }
+
   render(){
+    const { selectedDate } = this.state;
     return (
       <form id="newEventForm" onSubmit={(e) => {
         e.preventDefault();
@@ -84,13 +96,17 @@ class NewEventForm extends React.Component {
 
         <input placeholder="Notes" type="text" name="notes" />
 
-        <div>
+        <DateTimePicker
+          value={selectedDate}
+          onChange={this.handleDateChange}
+        />
+        {/* <div>
           Start: <input name="dateFrom" type="datetime-local"/>
         </div>
 
         <div>
           End: <input name="dateTo" type="datetime-local"/>
-        </div>
+        </div> */}
 
         <button name="addDate">Add Date</button>
 
