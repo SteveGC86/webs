@@ -3,12 +3,15 @@ import './EventEdit.css';
 import axios from 'axios';
 // import EventView from 'react';
 import { Redirect } from 'react-router-dom';
+import Select from 'react-select'
+import 'react-select/dist/react-select.css'
 
 
 class EventEdit extends Component {
-
+  
   state = {
     redirect: false,
+    selectOption: [],
   }
   // constructor(props) {
   //   super(props)
@@ -21,37 +24,6 @@ class EventEdit extends Component {
   // removeWorkshop(workshop, facilitator) {
   //   this.props.removeWorkshop(workshop, facilitator)
   // // }
-
-  // componentDidMount(){
-    
-  // }
-
-  // const data = {
-  //   workshop: e.target.workshop.value,
-  //   facilitator:  e.target.facilitator.value,
-  //   }
-  // handleChange = (e) => {
-  // const url = 'https://webs-backend-kpbyniydyc.now.sh/events/{this.props.work}' 
-    
-  //   fetch(url, {
-  //     method: 'POST',
-  //     body: JSON.stringify(data),
-  //     headers:{
-  //       'Content-Type': 'applications/json'
-  //     }
-  //   })
-  //   .then(res => res.json())
-  //   .catch(error => console.error('Error:', error))
-  //   .then(response => console.log('Success:', response))
-  // }
-  
-  addFacilitator = () => {
-    this.setState((prevState, props) => {
-      facilitator: prevState.facilitator ++ 
-      console.log(this.state.facilitator);
-    })
-    
-    
     
     // const facilitator = document.getElementById('wrapper').innerHTML += '<br/> <input type="text" placeholder=" Facilitator"name="facilitator" />'
     // // console.log(facilitator);
@@ -59,7 +31,7 @@ class EventEdit extends Component {
     // // {console.log(document.getElementById('wrapper').input)}
     // const nodes = document.querySelectorAll("input[name='facilitator']")
     // console.log(nodes)
-  }
+
   removeFacilitator = () => {
     this.setState((prevState, props) => {
       facilitator: prevState.facilitator -- 
@@ -71,7 +43,7 @@ class EventEdit extends Component {
     // var arr = Array.prototype.slice.call(nodes)
     // console.log(arr)
     // console.log(nodes);
-    //  -= '<br/> <input type="text" placeholder= "Facilitator" name="facilitator" />'
+    //  -= '<br/> <input type="text" placeholder= "Facilitator"  name="facilitator" />'
     // console.log(remove)
   handleChange = (e) => {
     const workshop_id = this.props.location.state.singleEvent._id
@@ -79,26 +51,40 @@ class EventEdit extends Component {
     axios.patch(url, {
       _id: workshop_id,
     title: e.target.title.value,
-    facilitators:  e.target.facilitators.value,
+    facilitators:  e.target.facilitators,
+   
     })
     .then(() => {
-      this.setState({redirect: true})
+      console.log(e.target.facilitators);
+      // this.setState({redirect: true})
     })
     .catch(function (error) {
       console.log(error);
     });
   }
+
+  facilitatorOption = (selectedOption) =>{
+    this.setState({ selectedOption });
+    if(selectedOption) {
+      selectedOption.map(option => {
+        this.setState({selectedOption})
+        console.log(option.value)
+      })
+    }
+  }
+
   // const workshop = this.refs.workshop.value
   // const facilitator = this.refs.facilitator.value
-
-  // if(!workshop || !facilitator) {
-  //   return;
-  // }
-
   
-  render() {
-    const singleEvent = this.props.location.state.singleEvent
-    const redirect = this.state.redirect
+  // if(!workshop || !facilitator) {
+    //   return;
+    // }
+    
+    
+    render() {
+      const singleEvent = this.props.location.state.singleEvent
+      const redirect = this.state.redirect
+      const { selectedOption } = this.state;
 
     if(redirect){
 
@@ -113,42 +99,60 @@ class EventEdit extends Component {
           <form onSubmit={(e) =>{
             e.preventDefault()
             this.handleChange(e)
+            console.log(this.input);
           }}>
             <div>
-            <input type="text" placeholder="Workshop Title" defaultValue={singleEvent.title} name="title" /><br/>
+            <input type="text"  placeholder="Workshop Title" defaultValue={singleEvent.title} name="title" /><br/>
             </div>
-          <div id="wrapper" >
+
+
+
+          {/* <div id="wrapper" >
           <input type="text" placeholder="Facilitators" defaultValue={singleEvent.facilitators} name="facilitators" />
           {/* Below code for V1.1 - when we have an array of facilitators */}
           {/* {singleEvent.facilitators.map(facilitator => {
             <input key={facilitator._id} type="text" defaultValue={facilitator} name="facilitators" />
           })} */}
-          </div>
+          {/* </div> */}
 
-            <div className="button">
+            {/*<div className="button">
               <input type="button" value="Add Facilitator" name="Add Facilitator" onClick={this.addFacilitator}/><br />
               {this.state.facilitator < 2 ? "" : <FacilitatorInput state={this.state.facilitator} />}
-                
-              
-              
             </div>
+                 */}
+
+                  <Select
+                      name="facilitators"
+                      value={selectedOption}
+                      onChange={this.facilitatorOption}
+                      multi={true}
+                      joinValues={true}
+                      delimiter={','} 
+                      options={[
+                        { value: "Ruegen aschenburger", label: "Ruegen" },
+                        { value: "Matt BigMackenzie", label: "Matt" },
+                        { value: "gretcher scott", label: "Gretch" }
+                      ]}
+                  />
               
-              <div className="onsite">
-                <input type="checkbox" name="onsite"  />
+              
+              
+              <div className="onsite" >
+                <input type="checkbox" ref={this.onsite} name="onsite" />
                 <p>Onsite</p>
               </div>
 
-            <input type="text" placeholder="Organisation" defaultValue={singleEvent.organisation} name="organisation" /><br/>
-            <input type="text" placeholder="Notes" defaultValue={singleEvent.notes} name="Notes" /><br />
+            <input type="text" ref={this.organistation} placeholder="Organisation" defaultValue={singleEvent.organisation} name="organisation" /><br/>
+            <input type="text"  ref={this.notes} placeholder="Notes" defaultValue={singleEvent.notes} name="Notes" /><br />
 
             <div className="dates">
             {singleEvent.bookings.map((booking, i) => {
               return <div key={booking._id} className="singleBooking"><h4>Booking {i+1}</h4>
               <label>Start Date</label>
-              <input type="datetime-local" defaultValue={booking.start} name="startDate" /> 
+              <input type="datetime-local" ref={this.startDate}  defaultValue={booking.start} name="startDate" /> 
               <label>End Date</label>       
-              <input type="datetime-local" defaultValue={booking.end} name="endDate" />
-              <input type="text" defaultValue={booking.location} name="location" /><br/>
+              <input type="datetime-local" ref={this.endDate} defaultValue={booking.end} name="endDate" />
+              <input type="text" ref={this.location} defaultValue={booking.location} name="location" /><br/>
               </div>
             })}             
             </div>
@@ -172,5 +176,6 @@ class EventEdit extends Component {
     )
   }
 }
+
 
 export default EventEdit
