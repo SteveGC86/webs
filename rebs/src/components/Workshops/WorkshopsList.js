@@ -11,7 +11,7 @@ class WorkshopsList extends Component {
 
     return (
         <div className="workshopsList">
-        All workshops.
+        <WorkshopsCard/>
         </div>
     );
   }

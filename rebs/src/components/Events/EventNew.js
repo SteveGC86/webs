@@ -3,15 +3,39 @@ import React from 'react';
 class NewEventForm extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      notes: ''
-    };
+    // this.state = {
+    //   title: '',
+    //   facilitator: '' 
+    // };
     //Bind methods for inputs here
     this.handleChange = this.handleChange.bind(this);
   }
   //Handle info functions
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
+    console.log(event.target.onsite.value)
+
+    const url = 'https://webs-backend-kpbyniydyc.now.sh/events/new'
+    const data = { 
+      title: event.target.title.value,
+      newEvent: event.target.newEvent.value,
+      facilitators: event.target.facilitator.value,
+      onsite: event.target.onsite.checked,
+      organisation: event.target.organisation.value,
+      location: event.target.location.value,
+      notes: event.target.notes.value
+    }
+
+    fetch(url, {
+    method: 'POST', 
+    body: JSON.stringify(data), // data can be `string` or {object}!
+    headers:{
+      'Content-Type': 'application/json'
+    }
+    })
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Success:', response));
   }
 
   componentDidMount(){
@@ -20,8 +44,13 @@ class NewEventForm extends React.Component {
 
   render(){
     return (
-      <form>
-        <select name="workshop">
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        this.handleChange(e)}}>
+
+        <input placeholder="title" type="text" name="title" />
+
+        <select id="newEvent" placeholder="newEvent" name="newEvent">
           <option value="memes101">Memes 101</option>
           <option value="html_css">HTML/CSS</option>
           <option value="javascript">Javascript</option>
@@ -36,7 +65,7 @@ class NewEventForm extends React.Component {
           <button name="addFacilitator">Add Another Facilitator</button>
           <button name="createShortCourse">Add New Short Course</button>
 
-          <input type="checkbox" name="onsite" value="onsiteCourse" /> Onsite
+          <input type="checkbox" name="onsite" /> Onsite
 
         <select name="organisation">
           <option value="coderAcademy">Coder Academy</option>
@@ -48,7 +77,7 @@ class NewEventForm extends React.Component {
           <option value="Sydney">Sydney</option>
         </select>
 
-        <input placeholder="Notes" type="text" name="notes" onChange={this.handleChange} value={this.state.value} />
+        <input placeholder="Notes" type="text" name="notes" />
 
         <div>
           Start: <input type="datetime-local"/>
@@ -59,6 +88,9 @@ class NewEventForm extends React.Component {
         </div>
 
         <button name="addDate">Add Date</button>
+
+        <button type="submit">Submit</button>
+        
       </form>
     )
   }

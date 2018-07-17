@@ -26,7 +26,7 @@ class EventCard extends React.Component {
         <Link key={singleEvent._id} 
           to={
               {
-                  pathname: `/events/${singleEvent._id}`,
+                  pathname: `/events/${singleEvent._id}/`,
                   state: { singleEvent }
               }
           }> 

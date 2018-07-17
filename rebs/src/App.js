@@ -64,19 +64,25 @@ class App extends Component {
               <Route exact path="/" render={() => {
                 return <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>
               }}/> 
+
               {/* View All Events */}
-              <Route exact path="/events" render={() => {
+              <Route exact strict path="/events" render={() => {
                 return <EventList updateHeaderTitle={this.updateHeaderTitle}/>
               }}/> 
-              {/* View Single Event */}
-              <Route exact path="/events/:id/" component={EventView}/> 
+
               {/* Edit Event */}
-              <Route exact path="/events/:id/edit" component={EventEdit}/>
+              <Route exact strict path="/events/:id/edit" component={EventEdit}/>
+
+              {/* View Single Event */}
+              <Route exact strict path="/events/:id/" component={EventView}/> 
+
               {/* Add New Event */}
-              <Route exact path="/events/new" render={() => {
+              <Route path="/events/new" render={() => {
                 return <NewEventForm updateHeaderTitle={this.updateHeaderTitle}/>        
               }}/> 
-              {/* <Route exact path="/facilitators" component={EventEdit}/>
+
+              {/*
+              <Route exact path="/facilitators" component={EventEdit}/>
               <Route exact path="/facilitators/:id" component={EventEdit}/>
               <Route path="/facilitators/:id/edit" component={EventEdit}/>
               <Route path="/facilitators/new" component={EventEdit}/>
@@ -89,18 +95,22 @@ class App extends Component {
               <Route exact path="/workshops" render={() => {
                 return <WorkshopsList updateHeaderTitle={this.updateHeaderTitle}/>        
               }}/>
+
               {/* View Single Workshop */}
               <Route exact path="/workshops/:id" render={() => {
                 return <WorkshopsView updateHeaderTitle={this.updateHeaderTitle}/>        
               }}/>
+
               {/* Edit Single Workshop */}
               <Route path="/workshops/:id/edit" render={() => {
                 return <WorkshopsEdit updateHeaderTitle={this.updateHeaderTitle}/>        
               }}/>
+
               {/* Add New Workshop */}
               <Route path="/workshops/new" render={() => {
                 return <WorkshopsNew updateHeaderTitle={this.updateHeaderTitle}/>        
               }}/>
+
               {/* Settings Page */}
               <Route exact path="/settings" render={() => {
                 return <Settings updateHeaderTitle={this.updateHeaderTitle}/>        
