@@ -17,6 +17,7 @@
     "react-geocode": "0.0.9",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
+    "react-select": "0.9.1",
     "reactjs-popup": "^1.1.1"
   },
   "scripts": {
