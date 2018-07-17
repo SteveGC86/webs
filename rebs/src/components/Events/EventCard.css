@@ -1,0 +1,49 @@
+/* Edit Event form component */
+
+.fetch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FAFAFA
+}
+.eventCard {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  width: 50vh;
+  margin: 3vh;
+}
+
+.confirmation {
+  display: flex;
+  flex-direction: column; 
+  align-self: flex-end;
+  
+}
+
+.button {   
+  width: 25vh;
+  height: 3vh;
+  color: #FAFAFA;
+  border: none;
+  border-radius: 2px;
+  font-family: 'Alegreya';
+  font-size: 2vh;
+  font-weight: normal;
+  background: #45A7C5;
+  margin-bottom: 2.5vh;
+}
+
+input[name="viewCalender"] {   
+  width: 23vh;
+  height: 3vh;
+  color: #FAFAFA;
+  border: none;
+  border-radius: 3px;
+  font-family: 'Alegreya';
+  font-size: 2vh;
+  font-weight: normal;
+  background: #45A7C5;
+  margin-bottom: 2.5vh;
+}

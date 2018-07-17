@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 
 
 class Header extends Component {
-  render() {
+  render(title) {
 
     return (
         <div className="header">
-            Redhill Education WEBS
+            {this.props.title}
         </div>
     );
   }
