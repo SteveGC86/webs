@@ -23,7 +23,9 @@ class NewEventForm extends React.Component {
       onsite: event.target.onsite.checked,
       organisation: event.target.organisation.value,
       location: event.target.location.value,
-      notes: event.target.notes.value
+      notes: event.target.notes.value,
+      dateFrom: event.target.dateFrom.value,
+      dateTo: event.target.dateTo.value
     }
 
     fetch(url, {
@@ -44,9 +46,11 @@ class NewEventForm extends React.Component {
 
   render(){
     return (
-      <form onSubmit={(e) => {
+      <form id="newEventForm" onSubmit={(e) => {
         e.preventDefault();
-        this.handleChange(e)}}>
+        this.handleChange(e)
+        document.getElementById('newEventForm').reset()
+      }}>
 
         <input placeholder="title" type="text" name="title" />
 
@@ -65,7 +69,8 @@ class NewEventForm extends React.Component {
           <button name="addFacilitator">Add Another Facilitator</button>
           <button name="createShortCourse">Add New Short Course</button>
 
-          <input type="checkbox" name="onsite" /> Onsite
+          <p>Onsite</p>
+          <input type="checkbox" name="onsite" />
 
         <select name="organisation">
           <option value="coderAcademy">Coder Academy</option>
@@ -80,11 +85,11 @@ class NewEventForm extends React.Component {
         <input placeholder="Notes" type="text" name="notes" />
 
         <div>
-          Start: <input type="datetime-local"/>
+          Start: <input name="dateFrom" type="datetime-local"/>
         </div>
 
         <div>
-          End: <input type="datetime-local"/>
+          End: <input name="dateTo" type="datetime-local"/>
         </div>
 
         <button name="addDate">Add Date</button>
