@@ -1,6 +1,7 @@
-import React from 'react'
-import moment from 'moment'
-import './EventCard.css'
+import React from 'react';
+import moment from 'moment';
+import './EventCard.css';
+import {Link} from 'react-router-dom';
 
 class EventCard extends React.Component {
 
@@ -12,7 +13,7 @@ class EventCard extends React.Component {
         <h2>{singleEvent.title}</h2>
         <h5>{singleEvent.facilitators}</h5>
           {singleEvent.bookings.map(booking => {
-            return <p> 
+            return <p key={booking._id}> 
               {moment(booking.start).format("dddd, MMMM Do YYYY")}
             </p>
             })}
@@ -21,7 +22,17 @@ class EventCard extends React.Component {
 
       <div className="confirmation">
         <p>{singleEvent.status}</p>
-        <input type="button" value="View" name="viewEvent" />
+
+        <Link key={singleEvent._id} 
+          to={
+              {
+                  pathname: `/events/${singleEvent._id}/`,
+                  state: { singleEvent }
+              }
+          }> 
+            <button name="viewEvent">View</button>
+        </Link>
+
       </div>
     </div>
     )}
