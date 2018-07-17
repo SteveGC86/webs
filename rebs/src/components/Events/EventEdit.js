@@ -80,6 +80,7 @@ class EventEdit extends Component {
 
   
   render() {
+
     return (
       <div className="eventEdit">
         <h1>Edit Workshop</h1>
@@ -93,7 +94,7 @@ class EventEdit extends Component {
 
             <div className="button">
               <input type="button" value="Add Facilitator" name="Add Facilitator" onClick={this.addFacilitator}/><br />
-              {this.state.facilitator <= 2 ? "" : <input type="button" value="Remove Facilitator" name="Remove Facilitator" onClick={this.removeFacilitator} />}
+              {this.state.facilitator < 2 ? "" : <FacilitatorInput state={this.state.facilitator} />}
                 
               
               
