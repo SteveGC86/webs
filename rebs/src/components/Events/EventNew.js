@@ -23,7 +23,7 @@ class NewEventForm extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
     console.log(event.target.onsite.value)
 
-    const url = 'https://webs-backend-kpbyniydyc.now.sh/events/new'
+    const url = 'https://webs-backend-dev.now.sh/events/new'
     const data = { 
       title: event.target.title.value,
       // newEvent: event.target.newEvent.value,
@@ -49,7 +49,9 @@ class NewEventForm extends React.Component {
     })
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then((res) => console.log(res));
+    .then(() => {
+      this.setState({redirect: true})
+    });
   }
 
   componentDidMount(){
@@ -71,6 +73,9 @@ class NewEventForm extends React.Component {
   render(){
     const { startDate, endDate, redirect, selectedOption } = this.state;
 
+    if(redirect){
+      return <Redirect to={'/events'}/>
+    }
     return (
       <form id="newEventForm" onSubmit={(e) => {
         e.preventDefault();
@@ -153,7 +158,7 @@ class NewEventForm extends React.Component {
           End: <input name="dateTo" type="datetime-local"/>
         </div> */}
 
-        <button type="submit">Submit</button>
+        <p><button type="submit">Submit</button></p>
         
       </form>
     )

@@ -16,6 +16,7 @@ import EventEdit from './components/Events/EventEdit';
 import EventView from './components/Events/EventView';
 import EventList from './components/Events/EventList';
 import NewEventForm from './components/Events/EventNew';
+import EventDelete from './components/Events/EventDelete';
 
 // IMPORT OTHER COMPONENTS
 import Settings from './components/Settings/Settings';
@@ -84,6 +85,10 @@ class App extends Component {
               <Route path="/events/new" render={() => {
                 return <NewEventForm updateHeaderTitle={this.updateHeaderTitle}/>        
               }}/> 
+
+              {/* Delete Single Event */}
+              <Route exact strict path="/events/:id/delete" component={EventDelete}/> 
+
 
               {/*
               <Route exact path="/facilitators" component={EventEdit}/>
