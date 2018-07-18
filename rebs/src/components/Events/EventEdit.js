@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import './EventEdit.css';
 import axios from 'axios';
-// import EventView from 'react';
 import { Redirect } from 'react-router-dom';
 import Select from 'react-select'
-import DateTimePicker from 'material-ui-pickers/DateTimePicker';
 import 'react-select/dist/react-select.css'
+import DateTimePicker from 'material-ui-pickers/DateTimePicker';
+
 
 
 class EventEdit extends Component {
   
   state = {
     redirect: false,
-    selectOption: [],
+    selectedOption: '',
     selectedDate: new Date(),
   }
   // constructor(props) {
@@ -34,11 +34,11 @@ class EventEdit extends Component {
     // const nodes = document.querySelectorAll("input[name='facilitator']")
     // console.log(nodes)
 
-  removeFacilitator = () => {
-    this.setState((prevState, props) => {
-      facilitator: prevState.facilitator -- 
-      console.log(this.state.facilitator);
-    })}
+  // removeFacilitator = () => {
+  //   this.setState((prevState, props) => {
+  //     facilitator: prevState.facilitator -- 
+  //     console.log(this.state.facilitator);
+  //   })}
     // const nodes = document.querySelectorAll("input[name='facilitator']")
     // const remove = [].slice.call(nodes).pop()
     // nodes.removeChild(  )
@@ -48,16 +48,19 @@ class EventEdit extends Component {
     //  -= '<br/> <input type="text" placeholder= "Facilitator"  name="facilitator" />'
     // console.log(remove)
   handleChange = (e) => {
+    const facilitators = this.state.selectedOption.map(facilitator => {
+      return facilitator.label
+    })
     const workshop_id = this.props.location.state.singleEvent._id
   const url = `https://webs-backend-vcqfjyghlo.now.sh/events/${workshop_id}`
     axios.patch(url, {
       _id: workshop_id,
     title: e.target.title.value,
-    facilitators:  e.target.facilitators,
+    facilitators:  facilitators,
    
     })
-    .then(() => {
-      console.log(e.target.facilitators);
+    .then((res) => {
+      console.log(res);
       // this.setState({redirect: true})
     })
     .catch(function (error) {
@@ -65,16 +68,10 @@ class EventEdit extends Component {
     });
   }
 
-  facilitatorOption = (selectedFacilitators) =>{
-    this.setState({ selectedFacilitators });
-    console.log(selectedFacilitators.label)
-    if(selectedFacilitators && selectedFacilitators.length > 1) {
-      selectedFacilitators.map(option => {
-        this.setState({selectedFacilitators})
-        console.log(option.value)
-      })
-    } else this.setState({selectedFacilitators})
-  }
+  facilitatorSelect = (selectedOption) => {
+    this.setState({ selectedOption });
+    }
+  
 
   handleDateChange = (date) => {
     this.setState({ selectedDate: date });
@@ -129,20 +126,22 @@ class EventEdit extends Component {
             </div>
                  */}
 
-              <Select
-                  name="facilitators"
-                  value={selectedFacilitators}
-                  onChange={this.facilitatorOption}
-                  multi={true}
-                  joinValues={true}
-                  delimiter={','} 
-                  simpleValue
-                  options={[
-                    { value: "Ruegen aschenburger", label: "Ruegen" },
-                    { value: "Matt BigMackenzie", label: "Matt" },
-                    { value: "gretcher scott", label: "Gretch" }
-                  ]}
-              />
+        <Select
+          multi
+          joinValues
+          delimiter={','}
+          name="facilitators"
+          value={selectedOption}
+          onChange={this.facilitatorSelect}
+          options={[
+            { value: 'one', label: 'One' },
+            { value: 'two', label: 'Two' },
+            { value: 'three', label: 'One' },
+            { value: 'four', label: 'Two' },
+            { value: 'five', label: 'One' },
+            { value: 'six', label: 'Two' },
+          ]}
+        />
               
               
               
