@@ -153,7 +153,7 @@ class NewEventForm extends React.Component {
           End: <input name="dateTo" type="datetime-local"/>
         </div> */}
 
-        <button type="submit">Submit</button>
+        <p><button type="submit">Submit</button></p>
         
       </form>
     )
