@@ -1,39 +1,44 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+import Select from 'react-select'
+import 'react-select/dist/react-select.css'
 import DateTimePicker from 'material-ui-pickers/DateTimePicker';
 
 
 
 
 class NewEventForm extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      selectedDate: new Date(),
-    }
-    // this.state = {
-    //   title: '',
-    //   facilitator: '' 
-    // };
-    //Bind methods for inputs here
-    this.handleChange = this.handleChange.bind(this);
+  state = {
+    redirect: false,
+    selectedOption: '',
+    startDate: new Date(),
+    endDate: new Date(),
   }
+    
+
   //Handle info functions
   handleChange(event) {
+    console.log(event.target)
+    
     this.setState({ [event.target.name]: event.target.value });
     console.log(event.target.onsite.value)
 
     const url = 'https://webs-backend-kpbyniydyc.now.sh/events/new'
     const data = { 
       title: event.target.title.value,
-      newEvent: event.target.newEvent.value,
-      facilitators: event.target.facilitator.value,
+      // newEvent: event.target.newEvent.value,
+      facilitators: this.state.selectedOption,
       onsite: event.target.onsite.checked,
       organisation: event.target.organisation.value,
-      location: event.target.location.value,
+      bookings: [{
+        location: event.target.locations.value,
+        start: this.state.startDate,
+        end: this.state.endDate
+      }],
       notes: event.target.notes.value,
-      dateFrom: event.target.dateFrom.value,
-      dateTo: event.target.dateTo.value
+      
     }
+    console.log(data)
 
     fetch(url, {
     method: 'POST', 
@@ -44,19 +49,28 @@ class NewEventForm extends React.Component {
     })
     .then(res => res.json())
     .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response));
+    .then((res) => console.log(res));
   }
 
   componentDidMount(){
     this.props.updateHeaderTitle("New Event");
   }
 
-  handleDateChange = (date) => {
-    this.setState({ selectedDate: date });
+  startDateChange = (date) => {
+    this.setState({ startDate: date });
   }
 
+  endDateChange = (date) => {
+    this.setState({ endDate: date });
+  }
+
+  facilitatorSelect = (selectedOption) => {
+    this.setState({ selectedOption });
+    }
+
   render(){
-    const { selectedDate } = this.state;
+    const { startDate, endDate, redirect, selectedOption } = this.state;
+
     return (
       <form id="newEventForm" onSubmit={(e) => {
         e.preventDefault();
@@ -64,42 +78,73 @@ class NewEventForm extends React.Component {
         document.getElementById('newEventForm').reset()
       }}>
 
-        <input placeholder="title" type="text" name="title" />
+        <p><input placeholder="Workshop Title" type="text" name="title" /></p>
 
+        {/* <p>Short Course:<br/>
         <select id="newEvent" placeholder="newEvent" name="newEvent">
           <option value="memes101">Memes 101</option>
           <option value="html_css">HTML/CSS</option>
           <option value="javascript">Javascript</option>
-        </select>
-
-        <select name="facilitator">
-          <option value="teacher1">Teacher 1</option>
-          <option value="teacher2">Teacher 2</option>
-          <option value="teacher3">Teacher 3</option>
-        </select>
-
-          <button name="addFacilitator">Add Another Facilitator</button>
+        </select></p> */}
+        {/* <p>
           <button name="createShortCourse">Add New Short Course</button>
+        </p> */}
 
-          <p>Onsite</p>
-          <input type="checkbox" name="onsite" />
-
-        <select name="organisation">
-          <option value="coderAcademy">Coder Academy</option>
-          <option value="redhill">Redhill</option>
-        </select>
-
-        <select name="location">
-          <option value="melbourne">Melbourne</option>
-          <option value="Sydney">Sydney</option>
-        </select>
-
-        <input placeholder="Notes" type="text" name="notes" />
-
-        <DateTimePicker
-          value={selectedDate}
-          onChange={this.handleDateChange}
+        <label>Facilitators:</label>
+        <Select
+          multi
+          joinValues
+          delimiter={','}
+          name="facilitators"
+          value={selectedOption}
+          onChange={this.facilitatorSelect}
+          options={[
+            { value: '09348509342780543209', label: 'Teacher 1' },
+            { value: '4385794832759823', label: 'Teacher 2' },
+            { value: '4325984239058', label: 'Teacher 3' },
+            { value: '4320958094526754', label: 'Teacher 4' },
+            { value: '34205984309275234', label: 'Teacher 5' },
+            { value: '5342095840923850943', label: 'Teacher 6' },
+          ]}
         />
+
+          
+
+          <p>Onsite:
+            <input type="checkbox" name="onsite" />
+          </p>
+
+        <p>Organisation:<br/>
+          <select name="organisation">
+            <option value="coderAcademy">Coder Academy</option>
+            <option value="redhill">Redhill</option>
+          </select>
+        </p>
+        
+
+        <p>Location:<br/>
+          <select name="locations">
+            <option value="Melbourne">Melbourne</option>
+            <option value="Sydney">Sydney</option>
+          </select>
+        </p>
+
+        <p>
+        <input placeholder="Notes" type="text" name="notes" />
+        </p>
+
+        <p>Start Time: <br/></p>
+        <DateTimePicker
+          value={startDate}
+          onChange={this.startDateChange}
+        />
+
+        <p>End Time:<br/></p>
+        <DateTimePicker
+          value={endDate}
+          onChange={this.endDateChange}
+        />
+
         {/* <div>
           Start: <input name="dateFrom" type="datetime-local"/>
         </div>
@@ -107,8 +152,6 @@ class NewEventForm extends React.Component {
         <div>
           End: <input name="dateTo" type="datetime-local"/>
         </div> */}
-
-        <button name="addDate">Add Date</button>
 
         <button type="submit">Submit</button>
         

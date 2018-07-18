@@ -60,8 +60,7 @@ class EventEdit extends Component {
    
     })
     .then((res) => {
-      console.log(res);
-      // this.setState({redirect: true})
+      this.setState({redirect: true})
     })
     .catch(function (error) {
       console.log(error);
@@ -134,12 +133,12 @@ class EventEdit extends Component {
           value={selectedOption}
           onChange={this.facilitatorSelect}
           options={[
-            { value: 'one', label: 'One' },
-            { value: 'two', label: 'Two' },
-            { value: 'three', label: 'One' },
-            { value: 'four', label: 'Two' },
-            { value: 'five', label: 'One' },
-            { value: 'six', label: 'Two' },
+            { value: '09348509342780543209', label: 'Teacher 1' },
+            { value: '4385794832759823', label: 'Teacher 2' },
+            { value: '4325984239058', label: 'Teacher 3' },
+            { value: '4320958094526754', label: 'Teacher 4' },
+            { value: '34205984309275234', label: 'Teacher 5' },
+            { value: '5342095840923850943', label: 'Teacher 6' },
           ]}
         />
               
