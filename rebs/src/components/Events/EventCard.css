@@ -1,17 +1,16 @@
-/* Edit Event form component */
+Edit Event form component */
 
 .fetch {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background: #FAFAFA
+  justify-content: center;
+  background: #FAFAFA;
 }
 .eventCard {
   display: flex;
-  align-content: center;
   justify-content: space-between;
   background: #FFFFFF;
-  width: 50vh;
+  width: 80vw;
   margin: 3vh;
 }
 
@@ -19,12 +18,11 @@
   display: flex;
   flex-direction: column; 
   align-self: flex-end;
-  
 }
 
-.button {   
-  width: 25vh;
-  height: 3vh;
+.viewButton {   
+  width: 15vh;
+  height: 5vh;
   color: #FAFAFA;
   border: none;
   border-radius: 2px;
