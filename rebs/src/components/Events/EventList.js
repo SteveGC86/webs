@@ -11,7 +11,7 @@ class EventList extends Component {
 
     componentDidMount(){
         this.props.updateHeaderTitle("Upcoming Events");
-        fetch("https://webs-backend-kpbyniydyc.now.sh/events")
+        fetch("https://webs-backend-dev.now.sh/events")
         .then(res => res.json())
         .then(events => {
             this.setState({

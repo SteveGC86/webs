@@ -52,7 +52,7 @@ class EventEdit extends Component {
       return facilitator.label
     })
     const workshop_id = this.props.location.state.singleEvent._id
-  const url = `https://webs-backend-vcqfjyghlo.now.sh/events/${workshop_id}`
+  const url = `https://webs-backend-dev.now.sh/events/${workshop_id}`
     axios.patch(url, {
       _id: workshop_id,
     title: e.target.title.value,

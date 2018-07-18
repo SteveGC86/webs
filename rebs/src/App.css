@@ -43,6 +43,15 @@ h3 {
 
 .edit-button{
   width: 20vw;
+  border-radius: 10px;
+  border: none;
+}
+
+.delete-button{
+  width: 20vw;
+  background-color: rgb(150, 26, 26);
+  border-radius: 10px;
+  border: none;
 }
 .App {
   text-align: center;
