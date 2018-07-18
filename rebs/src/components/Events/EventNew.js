@@ -3,8 +3,7 @@ import { Redirect } from 'react-router-dom';
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import DateTimePicker from 'material-ui-pickers/DateTimePicker';
-
-
+import './EventNew.css';
 
 
 class NewEventForm extends React.Component {
@@ -115,9 +114,10 @@ class NewEventForm extends React.Component {
 
           
 
-          <p>Onsite:
+          <div className="onsite">
+            <p>Onsite</p>
             <input type="checkbox" name="onsite" />
-          </p>
+          </div>
 
         <p>Organisation:<br/>
           <select name="organisation">

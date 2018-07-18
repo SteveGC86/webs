@@ -1,30 +1,37 @@
-/* Edit Event form component */
+/*Edit Event form component */
+
+h3 {
+  font-size: 5vh;
+}
+
+h5 {
+  font-size: 3vh;
+}
 
 .fetch {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background: #FAFAFA
+  justify-content: center;
+  background: #FAFAFA;
 }
 .eventCard {
   display: flex;
-  align-content: center;
   justify-content: space-between;
   background: #FFFFFF;
-  width: 50vh;
+  width: 65vw;
   margin: 3vh;
+  padding: 3vh;
 }
 
 .confirmation {
   display: flex;
   flex-direction: column; 
   align-self: flex-end;
-  
 }
 
-.button {   
-  width: 25vh;
-  height: 3vh;
+.viewButton {   
+  width: 15vh;
+  height: 5vh;
   color: #FAFAFA;
   border: none;
   border-radius: 2px;
@@ -46,4 +53,38 @@ input[name="viewCalender"] {
   font-weight: normal;
   background: #45A7C5;
   margin-bottom: 2.5vh;
+}
+
+/* iPhone */
+@media only screen 
+  and (min-width: 320px) 
+  and (max-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    h3 {
+      font-size: 4vh;
+    }
+    h5 {
+      font-size: 2.5vh;
+    }
+    .eventCard {
+      width: 90vw;
+      padding: 1vw;
+    }
+}
+
+/* iPad */
+@media only screen 
+and (min-width: 569px) 
+and (max-width: 1112px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    h3 {
+      font-size: 3vh;
+    }
+    h5 {
+      font-size: 2vh;
+    }
+    .eventCard {
+      width: 80vw;
+      padding: 2vh;
+    }
 }
