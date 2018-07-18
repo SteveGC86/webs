@@ -7,7 +7,7 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
-    "material-ui": "^0.20.1",
+    "dotenv": "^6.0.0",
     "material-ui-pickers": "^1.0.0-rc.11",
     "moment": "^2.22.2",
     "react": "^16.4.1",
@@ -16,7 +16,7 @@
     "react-geocode": "0.0.9",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
-    "react-select": "^2.0.0-beta.7",
+    "react-select": "1.2.1",
     "reactjs-popup": "^1.1.1"
   },
   "scripts": {
