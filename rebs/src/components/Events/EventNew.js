@@ -22,7 +22,7 @@ class NewEventForm extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
     console.log(event.target.onsite.value)
 
-    const url = 'https://webs-backend-kpbyniydyc.now.sh/events/new'
+    const url = 'https://webs-backend-dev.now.sh/events/new'
     const data = { 
       title: event.target.title.value,
       // newEvent: event.target.newEvent.value,
@@ -109,9 +109,10 @@ class NewEventForm extends React.Component {
 
           
 
-          <p>Onsite:
+          <div className="onsite">
+            <p>Onsite</p>
             <input type="checkbox" name="onsite" />
-          </p>
+          </div>
 
         <p>Organisation:<br/>
           <select name="organisation">
