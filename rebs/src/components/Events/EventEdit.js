@@ -1,40 +1,45 @@
 import React, { Component } from 'react';
 import './EventEdit.css';
 import axios from 'axios';
-// import EventView from 'react';
 import { Redirect } from 'react-router-dom';
 import Select from 'react-select'
-import DateTimePicker from 'material-ui-pickers/DateTimePicker';
 import 'react-select/dist/react-select.css'
+import DateTimePicker from 'material-ui-pickers/DateTimePicker';
+
 
 
 class EventEdit extends Component {
   
   state = {
     redirect: false,
-    selectOption: [],
-    selectedDate: new Date(),
+    selectedOption: '',
+    startDate: new Date(),
+    endDate: new Date(),
   }
   
 
-  removeFacilitator = () => {
-    this.setState((prevState, props) => {
-      facilitator: prevState.facilitator -- 
-      console.log(this.state.facilitator);
-    })}
-   
+
   handleChange = (e) => {
+    const facilitators = this.state.selectedOption.map(facilitator => {
+      return facilitator.label
+    })
     const workshop_id = this.props.location.state.singleEvent._id
-  const url = `https://webs-backend-vcqfjyghlo.now.sh/events/${workshop_id}`
-    axios.patch(url, {
-      _id: workshop_id,
-    title: e.target.title.value,
-    organisation: e.target.organisation.value,
-    notes: e.target.notes.value,
-    facilitators:  this.state.selectedOption,
-    attendees: e.target.attendees.value,
-    onsite: e.target.onsite.checked,
-    status: e.target.status.value
+  const url = `https://webs-backend-dev.now.sh/events/${workshop_id}`
+      axios.patch(url, {
+        _id: workshop_id,
+      title: e.target.title.value,
+      organisation: e.target.organisation.value,
+      notes: e.target.notes.value,
+      facilitators:  this.state.selectedOption,
+      attendees: e.target.attendees.value,
+      onsite: e.target.onsite.checked,
+      status: e.target.status.value,
+      bookings: [{
+        location: e.target.location.value,
+        start: this.state.startDate,
+        end: this.state.endDate
+      }],
+    
    
     })
     .then((res) => {
@@ -46,25 +51,32 @@ class EventEdit extends Component {
     });
   }
 
-  facilitatorOption = (selectedOption) =>{
-    this.setState({ selectedOption });
-    if(selectedOption) {
-      selectedOption.map(option => {
-        this.setState({selectedOption})
-        console.log(option.value)
-      })
-    }
-  }
 
-  handleDateChange = (date) => {
-    this.setState({ selectedDate: date });
-  }
-    
+      startDateChange = (date) => {
+        this.setState({ startDate: date });
+      }
+
+    endDateChange = (date) => {
+      this.setState({ endDate: date });
+    }
+
+    facilitatorSelect = (selectedOption) => {
+      this.setState({ selectedOption });
+      }
+
+      componentDidMount(){
+        const singleEvent = this.props.location.state.singleEvent
+        this.setState({
+          startDate: singleEvent.bookings[0].start,
+          endDate: singleEvent.bookings[0].end,
+        })
+      }
+      
+
     render() {
       const singleEvent = this.props.location.state.singleEvent
-      const redirect = this.state.redirect
-      const { selectedOption } = this.state;
-      const { selectedDate } = this.state;
+      const { startDate, endDate, redirect, selectedOption } = this.state;
+      
 
     if(redirect){
 
@@ -85,19 +97,29 @@ class EventEdit extends Component {
             <input type="text"  placeholder="Workshop Title" defaultValue={singleEvent.title} name="title" required/><br/>
             </div>
 
-                  <Select
-                      name="facilitators"
-                      value={selectedOption}
-                      onChange={this.facilitatorOption}
-                      multi={true}
-                      joinValues={true}
-                      delimiter={','} 
-                      options={[
-                        { value: "Ruegen aschenburger", label: "Ruegen" },
-                        { value: "Matt BigMackenzie", label: "Matt" },
-                        { value: "gretcher scott", label: "Gretch" }
-                      ]}
-                  />          
+
+
+      
+
+        <Select
+          multi
+          joinValues
+          delimiter={','}
+          name="facilitators"
+          value={selectedOption}
+          onChange={this.facilitatorSelect}
+          required
+          options={[
+            { value: '09348509342780543209', label: 'Teacher 1' },
+            { value: '4385794832759823', label: 'Teacher 2' },
+            { value: '4325984239058', label: 'Teacher 3' },
+            { value: '4320958094526754', label: 'Teacher 4' },
+            { value: '34205984309275234', label: 'Teacher 5' },
+            { value: '5342095840923850943', label: 'Teacher 6' },
+          ]}
+        />
+              
+              
               
               <div className="onsite" >
                 <input type="checkbox" defaultValue={singleEvent.onsite} name="onsite" required/>
@@ -110,29 +132,23 @@ class EventEdit extends Component {
             <div className="dates">
             {singleEvent.bookings.map((booking, i) => {
               return <div key={booking._id} className="singleBooking"><h4>Booking {i+1}</h4>
-              <label>Start Date</label>
-              <DateTimePicker
-                value={selectedDate}
-                name="startDate"
-                placeholder="Start Date"
-                onChange={this.handleDateChange}
-                required 
-              />
-              
-              <label>End Date</label>
-              <DateTimePicker
-                value={selectedDate}
-                name="endDate"
-                placeholder="End Date"
-                onChange={this.handleDateChange}
-                required
-              />       
+             <p>Start Time: <br/></p>
+                <DateTimePicker
+                  value={startDate}
+                  onChange={this.startDateChange}
+                />
+
+                <p>End Time:<br/></p>
+                <DateTimePicker
+                  value={endDate}
+                  onChange={this.endDateChange}
+                />    
             
               <input type="text" ref={this.location} defaultValue={booking.location} name="location" required/><br/>
               </div>
             })}             
             </div>
-            <button value="Add Another Date" name="addEvent">Add Another Date</button>
+            {/* <button value="Add Another Date" name="addEvent">Add Another Date</button> */}
 
               
           <p>Attendees: </p>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import './EventView.css';
 
 class EventView extends Component {
   
@@ -17,22 +18,30 @@ class EventView extends Component {
         }}>
           <button className="edit-button">Edit</button>
         </Link>
-        <div className="dates">
-          <h3>Dates:</h3>
+
+        <div className="wrapper">
+          <h3>Dates:</h3><br />
+          <div className="dates">
             <ul>
               {singleEvent.bookings.map(booking => {
-                return <li key={booking._id}><b>{moment(booking.start).format('ddd D/MM/YY')}:</b> {moment(booking.start).format('h:mm a')} - {moment(booking.end).format('h:mm a')}<br/>
-                {booking.location}</li>
+                return <p><li key={booking._id}><b>{moment(booking.start).format('ddd D/MM/YY')}:</b> {moment(booking.start).format('h:mm a')} - {moment(booking.end).format('h:mm a ')}
+                {booking.location} </li></p>
               })}
             </ul><br/>
+          </div>
+        </div>
+        <div className="wrapper">
           <h3>Facilitators:</h3>
-          <h4>{singleEvent.facilitators}</h4><br/>
+          <p>{singleEvent.facilitators}</p><br/>
+        </div>
+        <div className="wrapper">
           <h3>Location - {singleEvent.onsite ? "Onsite" : "Offsite"}</h3>
           <p>{singleEvent.bookings[0].location}</p><br/>
+        </div>
+        <div className="wrapper">
           <h3>Organisation:</h3>
           <p>{singleEvent.organisation}</p>
-        </div>
-        
+          </div>
       <Link to={'/events'}><button>Back</button></Link>
       </div>
     )
