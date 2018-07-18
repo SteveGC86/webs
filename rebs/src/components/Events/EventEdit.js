@@ -25,7 +25,6 @@ class EventEdit extends Component {
     })
     const workshop_id = this.props.location.state.singleEvent._id
   const url = `https://webs-backend-dev.now.sh/events/${workshop_id}`
-<<<<<<< HEAD
       axios.patch(url, {
         _id: workshop_id,
       title: e.target.title.value,
@@ -41,12 +40,6 @@ class EventEdit extends Component {
         end: this.state.endDate
       }],
     
-=======
-    axios.patch(url, {
-      _id: workshop_id,
-    title: e.target.title.value,
-    facilitators:  facilitators,
->>>>>>> 80b5f3097f66bf6dc504fa6a2c68386ec05dc0e0
    
     })
     .then((res) => {
@@ -94,7 +87,7 @@ class EventEdit extends Component {
     }
     return (
       <div className="eventEdit">
-        <h1>Edit Workshop</h1>
+        <h2>Edit Workshop</h2>
           <form onSubmit={(e) =>{
             e.preventDefault()
             this.handleChange(e)
@@ -129,7 +122,7 @@ class EventEdit extends Component {
               
               
               <div className="onsite" >
-                <input type="checkbox" defaultValue={singleEvent.onsite} name="onsite" required/>
+                <input type="checkbox" defaultValue={singleEvent.onsite} name="onsite"  />
                 <p>Onsite</p>
               </div>
 
