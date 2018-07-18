@@ -4,6 +4,7 @@ import axios from 'axios';
 // import EventView from 'react';
 import { Redirect } from 'react-router-dom';
 import Select from 'react-select'
+import DateTimePicker from 'material-ui-pickers/DateTimePicker';
 import 'react-select/dist/react-select.css'
 
 
@@ -12,6 +13,7 @@ class EventEdit extends Component {
   state = {
     redirect: false,
     selectOption: [],
+    selectedDate: new Date(),
   }
   // constructor(props) {
   //   super(props)
@@ -73,6 +75,10 @@ class EventEdit extends Component {
     }
   }
 
+  handleDateChange = (date) => {
+    this.setState({ selectedDate: date });
+  }
+
   // const workshop = this.refs.workshop.value
   // const facilitator = this.refs.facilitator.value
   
@@ -85,6 +91,7 @@ class EventEdit extends Component {
       const singleEvent = this.props.location.state.singleEvent
       const redirect = this.state.redirect
       const { selectedOption } = this.state;
+      const { selectedDate } = this.state;
 
     if(redirect){
 
@@ -149,9 +156,21 @@ class EventEdit extends Component {
             {singleEvent.bookings.map((booking, i) => {
               return <div key={booking._id} className="singleBooking"><h4>Booking {i+1}</h4>
               <label>Start Date</label>
-              <input type="datetime-local" ref={this.startDate}  defaultValue={booking.start} name="startDate" /> 
-              <label>End Date</label>       
-              <input type="datetime-local" ref={this.endDate} defaultValue={booking.end} name="endDate" />
+              <DateTimePicker
+                value={selectedDate}
+                name="startDate"
+                placeholder="Start Date"
+                onChange={this.handleDateChange}
+              />
+              {/* <input type="datetime-local" ref={this.startDate}  defaultValue={booking.start} name="startDate" />  */}
+              <label>End Date</label>
+              <DateTimePicker
+                value={selectedDate}
+                name="endDate"
+                placeholder="End Date"
+                onChange={this.handleDateChange}
+              />       
+              {/* <input type="datetime-local" ref={this.endDate} defaultValue={booking.end} name="endDate" /> */}
               <input type="text" ref={this.location} defaultValue={booking.location} name="location" /><br/>
               </div>
             })}             

@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import './App.css';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
-import 'material-ui'
+// import 'material-ui'
 
 
 // IMPORT LAYOUT COMPONENTS
