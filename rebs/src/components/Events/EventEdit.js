@@ -4,14 +4,13 @@ import axios from 'axios';
 // import EventView from 'react';
 import { Redirect } from 'react-router-dom';
 import Select from 'react-select'
-import 'react-select/dist/react-select.css'
 
 
 class EventEdit extends Component {
   
   state = {
     redirect: false,
-    selectOption: [],
+    selectFacilitators: [],
   }
   // constructor(props) {
   //   super(props)
@@ -63,14 +62,15 @@ class EventEdit extends Component {
     });
   }
 
-  facilitatorOption = (selectedOption) =>{
-    this.setState({ selectedOption });
-    if(selectedOption) {
-      selectedOption.map(option => {
-        this.setState({selectedOption})
+  facilitatorOption = (selectedFacilitators) =>{
+    this.setState({ selectedFacilitators });
+    console.log(selectedFacilitators.label)
+    if(selectedFacilitators && selectedFacilitators.length > 1) {
+      selectedFacilitators.map(option => {
+        this.setState({selectedFacilitators})
         console.log(option.value)
       })
-    }
+    } else this.setState({selectedFacilitators})
   }
 
   // const workshop = this.refs.workshop.value
@@ -84,7 +84,7 @@ class EventEdit extends Component {
     render() {
       const singleEvent = this.props.location.state.singleEvent
       const redirect = this.state.redirect
-      const { selectedOption } = this.state;
+      const { selectedFacilitators } = this.state;
 
     if(redirect){
 
@@ -121,19 +121,20 @@ class EventEdit extends Component {
             </div>
                  */}
 
-                  <Select
-                      name="facilitators"
-                      value={selectedOption}
-                      onChange={this.facilitatorOption}
-                      multi={true}
-                      joinValues={true}
-                      delimiter={','} 
-                      options={[
-                        { value: "Ruegen aschenburger", label: "Ruegen" },
-                        { value: "Matt BigMackenzie", label: "Matt" },
-                        { value: "gretcher scott", label: "Gretch" }
-                      ]}
-                  />
+              <Select
+                  name="facilitators"
+                  value={selectedFacilitators}
+                  onChange={this.facilitatorOption}
+                  multi={true}
+                  joinValues={true}
+                  delimiter={','} 
+                  simpleValue
+                  options={[
+                    { value: "Ruegen aschenburger", label: "Ruegen" },
+                    { value: "Matt BigMackenzie", label: "Matt" },
+                    { value: "gretcher scott", label: "Gretch" }
+                  ]}
+              />
               
               
               
