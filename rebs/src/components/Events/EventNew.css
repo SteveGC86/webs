@@ -1,0 +1,13 @@
+input[type="checkbox"] {
+  display: flex;
+  justify-content: start;
+  height: 5vh;
+  width: 1.5vw;
+  background-color: #FAFAFA;
+  margin-right: 2vw;
+  margin-bottom: 2vh;
+}
+
+.onsite {
+  text-align: centre
+}

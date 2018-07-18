@@ -1,0 +1,6 @@
+/* CSS for event list view */
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+}
