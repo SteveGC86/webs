@@ -15,50 +15,31 @@ class EventEdit extends Component {
     selectOption: [],
     selectedDate: new Date(),
   }
-  // constructor(props) {
-  //   super(props)
-  // }
-
-  // addWorkshop(workshop, facilitator) {
-  //   this.props.addWorkshop(workshop, facilitator)
-  // }
-
-  // removeWorkshop(workshop, facilitator) {
-  //   this.props.removeWorkshop(workshop, facilitator)
-  // // }
-    
-    // const facilitator = document.getElementById('wrapper').innerHTML += '<br/> <input type="text" placeholder=" Facilitator"name="facilitator" />'
-    // // console.log(facilitator);
-    // {console.log(document.getElementById('wrapper'))}
-    // // {console.log(document.getElementById('wrapper').input)}
-    // const nodes = document.querySelectorAll("input[name='facilitator']")
-    // console.log(nodes)
+  
 
   removeFacilitator = () => {
     this.setState((prevState, props) => {
       facilitator: prevState.facilitator -- 
       console.log(this.state.facilitator);
     })}
-    // const nodes = document.querySelectorAll("input[name='facilitator']")
-    // const remove = [].slice.call(nodes).pop()
-    // nodes.removeChild(  )
-    // var arr = Array.prototype.slice.call(nodes)
-    // console.log(arr)
-    // console.log(nodes);
-    //  -= '<br/> <input type="text" placeholder= "Facilitator"  name="facilitator" />'
-    // console.log(remove)
+   
   handleChange = (e) => {
     const workshop_id = this.props.location.state.singleEvent._id
   const url = `https://webs-backend-vcqfjyghlo.now.sh/events/${workshop_id}`
     axios.patch(url, {
       _id: workshop_id,
     title: e.target.title.value,
-    facilitators:  e.target.facilitators,
+    organisation: e.target.organisation.value,
+    notes: e.target.notes.value,
+    facilitators:  this.state.selectedOption,
+    attendees: e.target.attendees.value,
+    onsite: e.target.onsite.checked,
+    status: e.target.status.value
    
     })
-    .then(() => {
-      console.log(e.target.facilitators);
-      // this.setState({redirect: true})
+    .then((res) => {
+      console.log(res.data);
+      this.setState({redirect: true})
     })
     .catch(function (error) {
       console.log(error);
@@ -78,14 +59,6 @@ class EventEdit extends Component {
   handleDateChange = (date) => {
     this.setState({ selectedDate: date });
   }
-
-  // const workshop = this.refs.workshop.value
-  // const facilitator = this.refs.facilitator.value
-  
-  // if(!workshop || !facilitator) {
-    //   return;
-    // }
-    
     
     render() {
       const singleEvent = this.props.location.state.singleEvent
@@ -109,24 +82,8 @@ class EventEdit extends Component {
             console.log(this.input);
           }}>
             <div>
-            <input type="text"  placeholder="Workshop Title" defaultValue={singleEvent.title} name="title" /><br/>
+            <input type="text"  placeholder="Workshop Title" defaultValue={singleEvent.title} name="title" required/><br/>
             </div>
-
-
-
-          {/* <div id="wrapper" >
-          <input type="text" placeholder="Facilitators" defaultValue={singleEvent.facilitators} name="facilitators" />
-          {/* Below code for V1.1 - when we have an array of facilitators */}
-          {/* {singleEvent.facilitators.map(facilitator => {
-            <input key={facilitator._id} type="text" defaultValue={facilitator} name="facilitators" />
-          })} */}
-          {/* </div> */}
-
-            {/*<div className="button">
-              <input type="button" value="Add Facilitator" name="Add Facilitator" onClick={this.addFacilitator}/><br />
-              {this.state.facilitator < 2 ? "" : <FacilitatorInput state={this.state.facilitator} />}
-            </div>
-                 */}
 
                   <Select
                       name="facilitators"
@@ -140,17 +97,16 @@ class EventEdit extends Component {
                         { value: "Matt BigMackenzie", label: "Matt" },
                         { value: "gretcher scott", label: "Gretch" }
                       ]}
-                  />
-              
+                  />          
               
               
               <div className="onsite" >
-                <input type="checkbox" ref={this.onsite} name="onsite" />
+                <input type="checkbox" defaultValue={singleEvent.onsite} name="onsite" required/>
                 <p>Onsite</p>
               </div>
 
             <input type="text" ref={this.organistation} placeholder="Organisation" defaultValue={singleEvent.organisation} name="organisation" /><br/>
-            <input type="text"  ref={this.notes} placeholder="Notes" defaultValue={singleEvent.notes} name="Notes" /><br />
+            <input type="text"  ref={this.notes} placeholder="Notes" defaultValue={singleEvent.notes} name="notes" required/><br />
 
             <div className="dates">
             {singleEvent.bookings.map((booking, i) => {
@@ -161,17 +117,19 @@ class EventEdit extends Component {
                 name="startDate"
                 placeholder="Start Date"
                 onChange={this.handleDateChange}
+                required 
               />
-              {/* <input type="datetime-local" ref={this.startDate}  defaultValue={booking.start} name="startDate" />  */}
+              
               <label>End Date</label>
               <DateTimePicker
                 value={selectedDate}
                 name="endDate"
                 placeholder="End Date"
                 onChange={this.handleDateChange}
+                required
               />       
-              {/* <input type="datetime-local" ref={this.endDate} defaultValue={booking.end} name="endDate" /> */}
-              <input type="text" ref={this.location} defaultValue={booking.location} name="location" /><br/>
+            
+              <input type="text" ref={this.location} defaultValue={booking.location} name="location" required/><br/>
               </div>
             })}             
             </div>
@@ -179,9 +137,9 @@ class EventEdit extends Component {
 
               
           <p>Attendees: </p>
-          <input type="number" placeholder="0" defaultValue={singleEvent.attendees}/> <br />
+          <input type="number" placeholder="0" defaultValue={singleEvent.attendees} name="attendees" required/> <br />
 
-          <select name="status" defaultValue={singleEvent.status} >
+          <select name="status" defaultValue={singleEvent.status} name="status">
             <option value="confirmed">Confirmed</option>
             <option value="pending" >Pending</option>
             <option value="cancelled">Cancelled</option>
