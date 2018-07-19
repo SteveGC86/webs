@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './EventEdit.css';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import Select from 'react-select'
@@ -122,8 +121,7 @@ class EventEdit extends Component {
               
               
               <div className="onsite" >
-                <input type="checkbox" defaultValue={singleEvent.onsite} name="onsite" required/>
-                <p>Onsite</p>
+              <p>Onsite:</p> <input type="checkbox" defaultValue={singleEvent.onsite} name="onsite" required/>
               </div>
 
             <input type="text" ref={this.organistation} placeholder="Organisation" defaultValue={singleEvent.organisation} name="organisation" /><br/>

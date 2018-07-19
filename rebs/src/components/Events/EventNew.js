@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import Select from 'react-select'
 import 'react-select/dist/react-select.css'
 import DateTimePicker from 'material-ui-pickers/DateTimePicker';
-import './EventNew.css';
+import styled from 'styled-components';
 
 
 class NewEventForm extends React.Component {
@@ -69,8 +69,19 @@ class NewEventForm extends React.Component {
     this.setState({ selectedOption });
     }
 
+
+    
   render(){
     const { startDate, endDate, redirect, selectedOption } = this.state;
+
+
+    const MultiSelect = styled(Select)`
+    &.Select--multi  {
+      width:40vw;
+      margin: 0 30vw 0 30vw;
+    }
+  `
+
 
     if(redirect){
       return <Redirect to={'/events'}/>
@@ -95,7 +106,7 @@ class NewEventForm extends React.Component {
         </p> */}
 
         <label>Facilitators:</label>
-        <Select
+        <MultiSelect
           multi
           joinValues
           delimiter={','}

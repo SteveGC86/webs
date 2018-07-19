@@ -10,7 +10,6 @@ import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 // IMPORT LAYOUT COMPONENTS
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import LoginForm from'./components/Login/LoginForm';
 
 // IMPORT EVENT COMPONENTS
 import EventEdit from './components/Events/EventEdit';
@@ -22,6 +21,7 @@ import EventDelete from './components/Events/EventDelete';
 // IMPORT OTHER COMPONENTS
 import Settings from './components/Settings/Settings';
 import ComingSoon from './components/ComingSoon';
+import LoginForm from'./components/Login/LoginForm';
 
 // IMPORT WORKSHOPS COMPONENTS
 import WorkshopsNew from './components/Workshops/WorkshopsNew';
@@ -67,65 +67,65 @@ class App extends Component {
           <div>
             <Navbar/>
             <Switch>
-              {/* Login Form */}
-              <Route exact path="/" render={() => {
+                {/* Login Form */}
+                <Route exact path="/" render={() => {
                 return <LoginForm handleLoginSubmit={this.handleLoginSubmit}/>
-              }}/> 
+                }}/> 
 
-              {/* View All Events */}
-              <Route exact strict path="/events" render={() => {
+                {/* View All Events */}
+                <Route exact strict path="/events" render={() => {
                 return <EventList updateHeaderTitle={this.updateHeaderTitle}/>
-              }}/> 
+                }}/> 
 
-              {/* Edit Event */}
-              <Route exact strict path="/events/:id/edit" component={EventEdit}/>
+                {/* Edit Event */}
+                <Route exact strict path="/events/:id/edit" component={EventEdit}/>
 
-              {/* View Single Event */}
-              <Route exact strict path="/events/:id/" component={EventView}/> 
+                {/* View Single Event */}
+                <Route exact strict path="/events/:id/" component={EventView}/> 
 
-              {/* Add New Event */}
-              <Route path="/events/new" render={() => {
+                {/* Add New Event */}
+                <Route path="/events/new" render={() => {
                 return <NewEventForm updateHeaderTitle={this.updateHeaderTitle}/>        
-              }}/> 
+                }}/> 
 
-              {/* Delete Single Event */}
-              <Route exact strict path="/events/:id/delete" component={EventDelete}/> 
+                {/* Delete Single Event */}
+                <Route exact strict path="/events/:id/delete" component={EventDelete}/> 
 
 
-              
-              <Route exact path="/facilitators" component={ComingSoon}/>
-              <Route exact path="/facilitators/:id" component={ComingSoon}/>
-              <Route path="/facilitators/:id/edit" component={ComingSoon}/>
-              <Route path="/facilitators/new" component={ComingSoon}/>
-              <Route exact path="/organisations" component={ComingSoon}/>
-              <Route exact path="/organisations/:id" component={ComingSoon}/>
-              <Route path="/organisations/:id/edit" component={ComingSoon}/>
-              <Route path="/organisations/new" component={ComingSoon}/>
+                
+                <Route exact path="/facilitators" component={ComingSoon}/>
+                <Route exact path="/facilitators/:id" component={ComingSoon}/>
+                <Route path="/facilitators/:id/edit" component={ComingSoon}/>
+                <Route path="/facilitators/new" component={ComingSoon}/>
+                <Route exact path="/organisations" component={ComingSoon}/>
+                <Route exact path="/organisations/:id" component={ComingSoon}/>
+                <Route path="/organisations/:id/edit" component={ComingSoon}/>
+                <Route path="/organisations/new" component={ComingSoon}/>
 
-              {/* List All Workshops w/ Workshops Card*/}
-              <Route exact path="/workshops" render={() => {
+                {/* List All Workshops w/ Workshops Card*/}
+                <Route exact path="/workshops" render={() => {
                 return <ComingSoon updateHeaderTitle={this.updateHeaderTitle}/>        
-              }}/>
+                }}/>
 
-              {/* View Single Workshop */}
-              <Route exact path="/workshops/:id" render={() => {
+                {/* View Single Workshop */}
+                <Route exact path="/workshops/:id" render={() => {
                 return <WorkshopsView updateHeaderTitle={this.updateHeaderTitle}/>        
-              }}/>
+                }}/>
 
-              {/* Edit Single Workshop */}
-              <Route path="/workshops/:id/edit" render={() => {
+                {/* Edit Single Workshop */}
+                <Route path="/workshops/:id/edit" render={() => {
                 return <WorkshopsEdit updateHeaderTitle={this.updateHeaderTitle}/>        
-              }}/>
+                }}/>
 
-              {/* Add New Workshop */}
-              <Route path="/workshops/new" render={() => {
+                {/* Add New Workshop */}
+                <Route path="/workshops/new" render={() => {
                 return <WorkshopsNew updateHeaderTitle={this.updateHeaderTitle}/>        
-              }}/>
+                }}/>
 
-              {/* Settings Page */}
-              <Route exact path="/settings" render={() => {
+                {/* Settings Page */}
+                <Route exact path="/settings" render={() => {
                 return <Settings updateHeaderTitle={this.updateHeaderTitle}/>        
-              }}/> 
+                }}/> 
             </Switch>
           </div>
         </BrowserRouter>
