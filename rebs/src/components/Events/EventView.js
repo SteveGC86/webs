@@ -12,6 +12,7 @@ class EventView extends Component {
     return (
       <div className="eventView">
         <h3>{singleEvent.title}</h3>
+        <h2>{singleEvent.title}</h2>
         <p>{singleEvent.status}</p>
         <Link to={{
           pathname: `/events/${singleEvent._id}/edit`,
