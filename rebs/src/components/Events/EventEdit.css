@@ -1,71 +1,4 @@
-/* Edit Event form component
 
-div.onsite {
-  display: flex;
-  justify-content: center;
-}
-
-.form {
-  background: #FAFAFA;
-}
-
-/* i phone*/
-@media only screen 
-  and (min-width: 320px) 
-  and (max-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-    input[type="text"] {
-      width: 50vw;
-    }
-    input[name="startDate"] {
-      width: 15vw;
-    }
-    input[name="endDate"] {
-      width: 15vw;
-    
-    }
-    input[type="button"] {
-      width: 35vw;
-    }
-}
-
-/* i pad Portrait and Landscape */
-@media only screen 
-  and (min-width: 569px) 
-  and (max-width: 1112px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-    input[type="text"] {
-      width: 35vw;
-    }
-    input[name="startDate"] {
-      width: 17vw;
-    }
-    input[name="endDate"] {
-      width: 17vw;
-    }
-    input[type="button"] {
-      width: 25vw;
-    }
-}
-
-/* Desktop */
-@media screen 
-  and (min-width: 1112px) 
-  and (max-width: 1600px)                               /* TODO: SORT DATE SIZINGS */
-  and (-webkit-min-device-pixel-ratio: 1) { 
-    input[type="text"] {
-      width: 35vw;
-    }
-    input[name="startDate"] {
-      width: 20vw;
-    }
-    input[name="endDate"] {
-      width: 20vw;
-    }
-    input[type="button"] {
-      width: 25vw;
-    }
-}
 
 input[type="text"] {
   height: 4vh;
@@ -152,5 +85,8 @@ input[type="number"] {
 p {
   color: #646464;
 }
+
+
+
 
 

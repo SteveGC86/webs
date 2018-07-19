@@ -10,7 +10,7 @@ class EventView extends Component {
     console.log(singleEvent)
     return (
       <div className="eventView">
-        <h2>{singleEvent.title}</h2>
+        <h3>{singleEvent.title}</h3>
         <p>{singleEvent.status}</p>
         <Link to={{
           pathname: `/events/${singleEvent._id}/edit`,
@@ -41,18 +41,7 @@ class EventView extends Component {
         <div className="wrapper">
           <h3>Organisation:</h3>
           <p>{singleEvent.organisation}</p>
-        </div>
-        <Link to={{
-          pathname: `/events/${singleEvent._id}/edit`,
-          state: { singleEvent }
-        }}>
-          <button className="edit-button">Edit</button>
-        </Link> <Link to={{
-          pathname: `/events/${singleEvent._id}/delete`,
-          state: { singleEvent }
-        }}>
-          <button className="delete-button">Delete</button>
-        </Link>
+          </div>
       <Link to={'/events'}><button>Back</button></Link>
       </div>
     )

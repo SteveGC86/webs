@@ -10,7 +10,7 @@ class EventCard extends React.Component {
     return(
     <div key={singleEvent._id} className="eventCard" >
       <div className="eventDetails">
-        <h2>{singleEvent.title}</h2>
+        <h3>{singleEvent.title}</h3>
         <h5>{singleEvent.facilitators}</h5>
           {singleEvent.bookings.map(booking => {
             return <p key={booking._id}> 
@@ -30,7 +30,7 @@ class EventCard extends React.Component {
                   state: { singleEvent }
               }
           }> 
-            <button name="viewEvent">View</button>
+            <button className="viewButton" name="viewEvent">View</button>
         </Link>
 
       </div>

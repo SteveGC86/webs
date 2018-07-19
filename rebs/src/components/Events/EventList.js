@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EventCard from './EventCard';
 import './EventCard.css'
+import './EventList.css'
 
 
 
@@ -28,13 +29,16 @@ class EventList extends Component {
         return <h1>Loading...</h1>
     }
     return (
-        <div className="fetch">
-        <input type="button" value="Calender View" name="viewCalender" />
-            {
-               events.map(singleEvent => {
-                   return <EventCard key={singleEvent._id} singleEvent={singleEvent}/>
-               }) 
-            }
+        <div className="container">
+            <div className="fetch">
+            <input type="button" value="Calender View" name="viewCalender" />
+                {
+                events.map(singleEvent => {
+                    return <EventCard key={singleEvent._id} singleEvent={singleEvent}
+                    />
+                }) 
+                }
+            </div>
         </div>
     );
   }
