@@ -28,7 +28,7 @@ class NewEventForm extends React.Component {
     const data = { 
       title: event.target.title.value,
       // newEvent: event.target.newEvent.value,
-      facilitators: this.state.selectedOption,
+      facilitators: this.state.selectedfacilitator,
       onsite: event.target.onsite.checked,
       organisation: this.state.selectedOrganisation,
       bookings: [{
@@ -67,22 +67,22 @@ class NewEventForm extends React.Component {
     this.setState({ endDate: date });
   }
 
-  facilitatorSelect = (selectedOption) => {
-    this.setState({ selectedOption });
+  facilitatorSelect = (selectedfacilitator) => {
+    this.setState({ facilitator: selectedfacilitator });
   }
 
   locationSelect = (selectedLocation) => {
-    this.setState({ selectedLocation });
+    this.setState({ location: selectedLocation });
   }
 
   organisationSelect = (selectedOrganisation) => {
-  this.setState({ selectedOrganisation });
+  this.setState({ organisation: selectedOrganisation });
   }
 
 
     
   render(){
-    const { startDate, endDate, redirect, selectedOption, selectedOrganisation, selectedLocation } = this.state;
+    const { startDate, endDate, redirect, selectedfacilitator, selectedOrganisation, selectedLocation } = this.state;
     
 
 
@@ -122,7 +122,7 @@ class NewEventForm extends React.Component {
           joinValues
           delimiter={','}
           name="facilitators"
-          value={selectedOption}
+          value={selectedfacilitator}
           onChange={this.facilitatorSelect}
           options={[
             { value: 'userID1', label: 'Amos Jon Wilksch' },
