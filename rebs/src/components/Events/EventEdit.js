@@ -115,12 +115,27 @@ class EventEdit extends Component {
                     onChange={this.facilitatorSelect}
                     required
                     options={[
-                      { value: '09348509342780543209', label: 'Teacher 1' },
-                      { value: '4385794832759823', label: 'Teacher 2' },
-                      { value: '4325984239058', label: 'Teacher 3' },
-                      { value: '4320958094526754', label: 'Teacher 4' },
-                      { value: '34205984309275234', label: 'Teacher 5' },
-                      { value: '5342095840923850943', label: 'Teacher 6' },
+                      { value: 'userID1', label: 'Amos Jon Wilksch' },
+                      { value: 'userID2', label: 'Annabelle (Bella) Maguire' },
+                      { value: 'userID3', label: 'Andrew Madden' },
+                      { value: 'userID4', label: 'Arian Yusef' },
+                      { value: 'userID5', label: 'Billy' },
+                      { value: 'userID6', label: 'Bushra Malik' },
+                      { value: 'userID7', label: 'Camilla Stadlinger' },
+                      { value: 'userID8', label: 'Christian Saviane' },
+                      { value: 'userID9', label: 'Jacqueline tate ' },
+                      { value: 'userID10', label: 'Kelsey Birrel' },
+                      { value: 'userID11', label: 'Lani Gambino' },
+                      { value: 'userID12', label: 'Marc Pestamento' },
+                      { value: 'userID13', label: 'Najat Smeda' },
+                      { value: 'userID14', label: 'Pauline' },
+                      { value: 'userID15', label: 'Robert Wellington' },
+                      { value: 'userID16', label: 'Simon Dwyer' },
+                      { value: 'userID17', label: 'Sophie' },
+                      { value: 'userID18', label: 'Steve Christenson' },
+                      { value: 'userID19', label: 'Suzanne Thomson' },
+                      { value: 'userID20', label: 'Tyson Butler-Boschma' },
+                      { value: 'userID21', label: 'Teresa Fae' },
                     ]}
                   />
              
