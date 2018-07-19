@@ -10,6 +10,8 @@ class NewEventForm extends React.Component {
   state = {
     redirect: false,
     selectedOption: '',
+    selectedOrganisation: '',
+    selectedLocation: '',
     startDate: new Date(),
     endDate: new Date(),
   }
@@ -28,9 +30,9 @@ class NewEventForm extends React.Component {
       // newEvent: event.target.newEvent.value,
       facilitators: this.state.selectedOption,
       onsite: event.target.onsite.checked,
-      organisation: event.target.organisation.value,
+      organisation: this.state.selectedOrganisation,
       bookings: [{
-        location: event.target.locations.value,
+        location: this.state.selectedLocation,
         start: this.state.startDate,
         end: this.state.endDate
       }],
@@ -67,10 +69,19 @@ class NewEventForm extends React.Component {
 
   facilitatorSelect = (selectedOption) => {
     this.setState({ selectedOption });
-    }
+  }
+
+  locationSelect = (selectedLocation) => {
+    this.setState({ selectedLocation });
+  }
+
+  organisationSelect = (selectedOrganisation) => {
+  this.setState({ selectedOrganisation });
+  }
 
   render(){
-    const { startDate, endDate, redirect, selectedOption } = this.state;
+    const { startDate, endDate, redirect, selectedOption, selectedOrganisation, selectedLocation } = this.state;
+    
 
     if(redirect){
       return <Redirect to={'/events'}/>
@@ -120,18 +131,40 @@ class NewEventForm extends React.Component {
           </div>
 
         <p>Organisation:<br/>
-          <select name="organisation">
+          {/* <select name="organisation">
             <option value="coderAcademy">Coder Academy</option>
             <option value="redhill">Redhill</option>
-          </select>
+          </select> */}
+          <Select
+          name="Organisation"
+          simpleValue
+          value={selectedOrganisation}
+          onChange={this.organisationSelect}
+          options={[
+            { value: 'Coder Academy', label: 'Coder Academy' },
+            { value: 'RedHill', label: 'Red Hill' },
+           
+            ]}
+          />
         </p>
         
 
         <p>Location:<br/>
-          <select name="locations">
+          {/* <select name="locations">
             <option value="Melbourne">Melbourne</option>
             <option value="Sydney">Sydney</option>
-          </select>
+          </select> */}
+          <Select
+          name="Location"
+          simpleValue
+          value={selectedLocation}
+          onChange={this.locationSelect}
+          options={[
+            { value: 'Melbourne', label: 'Melbourne' },
+            { value: 'Sydney', label: 'Sydney' },
+           
+            ]}
+          />
         </p>
 
         <p>

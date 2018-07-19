@@ -106,23 +106,23 @@ class EventEdit extends Component {
               <input type="text"  placeholder="Workshop Title" defaultValue={singleEvent.title} name="title" required/><br/>
             
             
-                <MultiSelect
-                  multi
-                  joinValues
-                  delimiter={','}
-                  name="facilitators"
-                  value={selectedOption}
-                  onChange={this.facilitatorSelect}
-                  required
-                  options={[
-                    { value: '09348509342780543209', label: 'Teacher 1' },
-                    { value: '4385794832759823', label: 'Teacher 2' },
-                    { value: '4325984239058', label: 'Teacher 3' },
-                    { value: '4320958094526754', label: 'Teacher 4' },
-                    { value: '34205984309275234', label: 'Teacher 5' },
-                    { value: '5342095840923850943', label: 'Teacher 6' },
-                  ]}
-                />
+                  <Select
+                    multi
+                    joinValues
+                    delimiter={','}
+                    name="facilitators"
+                    value={selectedOption}
+                    onChange={this.facilitatorSelect}
+                    required
+                    options={[
+                      { value: '09348509342780543209', label: 'Teacher 1' },
+                      { value: '4385794832759823', label: 'Teacher 2' },
+                      { value: '4325984239058', label: 'Teacher 3' },
+                      { value: '4320958094526754', label: 'Teacher 4' },
+                      { value: '34205984309275234', label: 'Teacher 5' },
+                      { value: '5342095840923850943', label: 'Teacher 6' },
+                    ]}
+                  />
              
               
               
@@ -136,7 +136,9 @@ class EventEdit extends Component {
             <div className="dates">
               {singleEvent.bookings.map((booking, i) => {
                 return <div key={booking._id} className="singleBooking"><h4>Booking {i+1}</h4>
-              <p>Start Time: <br/></p>
+              
+              <div className="datesAlign">
+                <p>Start Time: <br/></p>
                   <DateTimePicker
                     value={startDate}
                     onChange={this.startDateChange}
@@ -146,7 +148,8 @@ class EventEdit extends Component {
                   <DateTimePicker
                     value={endDate}
                     onChange={this.endDateChange}
-                  />    
+                  />  
+              </div>  
               
                 <input type="text" ref={this.location} defaultValue={booking.location} name="location" required/><br/>
             </div>

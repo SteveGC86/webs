@@ -63,6 +63,32 @@ li {
 .dates{
   margin-bottom: 2vh;
   width: 60vw;  
+  /* background-color: purple; */
+}
+
+
+.singleBooking {
+  display: flex;
+  margin-left: 15vw;
+  width: 70vw;
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+.MuiInput-input-15 {
+  /* font: inherit; */
+  color: currentColor;
+  border: 0;
+  margin: 20vw;
+  padding: 6px 0 7px;
+  display: block;
+  min-width: 30vw;
+  flex-grow: 1;
+  box-sizing: content-box;
+  background: none;
+  font-size: 3vh;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .edit-button{
@@ -108,16 +134,12 @@ select{
   font-size: 2.5vh;
   color:  #363637;  
 }
-DateTimePicker {
-  height: 5vh;
-  color: red;
-}
 
 input[type="text"] {
   height: 4vh;
   border: 1px solid #363637;
   border-radius: 3px;
-  margin-bottom: 2vh;
+  margin: 0 0 2vh 0;
 }
 
 input[type="checkbox"] {
