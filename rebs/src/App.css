@@ -2,19 +2,19 @@
   --main-dark-color: #363637;
   --main-light-blue: #45A7C5;
   --main-dark-blue: #275480;
-}
-
-* {
+ }
+ 
+ * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-
-body {
+ }
+ 
+ body {
   background-color: #FAFAFA;
-}
-
-.header {
+ }
+ 
+ .header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,35 +25,196 @@ body {
   color: #FFFFFF;
   font-family: 'Alegreya Sans', sans-serif;
   font-size: calc(16px + 4vw);
-}
-
-h2 {
+ }
+ 
+ h2 {
   font-family: 'Alegreya', serif;
-  font-size: 8vw;
-}
-h3 {
-  font-size: 6vw;
-}
-
-.dates {
-  text-align: left;
-  width: 60vw;
-  margin: 0 20vw 0 20vw;
-}
-
-.edit-button{
+  font-size: 8vh;
+ }
+ 
+ h3 {
+  display: flex;
+  justify-content: center;
+  font-size: 4vh;
+ }
+ 
+ h5 {
+  font-size: 2.5vh;
+ }
+ 
+ ul{
+  list-style-type: none;
+ }
+ 
+ li {
+  min-width: 75vw;
+ }
+ 
+ .wrapper {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: center;  
+  margin-left: 10vw;
+  margin-right: 10vw;
+ }
+ 
+ .dates{
+  margin-bottom: 2vh;
+  width: 60vw;  
+ }
+ 
+ .edit-button{
   width: 20vw;
   border-radius: 10px;
   border: none;
-}
-
-.delete-button{
+ }
+ 
+ .delete-button{
   width: 20vw;
   background-color: rgb(150, 26, 26);
   border-radius: 10px;
   border: none;
-}
-.App {
+ }
+ 
+ .App {
   text-align: center;
-  margin-bottom: 10vh;
-}
+  margin-bottom: 13vh;
+ }
+ 
+ 
+ .eventview {
+  display: flex;
+  align-content: space-around;
+  justify-content: flex-start;
+  background: #fafafa;
+  
+ }
+ 
+ 
+ .eventCard {
+  display: flex;
+  justify-content: space-between;
+  background: #FFFFFF;
+  width: 65vw;
+  margin: 3vh;
+  padding: 3vh;
+ }
+ 
+ 
+ 
+ 
+ 
+ input[type="text"] {
+  height: 4vh;
+  border: 1px solid #363637;
+  border-radius: 3px;
+  margin-bottom: 2vh;
+ }
+ 
+ input[type="checkbox"] {
+  display: flex;
+  justify-content: start;
+  height: 1.5vh;
+  width: 1.5vw;
+  background-color: #FAFAFA;
+  margin-right: 2vw;
+  margin-bottom: 2vh;
+ }
+ 
+ input[type="button"] {
+  height: 4vh;
+  color: #FAFAFA;
+  border: none;
+  border-radius: 2px;
+  font-family: "Alegreya";
+  font-size: 2vh;
+  font-weight: normal;
+  background: #45A7C5;
+  margin-bottom: 2.5vh;
+ }
+ 
+ .viewButton {  
+  width: 15vh;
+ }
+ 
+ input[name="addFacilitator"] {    
+  height: 4vh;
+  color: #FAFAFA;
+  border: none;
+  border-radius: 2px;
+  font-family: "Alegreya";
+  font-size: 2vh;
+  font-weight: normal;
+  background: #45A7C5;
+  margin-bottom: 2.5vh;
+ }
+ 
+ input[name="addEvent"] {    
+  height: 4vh;
+  color: #FAFAFA;
+  border: none;
+  border-radius: 2px;
+  font-family: "Alegreya";
+  font-size: 2vh;
+  font-weight: normal;
+  background: #45A7C5;
+  margin-bottom: 2.5vh;
+ }
+ 
+ /* input[name="viewCalender"] {  
+  width: 23vh;
+  height: 3vh;
+  color: #FAFAFA;
+  border: none;
+  border-radius: 3px;
+  font-family: 'Alegreya';
+  font-size: 2vh;
+  font-weight: normal;
+  background: #45A7C5;
+  margin-bottom: 2.5vh;
+ } */
+ 
+ 
+ 
+ input[name="startDate"] {
+  height: 4vh;
+  border: 1px solid #363637;
+  margin-right: 2.5vh;
+ }
+ 
+ input[name="endDate"] {
+  height: 4vh;
+  margin-left: 2.5vh;
+  border: 1px solid #363637
+ }
+ 
+ input[type="number"] {
+  height: 4vh;
+  width: 15vw;
+  margin-left: 2.5vh;
+  border: 1px solid #363637
+ }
+ p {
+  color: #646464;
+  font-size: 3vh;
+ }
+ 
+ .container {
+  display: flex;
+  justify-content: space-evenly;
+ }
+ 
+ .confirmation {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+ }
+ 
+ /* -check box
+    - select React
+    - ul aligned
+    - labels font size
+    - drop downs size
+    - date font size
+ */

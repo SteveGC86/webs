@@ -122,7 +122,7 @@ class EventEdit extends Component {
               
               
               <div className="onsite" >
-                <input type="checkbox" defaultValue={singleEvent.onsite} name="onsite" required/>
+                <input type="checkbox" className="onsiteConfirm" defaultValue={singleEvent.onsite} name="onsite" required/>
                 <p>Onsite</p>
               </div>
 
