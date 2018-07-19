@@ -114,12 +114,8 @@
  }
  
  input[type="checkbox"] {
-  display: flex;
-  justify-content: start;
-  height: 1.5vh;
-  width: 1.5vw;
+  height: 3vh;
   background-color: #FAFAFA;
-  margin-right: 2vw;
   margin-bottom: 2vh;
  }
  
@@ -210,6 +206,10 @@
   display: flex;
   flex-direction: column;
   align-self: flex-end;
+ }
+
+ .onsite {
+
  }
  
  /* -check box
