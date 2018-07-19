@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import ShowCalendar from '../Calendar/ShowCalendar'
-import './EventView.css';
+// import ShowCalendar from '../Calendar/ShowCalendar'
+
 
 class EventView extends Component {
   
