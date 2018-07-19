@@ -8,9 +8,10 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
- }
- 
- body {
+  font-family: 'Alegreya Sans';
+}
+
+body {
   background-color: #FAFAFA;
  }
  
@@ -30,70 +31,95 @@
  h2 {
   font-family: 'Alegreya', serif;
   font-size: 8vh;
- }
- 
- h3 {
+}
+
+h3 {
   display: flex;
   justify-content: center;
   font-size: 4vh;
- }
- 
- h5 {
+}
+
+h5 {
   font-size: 2.5vh;
- }
- 
- ul{
+}
+
+ul{ 
   list-style-type: none;
- }
- 
- li {
+}
+
+li {
   min-width: 75vw;
- }
- 
- .wrapper {
+}
+
+.wrapper {
   display: flex;
   flex-direction: column;
-  /* align-content: space-between; */
+  align-content: space-between;
   justify-content: center;  
-  align-items: center;
   margin-left: 10vw;
   margin-right: 10vw;
- }
- 
- .dates > ul > p > li {
+}
+
+.dates{
   margin-bottom: 2vh;
-  width: 60vw;  /* background-color: purple; */
- }
- 
- .edit-button{
+  width: 60vw;  
+  /* background-color: purple; */
+}
+
+
+.singleBooking {
+  display: flex;
+  margin-left: 15vw;
+  width: 70vw;
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+.MuiInput-input-15 {
+  /* font: inherit; */
+  color: currentColor;
+  border: 0;
+  margin: 20vw;
+  padding: 6px 0 7px;
+  display: block;
+  min-width: 30vw;
+  flex-grow: 1;
+  box-sizing: content-box;
+  background: none;
+  font-size: 3vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.edit-button{
   width: 20vw;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
  }
  
  .delete-button{
   width: 20vw;
   background-color: rgb(150, 26, 26);
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
- }
- 
- .App {
+}
+
+.App {
   text-align: center;
   margin-bottom: 13vh;
- }
- 
- 
- .eventview {
+}
+
+
+.eventview {
   display: flex;
   align-content: space-around;
   justify-content: flex-start;
   background: #fafafa;
   
- }
- 
- 
- .eventCard {
+}
+
+
+.eventCard {
   display: flex;
   justify-content: space-between;
   background: #FFFFFF;
@@ -101,10 +127,6 @@
   margin: 3vh;
   padding: 3vh;
  }
- 
- 
- 
- 
  
  input[type="text"] {
   height: 4vh;
@@ -118,8 +140,23 @@
   background-color: #FAFAFA;
   margin-bottom: 2vh;
  }
- 
- input[type="button"] {
+
+select{
+  justify-content: center;
+  height: 3vh;
+  font-size: 2.5vh;
+  color:  #363637;  
+}
+
+input[type="text"] {
+  height: 4vh;
+  border: 1px solid #363637;
+  border-radius: 3px;
+  margin: 0 0 2vh 0;
+}
+
+
+input[type="button"] { 
   height: 4vh;
   color: #FAFAFA;
   border: none;
@@ -129,13 +166,13 @@
   font-weight: normal;
   background: #45A7C5;
   margin-bottom: 2.5vh;
- }
- 
- .viewButton {  
+}
+
+.viewButton {   
   width: 15vh;
- }
- 
- input[name="addFacilitator"] {    
+}
+
+input[name="addFacilitator"] {    
   height: 4vh;
   color: #FAFAFA;
   border: none;
@@ -145,9 +182,9 @@
   font-weight: normal;
   background: #45A7C5;
   margin-bottom: 2.5vh;
- }
- 
- input[name="addEvent"] {    
+}
+
+input[name="addEvent"] {     
   height: 4vh;
   color: #FAFAFA;
   border: none;
@@ -157,9 +194,9 @@
   font-weight: normal;
   background: #45A7C5;
   margin-bottom: 2.5vh;
- }
- 
- /* input[name="viewCalender"] {  
+}
+
+/* input[name="viewCalender"] {   
   width: 23vh;
   height: 3vh;
   color: #FAFAFA;
@@ -170,28 +207,42 @@
   font-weight: normal;
   background: #45A7C5;
   margin-bottom: 2.5vh;
- } */
- 
- 
- 
- input[name="startDate"] {
-  height: 4vh;
+} */
+
+input[name="startDate"] {
+  height: 4vh; 
   border: 1px solid #363637;
   margin-right: 2.5vh;
- }
- 
- input[name="endDate"] {
+}
+
+input[name="endDate"] {
   height: 4vh;
   margin-left: 2.5vh;
   border: 1px solid #363637
- }
- 
- input[type="number"] {
+}
+
+input[type="number"] {
   height: 4vh;
   width: 15vw;
   margin-left: 2.5vh;
   border: 1px solid #363637
- }
+}
+p {
+  color: #646464;
+  font-size: 3vh;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.confirmation {
+  display: flex;
+  flex-direction: column; 
+  align-self: flex-end;
+}
+ 
  p {
   color: #646464;
   font-size: 3vh;
@@ -208,14 +259,9 @@
   align-self: flex-end;
  }
 
- .onsite {
 
+ @media (min-width: 1000px) {
+  .eventDetails {
+    flex-direction: row;
+  }
  }
- 
- /* -check box
-    - select React - Steve
-    - ul aligned - Gen
-    - labels font size - Steve
-    - drop downs size - 
-    - date font size
- */

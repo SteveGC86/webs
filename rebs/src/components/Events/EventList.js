@@ -27,7 +27,7 @@ class EventList extends Component {
     return (
         <div className="container">
             <div className="fetch">
-            <input type="button" value="Calender View" name="viewCalender" />
+            {/* <input type="button" value="Calender View" name="viewCalender" /> */}
                 {
                 events.map(singleEvent => {
                     return <EventCard key={singleEvent._id} singleEvent={singleEvent}
