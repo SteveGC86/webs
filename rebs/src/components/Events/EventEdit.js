@@ -131,7 +131,7 @@ class EventEdit extends Component {
                 <input type="checkbox" className="checkbox" defaultValue={singleEvent.onsite} name="onsite"  /> Onsite
               </div>
 
-            <input type="text" ref={this.organistation} placeholder="Organisation" defaultValue={singleEvent.organisation} name="organisation" /><br/>
+            <input type="text" ref={this.organistation} placeholder="Organisation" defaultValue={singleEvent.organisation}      name="organisation" /><br/>
             <input type="text"  ref={this.notes} placeholder="Notes" defaultValue={singleEvent.notes} name="notes" required/><br />
 
             <div className="dates">

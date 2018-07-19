@@ -6,6 +6,7 @@ import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 // import 'material-ui'
 
 
+
 // IMPORT LAYOUT COMPONENTS
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
@@ -20,6 +21,7 @@ import EventDelete from './components/Events/EventDelete';
 
 // IMPORT OTHER COMPONENTS
 import Settings from './components/Settings/Settings';
+import ComingSoon from './components/ComingSoon';
 
 // IMPORT WORKSHOPS COMPONENTS
 import WorkshopsNew from './components/Workshops/WorkshopsNew';
@@ -90,19 +92,19 @@ class App extends Component {
               <Route exact strict path="/events/:id/delete" component={EventDelete}/> 
 
 
-              {/*
-              <Route exact path="/facilitators" component={EventEdit}/>
-              <Route exact path="/facilitators/:id" component={EventEdit}/>
-              <Route path="/facilitators/:id/edit" component={EventEdit}/>
-              <Route path="/facilitators/new" component={EventEdit}/>
-              <Route exact path="/organisations" component={EventEdit}/>
-              <Route exact path="/organisations/:id" component={EventEdit}/>
-              <Route path="/organisations/:id/edit" component={EventEdit}/>
-              <Route path="/organisations/new" component={EventEdit}/> */}
+              
+              <Route exact path="/facilitators" component={ComingSoon}/>
+              <Route exact path="/facilitators/:id" component={ComingSoon}/>
+              <Route path="/facilitators/:id/edit" component={ComingSoon}/>
+              <Route path="/facilitators/new" component={ComingSoon}/>
+              <Route exact path="/organisations" component={ComingSoon}/>
+              <Route exact path="/organisations/:id" component={ComingSoon}/>
+              <Route path="/organisations/:id/edit" component={ComingSoon}/>
+              <Route path="/organisations/new" component={ComingSoon}/>
 
               {/* List All Workshops w/ Workshops Card*/}
               <Route exact path="/workshops" render={() => {
-                return <WorkshopsList updateHeaderTitle={this.updateHeaderTitle}/>        
+                return <ComingSoon updateHeaderTitle={this.updateHeaderTitle}/>        
               }}/>
 
               {/* View Single Workshop */}
