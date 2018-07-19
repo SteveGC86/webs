@@ -126,7 +126,20 @@ li {
   width: 65vw;
   margin: 3vh;
   padding: 3vh;
-}
+ }
+ 
+ input[type="text"] {
+  height: 4vh;
+  border: 1px solid #363637;
+  border-radius: 3px;
+  margin-bottom: 2vh;
+ }
+ 
+ input[type="checkbox"] {
+  height: 3vh;
+  background-color: #FAFAFA;
+  margin-bottom: 2vh;
+ }
 
 select{
   justify-content: center;
@@ -142,15 +155,6 @@ input[type="text"] {
   margin: 0 0 2vh 0;
 }
 
-input[type="checkbox"] {
-  display: flex;
-  justify-content: start;
-  height: 1.5vh;
-  width: 1.5vw;
-  background-color: #FAFAFA;
-  margin-right: 2vw;
-  margin-bottom: 2vh;
-}
 
 input[type="button"] { 
   height: 4vh;
@@ -205,8 +209,6 @@ input[name="addEvent"] {
   margin-bottom: 2.5vh;
 } */
 
-
-
 input[name="startDate"] {
   height: 4vh; 
   border: 1px solid #363637;
@@ -249,6 +251,12 @@ p {
  .container {
   display: flex;
   justify-content: space-evenly;
+ }
+ 
+ .confirmation {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
  }
 
 

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import EventCard from './EventCard';
 
-
-
-
 class EventList extends Component {
     state = {
         events: null,
