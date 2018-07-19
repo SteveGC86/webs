@@ -1,6 +1,5 @@
 import React from 'react';
 import moment from 'moment';
-import './EventCard.css';
 import {Link} from 'react-router-dom';
 
 class EventCard extends React.Component {

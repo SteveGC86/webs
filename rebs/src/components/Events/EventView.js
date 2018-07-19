@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import ShowCalendar from '../Calendar/ShowCalendar'
-import './EventView.css';
 
 class EventView extends Component {
   
@@ -11,7 +9,6 @@ class EventView extends Component {
     console.log(singleEvent)
     return (
       <div className="eventView">
-      <ShowCalendar/>
         <h2>{singleEvent.title}</h2>
         <p>{singleEvent.status}</p>
         <Link to={{

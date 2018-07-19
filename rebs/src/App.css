@@ -53,15 +53,16 @@
  .wrapper {
   display: flex;
   flex-direction: column;
-  align-content: space-between;
+  /* align-content: space-between; */
   justify-content: center;  
+  align-items: center;
   margin-left: 10vw;
   margin-right: 10vw;
  }
  
- .dates{
+ .dates > ul > p > li {
   margin-bottom: 2vh;
-  width: 60vw;  
+  width: 60vw;  /* background-color: purple; */
  }
  
  .edit-button{
@@ -212,9 +213,9 @@
  }
  
  /* -check box
-    - select React
-    - ul aligned
-    - labels font size
-    - drop downs size
+    - select React - Steve
+    - ul aligned - Gen
+    - labels font size - Steve
+    - drop downs size - 
     - date font size
  */

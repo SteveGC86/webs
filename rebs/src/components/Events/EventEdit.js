@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './EventEdit.css';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import Select from 'react-select'

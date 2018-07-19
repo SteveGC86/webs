@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import EventCard from './EventCard';
-import './EventCard.css'
-import './EventList.css'
-
-
 
 class EventList extends Component {
     state = {
