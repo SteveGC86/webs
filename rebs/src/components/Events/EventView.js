@@ -11,9 +11,8 @@ class EventView extends Component {
     console.log(singleEvent)
     return (
       <div className="eventView">
-        <h3>{singleEvent.title}</h3>
         <h2>{singleEvent.title}</h2>
-        <p>{singleEvent.status}</p>
+        <p><br/>Status: {singleEvent.status ? singleEvent.status : "Pending"}</p>
         <Link to={{
           pathname: `/events/${singleEvent._id}/edit`,
           state: { singleEvent }
@@ -22,12 +21,11 @@ class EventView extends Component {
         </Link>
 
         <div className="wrapper">
-          <h3>Dates:</h3><br />
+          <h3>Dates:</h3>
           <div className="dates">
             <ul>
               {singleEvent.bookings.map(booking => {
-                return <p><li key={booking._id}><b>{moment(booking.start).format('ddd D/MM/YY')}:</b> {moment(booking.start).format('h:mm a')} - {moment(booking.end).format('h:mm a ')}
-                {booking.location} </li></p>
+                return <li key={booking._id}><p>{moment(booking.start).format('ddd D/MM/YY')} {moment(booking.start).format('h:mm a')} <b> to </b>{moment(booking.end).format('ddd D/MM/YY')}  {moment(booking.end).format('h:mm a ')}</p></li>
               })}
             </ul><br/>
           </div>
@@ -37,7 +35,7 @@ class EventView extends Component {
           <p>{singleEvent.facilitators}</p><br/>
         </div>
         <div className="wrapper">
-          <h3>Location - {singleEvent.onsite ? "Onsite" : "Offsite"}</h3>
+          <h3>Location ({singleEvent.onsite ? "Onsite" : "Offsite"}):</h3>
           <p>{singleEvent.bookings[0].location}</p><br/>
         </div>
         <div className="wrapper">
