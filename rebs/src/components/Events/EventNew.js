@@ -92,9 +92,8 @@ class NewEventForm extends React.Component {
   render(){
     const { startDate, endDate, redirect, selectedFacilitator, selectedOrganisation, selectedLocation, selectedWorkshop } = this.state;
     
-
-
     const MultiSelect = styled(Select)`
+         
     &.Select--multi  {
       width:70vw;
       margin: 0 15vw 3vh 15vw;
@@ -142,23 +141,24 @@ class NewEventForm extends React.Component {
           onChange={this.workshopSelect}
           required
           options={[
-            { value: 'userID1', label: 'Hands-on Coding for Beginners' },
-            { value: 'userID1', label: 'Hands-on Coding for Intermediate' },
-            { value: 'userID1', label: 'Unity Gamemaker for Kids' },
-            { value: 'userID1', label: 'Build a Web App (HTML, CSS, JavaScript) ' },
-            { value: 'userID1', label: 'IoT and Ardunio workshop ' },
-            { value: 'userID1', label: 'Coding & Robotics for Kids' },
-            { value: 'userID1', label: 'School Excursion - Intro to Javascript ' },
-            { value: 'userID1', label: 'Unity Gamemaker for Kids Day 3 of 3' },
-            { value: 'userID1', label: 'Become a Digital Artist' },
-            { value: 'userID1', label: 'Create VFX in Film' },
-            { value: 'userID1', label: 'Code Your World' },
-            { value: 'userID1', label: 'Immersive Robotocs' },
-            { value: 'userID1', label: 'Gamers Unite' },
-            { value: 'userID1', label: '3D Character Creation ' },
-            { value: 'userID1', label: 'Virtual Reality (VR) Experience' }
+            { value: 'Hands-on Coding for Beginners', label: 'Hands-on Coding for Beginners' },
+            { value: 'Hands-on Coding for Intermediate', label: 'Hands-on Coding for Intermediate' },
+            { value: 'Unity Gamemaker for Kids', label: 'Unity Gamemaker for Kids' },
+            { value: 'Build a Web App (HTML, CSS, JavaScript', label: 'Build a Web App (HTML, CSS, JavaScript) ' },
+            { value: 'IoT and Ardunio workshop ', label: 'IoT and Ardunio workshop ' },
+            { value: 'Coding & Robotics for Kids', label: 'Coding & Robotics for Kids' },
+            { value: 'userSchool Excursion - Intro to JavascriptID1', label: 'School Excursion - Intro to Javascript ' },
+            { value: 'Unity Gamemaker for Kids Day 3 of 3', label: 'Unity Gamemaker for Kids Day 3 of 3' },
+            { value: 'Become a Digital Artist', label: 'Become a Digital Artist' },
+            { value: 'userCreate VFX in FilmID1', label: 'Create VFX in Film' },
+            { value: 'Code Your World', label: 'Code Your World' },
+            { value: 'Immersive Robotocs', label: 'Immersive Robotocs' },
+            { value: 'Gamers Unite', label: 'Gamers Unite' },
+            { value: '3D Character Creation', label: '3D Character Creation ' },
+            { value: 'Virtual Reality (VR) Experience', label: 'Virtual Reality (VR) Experience' }
           ]}
         />
+        
 
         <MultiSelect
           multi
@@ -203,10 +203,6 @@ class NewEventForm extends React.Component {
             <input type="checkbox" name="onsite" />
           </div>
 
-          {/* <select name="organisation">
-            <option value="coderAcademy">Coder Academy</option>
-            <option value="redhill">Redhill</option>
-          </select> */}
           <SingleSelect
           name="organisation"
           placeholder="Organisation"
