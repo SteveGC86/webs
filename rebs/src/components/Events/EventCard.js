@@ -17,7 +17,8 @@ class EventCard extends React.Component {
           <h5>{singleEvent.facilitators}</h5>
               {singleEvent.bookings.map(booking => {
                 return <p key={booking._id}> 
-                  {moment(booking.start).format("ddd Do MMM YYYY")}
+                  {moment(booking.start).format("ddd Do MMM YYYY")}<br/>
+                  {booking.location}
                 </p>
                 })}
         </div>

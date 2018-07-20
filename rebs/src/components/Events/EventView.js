@@ -12,7 +12,7 @@ class EventView extends Component {
     return (
       <div className="eventView">
         <h2>{singleEvent.title}</h2>
-        <p>Status: {singleEvent.status ? singleEvent.status : "Pending"}</p>
+        <p><br/>Status: {singleEvent.status ? singleEvent.status : "Pending"}</p>
         <Link to={{
           pathname: `/events/${singleEvent._id}/edit`,
           state: { singleEvent }
@@ -25,8 +25,7 @@ class EventView extends Component {
           <div className="dates">
             <ul>
               {singleEvent.bookings.map(booking => {
-                return <li key={booking._id}><p>{moment(booking.start).format('ddd D/MM/YY')} {moment(booking.start).format('h:mm a')} <b> to </b>{moment(booking.end).format('ddd D/MM/YY')}  {moment(booking.end).format('h:mm a ')}<br/>
-                {booking.location} </p></li>
+                return <li key={booking._id}><p>{moment(booking.start).format('ddd D/MM/YY')} {moment(booking.start).format('h:mm a')} <b> to </b>{moment(booking.end).format('ddd D/MM/YY')}  {moment(booking.end).format('h:mm a ')}</p></li>
               })}
             </ul><br/>
           </div>
