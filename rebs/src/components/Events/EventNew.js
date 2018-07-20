@@ -22,7 +22,7 @@ class NewEventForm extends React.Component {
   handleChange(event) {
     // console.log(this.state.selectedFacilitator)
     const facilitators = this.state.selectedFacilitator.map(facilitator => {
-      return facilitators.value
+      return facilitator.label
     })
 
     console.log(event.target)
@@ -74,12 +74,10 @@ class NewEventForm extends React.Component {
 
   workshopSelect = (workshop) => {
     this.setState({ selectedWorkshop: workshop });
-    console.log(workshop  )
     }
 
   facilitatorSelect = (facilitator) => {
     this.setState({ selectedFacilitator: facilitator });
-    console.log(facilitator.value)
   }
 
   locationSelect = (location) => {
@@ -96,16 +94,7 @@ class NewEventForm extends React.Component {
     const { startDate, endDate, redirect, selectedWorkshop, selectedfacilitator, selectedOrganisation, selectedLocation } = this.state;
     
     const MultiSelect = styled(Select)`
-<<<<<<< HEAD
-          &.Select--multi  {
-            diplay: flex;
-            align-content: center;
-            width: 70vw;
-            margin: 0 30vw 0 30vw;
-            border: 1px solid #363637;
-            border-radius: 3px;
-          }` 
-=======
+         
     &.Select--multi  {
       width:70vw;
       margin: 0 15vw 3vh 15vw;
@@ -135,7 +124,6 @@ class NewEventForm extends React.Component {
   }
     
   `
->>>>>>> e654e23024840b31df862e159e257dde2cbe864b
 
 
     if(redirect){
@@ -214,28 +202,13 @@ class NewEventForm extends React.Component {
           
 
           <div className="onsite">
-<<<<<<< HEAD
-            <p>Onsite</p>
-            <input type="checkbox" name="onsite" required/>
-          </div>
-
-        <p>Organisation:<br/>
-      
-          <Select
-          name="Organisation"
-=======
             <p>Onsite:</p>
             <input type="checkbox" name="onsite" />
           </div>
 
-          {/* <select name="organisation">
-            <option value="coderAcademy">Coder Academy</option>
-            <option value="redhill">Redhill</option>
-          </select> */}
           <SingleSelect
           name="organisation"
           placeholder="Organisation"
->>>>>>> e654e23024840b31df862e159e257dde2cbe864b
           simpleValue
           value={selectedOrganisation}
           onChange={this.organisationSelect}

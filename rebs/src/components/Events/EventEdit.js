@@ -67,12 +67,10 @@ class EventEdit extends Component {
 
     workshopSelect = (workshop) => {
       this.setState({ selectedWorkshop: workshop});
-      console.log(workshop  )
     }
     
     facilitatorSelect = (facilitator) => {
-      this.setState({ selectedFacilitator: facilitator });
-      console.log(facilitator[0].label)
+      this.setState({ selectedFacilitator: facilitator })
       }
 
       componentDidMount(){
