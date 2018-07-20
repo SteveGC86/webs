@@ -88,9 +88,33 @@ class NewEventForm extends React.Component {
 
     const MultiSelect = styled(Select)`
     &.Select--multi  {
-      width:40vw;
-      margin: 0 30vw 0 30vw;
+      width:70vw;
+      margin: 0 15vw 3vh 15vw;
+      font-size: 3vh;
     }
+    @media (min-width: 1000px){
+      &.Select--multi  {
+        width:40vw;
+        margin: 0 30vw 3vh 30vw;
+        font-size: 3vh;
+      }
+    }
+  `
+
+  const SingleSelect = styled(Select)`
+  &.Select  {
+    width:70vw;
+    margin: 0 15vw 3vh 15vw;
+    font-size: 3vh;
+  }
+  @media (min-width: 1000px){
+    &.Select  {
+      width:40vw;
+      margin: 0 30vw 3vh 30vw;
+      font-size: 3vh;
+    }
+  }
+    
   `
 
 
@@ -116,7 +140,6 @@ class NewEventForm extends React.Component {
           <button name="createShortCourse">Add New Short Course</button>
         </p> */}
 
-        <label>Facilitators:</label>
         <MultiSelect
           multi
           joinValues
@@ -124,6 +147,7 @@ class NewEventForm extends React.Component {
           name="facilitators"
           value={selectedOption}
           onChange={this.facilitatorSelect}
+          placeholder="Facilitators"
           options={[
             { value: 'userID1', label: 'Amos Jon Wilksch' },
             { value: 'userID2', label: 'Annabelle (Bella) Maguire' },
@@ -154,17 +178,17 @@ class NewEventForm extends React.Component {
           
 
           <div className="onsite">
-            <p>Onsite</p>
+            <p>Onsite:</p>
             <input type="checkbox" name="onsite" />
           </div>
 
-        <p>Organisation:<br/>
           {/* <select name="organisation">
             <option value="coderAcademy">Coder Academy</option>
             <option value="redhill">Redhill</option>
           </select> */}
-          <Select
-          name="Organisation"
+          <SingleSelect
+          name="organisation"
+          placeholder="Organisation"
           simpleValue
           value={selectedOrganisation}
           onChange={this.organisationSelect}
@@ -174,16 +198,15 @@ class NewEventForm extends React.Component {
            
             ]}
           />
-        </p>
         
 
-        <p>Location:<br/>
           {/* <select name="locations">
             <option value="Melbourne">Melbourne</option>
             <option value="Sydney">Sydney</option>
           </select> */}
-          <Select
-          name="Location"
+          <SingleSelect
+          name="location"
+          placeholder="Location"
           simpleValue
           value={selectedLocation}
           onChange={this.locationSelect}
@@ -193,10 +216,9 @@ class NewEventForm extends React.Component {
            
             ]}
           />
-        </p>
 
         <p>
-        <input placeholder="Notes" type="text" name="notes" />
+        <input placeholder="Event Notes" type="text" name="notes" />
         </p>
 
         <p>Start Time: <br/></p>
