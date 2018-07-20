@@ -9,9 +9,10 @@ import styled from 'styled-components';
 class NewEventForm extends React.Component {
   state = {
     redirect: false,
-    selectedOption: '',
+    selectedFacilitator: '',
     selectedOrganisation: '',
     selectedLocation: '',
+    selectedWorkshop: '',
     startDate: new Date(),
     endDate: new Date(),
   }
@@ -19,16 +20,15 @@ class NewEventForm extends React.Component {
 
   //Handle info functions
   handleChange(event) {
-    console.log(event.target)
+    console.log(this.state.selectedFacilitator)
+    // const facilitators = this.state.selectedFacilitator.map(facilitator => {
+    //   return facilitator.label
+    // })
     
-    this.setState({ [event.target.name]: event.target.value });
-    console.log(event.target.onsite.value)
-
     const url = 'https://webs-backend-dev.now.sh/events/new'
     const data = { 
-      title: event.target.title.value,
-      // newEvent: event.target.newEvent.value,
-      facilitators: this.state.selectedfacilitator,
+      title: this.state.selectedWorkshop.label,
+      facilitators: this.state.selectedFacilitator,
       onsite: event.target.onsite.checked,
       organisation: this.state.selectedOrganisation,
       bookings: [{
@@ -67,22 +67,30 @@ class NewEventForm extends React.Component {
     this.setState({ endDate: date });
   }
 
-  facilitatorSelect = (selectedfacilitator) => {
-    this.setState({ facilitator: selectedfacilitator });
+  facilitatorSelect = (facilitator) => {
+    this.setState({ selectedFacilitator: facilitator });
+    console.log(facilitator)
   }
 
-  locationSelect = (selectedLocation) => {
-    this.setState({ location: selectedLocation });
+  locationSelect = (location) => {
+    this.setState({ selectedLocation: location });
+    console.log(location)
   }
 
-  organisationSelect = (selectedOrganisation) => {
-  this.setState({ organisation: selectedOrganisation });
+  organisationSelect = (organisation) => {
+  this.setState({ selectedOrganisation: organisation });
+  console.log(organisation)
+  }
+
+  workshopSelect = (workshop) => {
+    this.setState({ selectedWorkshop: workshop});
+    console.log(workshop)
   }
 
 
     
   render(){
-    const { startDate, endDate, redirect, selectedfacilitator, selectedOrganisation, selectedLocation } = this.state;
+    const { startDate, endDate, redirect, selectedFacilitator, selectedOrganisation, selectedLocation, selectedWorkshop } = this.state;
     
 
 
@@ -114,7 +122,6 @@ class NewEventForm extends React.Component {
       font-size: 3vh;
     }
   }
-    
   `
 
 
@@ -128,24 +135,38 @@ class NewEventForm extends React.Component {
         document.getElementById('newEventForm').reset()
       }}>
 
-        <p><input placeholder="Workshop Title" type="text" name="title" /></p>
-
-        {/* <p>Short Course:<br/>
-        <select id="newEvent" placeholder="newEvent" name="newEvent">
-          <option value="memes101">Memes 101</option>
-          <option value="html_css">HTML/CSS</option>
-          <option value="javascript">Javascript</option>
-        </select></p> */}
-        {/* <p>
-          <button name="createShortCourse">Add New Short Course</button>
-        </p> */}
+        <SingleSelect
+          name="workshopTitle"
+          placeholder="Workshop"
+          value={selectedWorkshop}
+          onChange={this.workshopSelect}
+          required
+          options={[
+            { value: 'userID1', label: 'Hands-on Coding for Beginners' },
+            { value: 'userID1', label: 'Hands-on Coding for Intermediate' },
+            { value: 'userID1', label: 'Unity Gamemaker for Kids' },
+            { value: 'userID1', label: 'Build a Web App (HTML, CSS, JavaScript) ' },
+            { value: 'userID1', label: 'IoT and Ardunio workshop ' },
+            { value: 'userID1', label: 'Coding & Robotics for Kids' },
+            { value: 'userID1', label: 'School Excursion - Intro to Javascript ' },
+            { value: 'userID1', label: 'Unity Gamemaker for Kids Day 3 of 3' },
+            { value: 'userID1', label: 'Become a Digital Artist' },
+            { value: 'userID1', label: 'Create VFX in Film' },
+            { value: 'userID1', label: 'Code Your World' },
+            { value: 'userID1', label: 'Immersive Robotocs' },
+            { value: 'userID1', label: 'Gamers Unite' },
+            { value: 'userID1', label: '3D Character Creation ' },
+            { value: 'userID1', label: 'Virtual Reality (VR) Experience' }
+          ]}
+        />
 
         <MultiSelect
           multi
+          simpleValue
           joinValues
           delimiter={','}
           name="facilitators"
-          value={selectedfacilitator}
+          value={selectedFacilitator}
           onChange={this.facilitatorSelect}
           placeholder="Facilitators"
           options={[
@@ -199,11 +220,6 @@ class NewEventForm extends React.Component {
             ]}
           />
         
-
-          {/* <select name="locations">
-            <option value="Melbourne">Melbourne</option>
-            <option value="Sydney">Sydney</option>
-          </select> */}
           <SingleSelect
           name="location"
           placeholder="Location"
@@ -249,5 +265,3 @@ class NewEventForm extends React.Component {
 }
 
 export default NewEventForm
-
-// export default EventNewHeader

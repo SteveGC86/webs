@@ -25,7 +25,7 @@ import LoginForm from'./components/Login/LoginForm';
 
 // IMPORT WORKSHOPS COMPONENTS
 import WorkshopsNew from './components/Workshops/WorkshopsNew';
-import WorkshopsList from './components/Workshops/WorkshopsList';
+// import WorkshopsList from './components/Workshops/WorkshopsList';
 import WorkshopsEdit from './components/Workshops/WorkshopsEdit';
 import WorkshopsView from './components/Workshops/WorkshopsView';
 
