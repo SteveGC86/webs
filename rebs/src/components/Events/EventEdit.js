@@ -22,29 +22,32 @@ class EventEdit extends Component {
 
 
   handleChange = (e) => {
-    const facilitators = this.state.selectedOption.map(facilitator => {
+    const facilitators = this.state.selectedFacilitator.map(facilitator => {
       return facilitator.label
     })
+
     const workshop_id = this.props.location.state.singleEvent._id
   const url = `https://webs-backend-dev.now.sh/events/${workshop_id}`
       axios.patch(url, {
         _id: workshop_id,
-      title: this.setstate.selectedWorkshop,
+      title: this.state.selectedWorkshop,
       organisation: e.target.organisation.value,
       notes: e.target.notes.value,
-      facilitators:  this.state.selectedFacilitator,
+      facilitators:  facilitators,
       attendees: e.target.attendees.value,
       onsite: e.target.onsite.checked,
       status: e.target.status.value,
       bookings: [{
         location: e.target.location.value,
         start: this.state.startDate,
-        end: this.state.endDate       //values here  check values here then order of functions
+        end: this.state.endDate
       }],
+      
     
    
     })
     .then((res) => {
+      console.log(res.data.title);
       console.log(res.data);
       this.setState({redirect: true})
     })
@@ -62,12 +65,14 @@ class EventEdit extends Component {
       this.setState({ endDate: date });
     }
 
-    workshopSelect = (workshopSelect) => {
-      this.setState({ selectedWorkshop: workshopSelect});
+    workshopSelect = (workshop) => {
+      this.setState({ selectedWorkshop: workshop});
+      console.log(workshop.value  )
     }
     
     facilitatorSelect = (facilitator) => {
       this.setState({ selectedFacilitator: facilitator });
+      console.log(facilitator[0].value)
       }
 
       componentDidMount(){
@@ -109,12 +114,10 @@ class EventEdit extends Component {
             console.log(this.input);
           }}>
             
-              <input type="text"  placeholder="Workshop Title" defaultValue={singleEvent.title} name="title" required/><br/>
+              {/* <input type="text"  placeholder="Workshop Title" defaultValue={singleEvent.title} name="title" required/><br/> */}
               <Select
-                    multi
-                    joinValues
-                    delimiter={','}
                     name="workshopTitle"
+                    simpleValue
                     value={selectedWorkshop}
                     onChange={this.workshopSelect}
                     required
@@ -138,7 +141,7 @@ class EventEdit extends Component {
                 />
             
             
-                  <Select
+                  <MultiSelect
                     multi
                     joinValues
                     delimiter={','}
