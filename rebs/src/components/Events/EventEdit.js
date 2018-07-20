@@ -23,7 +23,7 @@ class EventEdit extends Component {
 
   handleChange = (e) => {
     const facilitators = this.state.selectedFacilitator.map(facilitator => {
-      return facilitator.label
+      return facilitators
     })
 
     const workshop_id = this.props.location.state.singleEvent._id
@@ -67,12 +67,12 @@ class EventEdit extends Component {
 
     workshopSelect = (workshop) => {
       this.setState({ selectedWorkshop: workshop});
-      console.log(workshop.value  )
+      console.log(workshop  )
     }
     
     facilitatorSelect = (facilitator) => {
       this.setState({ selectedFacilitator: facilitator });
-      console.log(facilitator[0].value)
+      console.log(facilitator[0].label)
       }
 
       componentDidMount(){
@@ -111,10 +111,9 @@ class EventEdit extends Component {
           <form onSubmit={(e) =>{
             e.preventDefault()
             this.handleChange(e)
-            console.log(this.input);
+            // console.log(this.input);
           }}>
             
-              {/* <input type="text"  placeholder="Workshop Title" defaultValue={singleEvent.title} name="title" required/><br/> */}
               <Select
                     name="workshopTitle"
                     simpleValue
@@ -122,21 +121,21 @@ class EventEdit extends Component {
                     onChange={this.workshopSelect}
                     required
                     options={[
-                      { value: 'userID1', label: 'Hands-on Coding for Beginners' },
-                      { value: 'userID1', label: 'Hands-on Coding for Intermediate' },
-                      { value: 'userID1', label: 'Unity Gamemaker for Kids' },
-                      { value: 'userID1', label: 'Build a Web App (HTML, CSS, JavaScript) ' },
-                      { value: 'userID1', label: 'IoT and Ardunio workshop ' },
-                      { value: 'userID1', label: 'Coding & Robotics for Kids' },
-                      { value: 'userID1', label: 'School Excursion - Intro to Javascript ' },
-                      { value: 'userID1', label: 'Unity Gamemaker for Kids Day 3 of 3' },
-                      { value: 'userID1', label: 'Become a Digital Artist' },
-                      { value: 'userID1', label: 'Create VFX in Film' },
-                      { value: 'userID1', label: 'Code Your World' },
-                      { value: 'userID1', label: 'Immersive Robotocs' },
-                      { value: 'userID1', label: 'Gamers Unite' },
-                      { value: 'userID1', label: '3D Character Creation ' },
-                      { value: 'userID1', label: 'Virtual Reality (VR) Experience' }
+                      { value: 'Hands-on Coding for Beginners', label: 'Hands-on Coding for Beginners' },
+                      { value: 'Hands-on Coding for Intermediate', label: 'Hands-on Coding for Intermediate' },
+                      { value: 'Unity Gamemaker for Kids', label: 'Unity Gamemaker for Kids' },
+                      { value: 'Build a Web App (HTML, CSS, JavaScript', label: 'Build a Web App (HTML, CSS, JavaScript) ' },
+                      { value: 'IoT and Ardunio workshop ', label: 'IoT and Ardunio workshop ' },
+                      { value: 'Coding & Robotics for Kids', label: 'Coding & Robotics for Kids' },
+                      { value: 'userSchool Excursion - Intro to JavascriptID1', label: 'School Excursion - Intro to Javascript ' },
+                      { value: 'Unity Gamemaker for Kids Day 3 of 3', label: 'Unity Gamemaker for Kids Day 3 of 3' },
+                      { value: 'Become a Digital Artist', label: 'Become a Digital Artist' },
+                      { value: 'userCreate VFX in FilmID1', label: 'Create VFX in Film' },
+                      { value: 'Code Your World', label: 'Code Your World' },
+                      { value: 'Immersive Robotocs', label: 'Immersive Robotocs' },
+                      { value: 'Gamers Unite', label: 'Gamers Unite' },
+                      { value: '3D Character Creation', label: '3D Character Creation ' },
+                      { value: 'Virtual Reality (VR) Experience', label: 'Virtual Reality (VR) Experience' }
                     ]}
                 />
             

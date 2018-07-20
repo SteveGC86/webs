@@ -9,7 +9,8 @@ import styled from 'styled-components';
 class NewEventForm extends React.Component {
   state = {
     redirect: false,
-    selectedOption: '',
+    selectedFacilitator: '',
+    selectedWorkshop: '',
     selectedOrganisation: '',
     selectedLocation: '',
     startDate: new Date(),
@@ -19,16 +20,20 @@ class NewEventForm extends React.Component {
 
   //Handle info functions
   handleChange(event) {
+    // console.log(this.state.selectedFacilitator)
+    const facilitators = this.state.selectedFacilitator.map(facilitator => {
+      return facilitators.value
+    })
+
     console.log(event.target)
     
     this.setState({ [event.target.name]: event.target.value });
-    console.log(event.target.onsite.value)
+    console.log(this.selectedWorkshop)
 
     const url = 'https://webs-backend-dev.now.sh/events/new'
     const data = { 
-      title: event.target.title.value,
-      // newEvent: event.target.newEvent.value,
-      facilitators: this.state.selectedfacilitator,
+      title: this.state.selectedWorkshop,
+      facilitators: facilitators,
       onsite: event.target.onsite.checked,
       organisation: this.state.selectedOrganisation,
       bookings: [{
@@ -67,31 +72,38 @@ class NewEventForm extends React.Component {
     this.setState({ endDate: date });
   }
 
-  facilitatorSelect = (selectedfacilitator) => {
-    this.setState({ facilitator: selectedfacilitator });
+  workshopSelect = (workshop) => {
+    this.setState({ selectedWorkshop: workshop });
+    console.log(workshop  )
+    }
+
+  facilitatorSelect = (facilitator) => {
+    this.setState({ selectedFacilitator: facilitator });
+    console.log(facilitator.value)
   }
 
-  locationSelect = (selectedLocation) => {
-    this.setState({ location: selectedLocation });
+  locationSelect = (location) => {
+    this.setState({ selectedLocation: location });
   }
 
-  organisationSelect = (selectedOrganisation) => {
-  this.setState({ organisation: selectedOrganisation });
+  organisationSelect = (organisation) => {
+  this.setState({ selectedOrganisation: organisation });
   }
 
 
     
   render(){
-    const { startDate, endDate, redirect, selectedfacilitator, selectedOrganisation, selectedLocation } = this.state;
+    const { startDate, endDate, redirect, selectedWorkshop, selectedfacilitator, selectedOrganisation, selectedLocation } = this.state;
     
-
-
     const MultiSelect = styled(Select)`
-    &.Select--multi  {
-      width:40vw;
-      margin: 0 30vw 0 30vw;
-    }
-  `
+          &.Select--multi  {
+            diplay: flex;
+            align-content: center;
+            width: 70vw;
+            margin: 0 30vw 0 30vw;
+            border: 1px solid #363637;
+            border-radius: 3px;
+          }` 
 
 
     if(redirect){
@@ -104,17 +116,33 @@ class NewEventForm extends React.Component {
         document.getElementById('newEventForm').reset()
       }}>
 
-        <p><input placeholder="Workshop Title" type="text" name="title" /></p>
-
-        {/* <p>Short Course:<br/>
-        <select id="newEvent" placeholder="newEvent" name="newEvent">
-          <option value="memes101">Memes 101</option>
-          <option value="html_css">HTML/CSS</option>
-          <option value="javascript">Javascript</option>
-        </select></p> */}
-        {/* <p>
-          <button name="createShortCourse">Add New Short Course</button>
-        </p> */}
+        
+        <p>Workshop</p>
+        <Select
+                    name="workshopTitle"
+                    simpleValue
+                    value={selectedWorkshop}
+                    onChange={this.workshopSelect}
+              
+                    options={[
+                      { value: 'Hands-on Coding for Beginners', label: 'Hands-on Coding for Beginners' },
+                      { value: 'Hands-on Coding for Intermediate', label: 'Hands-on Coding for Intermediate' },
+                      { value: 'Unity Gamemaker for Kids', label: 'Unity Gamemaker for Kids' },
+                      { value: 'Build a Web App (HTML, CSS, JavaScript', label: 'Build a Web App (HTML, CSS, JavaScript) ' },
+                      { value: 'IoT and Ardunio workshop ', label: 'IoT and Ardunio workshop ' },
+                      { value: 'Coding & Robotics for Kids', label: 'Coding & Robotics for Kids' },
+                      { value: 'userSchool Excursion - Intro to JavascriptID1', label: 'School Excursion - Intro to Javascript ' },
+                      { value: 'Unity Gamemaker for Kids Day 3 of 3', label: 'Unity Gamemaker for Kids Day 3 of 3' },
+                      { value: 'Become a Digital Artist', label: 'Become a Digital Artist' },
+                      { value: 'userCreate VFX in FilmID1', label: 'Create VFX in Film' },
+                      { value: 'Code Your World', label: 'Code Your World' },
+                      { value: 'Immersive Robotocs', label: 'Immersive Robotocs' },
+                      { value: 'Gamers Unite', label: 'Gamers Unite' },
+                      { value: '3D Character Creation', label: '3D Character Creation ' },
+                      { value: 'Virtual Reality (VR) Experience', label: 'Virtual Reality (VR) Experience' }
+                    ]}
+                />
+            
 
         <label>Facilitators:</label>
         <MultiSelect
@@ -155,14 +183,11 @@ class NewEventForm extends React.Component {
 
           <div className="onsite">
             <p>Onsite</p>
-            <input type="checkbox" name="onsite" />
+            <input type="checkbox" name="onsite" required/>
           </div>
 
         <p>Organisation:<br/>
-          {/* <select name="organisation">
-            <option value="coderAcademy">Coder Academy</option>
-            <option value="redhill">Redhill</option>
-          </select> */}
+      
           <Select
           name="Organisation"
           simpleValue
