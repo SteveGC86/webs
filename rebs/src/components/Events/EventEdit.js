@@ -15,22 +15,25 @@ class EventEdit extends Component {
     selectedOption: '',
     startDate: new Date(),
     endDate: new Date(),
+    selectedWorkshop: '',
+    selectedFacilitator: '',
   }
   
 
 
   handleChange = (e) => {
-    const facilitators = this.state.selectedOption.map(facilitator => {
+    const facilitators = this.state.selectedFacilitator.map(facilitator => {
       return facilitator.label
     })
+
     const workshop_id = this.props.location.state.singleEvent._id
   const url = `https://webs-backend-dev.now.sh/events/${workshop_id}`
       axios.patch(url, {
         _id: workshop_id,
-      title: e.target.title.value,
+      title: this.state.selectedWorkshop,
       organisation: e.target.organisation.value,
       notes: e.target.notes.value,
-      facilitators:  this.state.selectedOption,
+      facilitators:  facilitators,
       attendees: e.target.attendees.value,
       onsite: e.target.onsite.checked,
       status: e.target.status.value,
@@ -39,10 +42,12 @@ class EventEdit extends Component {
         start: this.state.startDate,
         end: this.state.endDate
       }],
+      
     
    
     })
     .then((res) => {
+      console.log(res.data.title);
       console.log(res.data);
       this.setState({redirect: true})
     })
@@ -60,8 +65,14 @@ class EventEdit extends Component {
       this.setState({ endDate: date });
     }
 
-    facilitatorSelect = (selectedOption) => {
-      this.setState({ selectedOption });
+    workshopSelect = (workshop) => {
+      this.setState({ selectedWorkshop: workshop});
+      console.log(workshop.value  )
+    }
+    
+    facilitatorSelect = (facilitator) => {
+      this.setState({ selectedFacilitator: facilitator });
+      console.log(facilitator[0].value)
       }
 
       componentDidMount(){
@@ -71,11 +82,11 @@ class EventEdit extends Component {
           endDate: singleEvent.bookings[0].end,
         })
       }
-      
+
 
     render() {
       const singleEvent = this.props.location.state.singleEvent
-      const { startDate, endDate, redirect, selectedOption } = this.state;
+      const { startDate, endDate, redirect, selectedWorkshop, selectedFacilitator } = this.state;
 
       const MultiSelect = styled(Select)`
           &.Select--multi  {
@@ -103,15 +114,39 @@ class EventEdit extends Component {
             console.log(this.input);
           }}>
             
-              <input type="text"  placeholder="Workshop Title" defaultValue={singleEvent.title} name="title" required/><br/>
+              {/* <input type="text"  placeholder="Workshop Title" defaultValue={singleEvent.title} name="title" required/><br/> */}
+              <Select
+                    name="workshopTitle"
+                    simpleValue
+                    value={selectedWorkshop}
+                    onChange={this.workshopSelect}
+                    required
+                    options={[
+                      { value: 'userID1', label: 'Hands-on Coding for Beginners' },
+                      { value: 'userID1', label: 'Hands-on Coding for Intermediate' },
+                      { value: 'userID1', label: 'Unity Gamemaker for Kids' },
+                      { value: 'userID1', label: 'Build a Web App (HTML, CSS, JavaScript) ' },
+                      { value: 'userID1', label: 'IoT and Ardunio workshop ' },
+                      { value: 'userID1', label: 'Coding & Robotics for Kids' },
+                      { value: 'userID1', label: 'School Excursion - Intro to Javascript ' },
+                      { value: 'userID1', label: 'Unity Gamemaker for Kids Day 3 of 3' },
+                      { value: 'userID1', label: 'Become a Digital Artist' },
+                      { value: 'userID1', label: 'Create VFX in Film' },
+                      { value: 'userID1', label: 'Code Your World' },
+                      { value: 'userID1', label: 'Immersive Robotocs' },
+                      { value: 'userID1', label: 'Gamers Unite' },
+                      { value: 'userID1', label: '3D Character Creation ' },
+                      { value: 'userID1', label: 'Virtual Reality (VR) Experience' }
+                    ]}
+                />
             
             
-                  <Select
+                  <MultiSelect
                     multi
                     joinValues
                     delimiter={','}
                     name="facilitators"
-                    value={selectedOption}
+                    value={selectedFacilitator}
                     onChange={this.facilitatorSelect}
                     required
                     options={[
