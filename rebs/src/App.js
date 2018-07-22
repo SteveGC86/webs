@@ -29,6 +29,9 @@ import WorkshopsNew from './components/Workshops/WorkshopsNew';
 import WorkshopsEdit from './components/Workshops/WorkshopsEdit';
 import WorkshopsView from './components/Workshops/WorkshopsView';
 
+// IMPORT FACILITATOR COMPONENTS
+import FacilitatorList from './components/Facilitators/FacilitatorList';
+import FacilitatorView from './components/Facilitators/FacilitatorView';
 
 
 class App extends Component {
@@ -91,10 +94,17 @@ class App extends Component {
                 {/* Delete Single Event */}
                 <Route exact strict path="/events/:id/delete" component={EventDelete}/> 
 
+                {/* View All Facilitators */}
+                <Route exact strict path="/facilitators" render={() => {
+                  return <FacilitatorList updateHeaderTitle={this.updateHeaderTitle} />
+                }} />
+
+                {/* View Single Facilitator */}
+                <Route exact strict path="/facilitators/:id/" component={FacilitatorView} />
 
                 
-                <Route exact path="/facilitators" component={ComingSoon}/>
-                <Route exact path="/facilitators/:id" component={ComingSoon}/>
+                {/* <Route exact path="/facilitators" component={ComingSoon}/>
+                <Route exact path="/facilitators/:id" component={ComingSoon}/> */}
                 <Route path="/facilitators/:id/edit" component={ComingSoon}/>
                 <Route path="/facilitators/new" component={ComingSoon}/>
                 <Route exact path="/organisations" component={ComingSoon}/>
