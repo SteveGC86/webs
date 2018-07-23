@@ -5,7 +5,7 @@ import moment from 'moment';
 class WorkshopsView extends Component {
 
   render() {
-
+    const singleWorkshop = this.props.singleWorkshop
     return (
         <div className="workshopsView">
         View single workshop.
