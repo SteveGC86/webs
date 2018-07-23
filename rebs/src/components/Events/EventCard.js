@@ -9,18 +9,20 @@ class EventCard extends React.Component {
     return(
     <div key={singleEvent._id} className="eventCard" >
       <div className="eventName">
-        <h3>{singleEvent.title}</h3>
+        <h3>{singleEvent.title[0].id.workshop_name}</h3>
       </div>
 
       <div className="eventDetails">
         <div>
-          <h5>{singleEvent.facilitators}</h5>
-              {singleEvent.bookings.map(booking => {
-                return <p key={booking._id}> 
-                  {moment(booking.start).format("ddd Do MMM YYYY")}<br/>
-                  {booking.location}
-                </p>
-                })}
+          {singleEvent.facilitatorObjs.map(facil => {
+            return <h5 key={facil._id}>{facil.id.f_name} {facil.id.l_name}</h5>
+          })}
+          {singleEvent.bookings.map(booking => {
+            return <p key={booking._id}> 
+              {moment(booking.start).format("ddd Do MMM YYYY")}<br/>
+              {booking.location}
+            </p>
+            })}
         </div>
         <div>
           <p>{singleEvent.status}</p>

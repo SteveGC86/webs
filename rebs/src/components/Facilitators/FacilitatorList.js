@@ -13,9 +13,7 @@ class FacilitatorList extends Component {
     componentDidMount(){
         this.props.updateHeaderTitle("Facilitators");
       
-        // fetch("https://webs-backend-dev.now.sh/users")
-        // fetch(process.env.REACT_APP_API_URI + '/users')
-        fetch(process.env.REACT_APP_API_URI + '/users')
+        fetch(`${process.env.REACT_APP_API_URI}/users`)
         .then(res => res.json())
         .then(users => {
             this.setState({

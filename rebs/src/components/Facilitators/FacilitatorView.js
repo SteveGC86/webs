@@ -12,36 +12,38 @@ class FacilitatorView extends Component {
     console.log(singleFacilitator)
     return (
       <div className="eventView">
-        <h3>{singleFacilitator.email}</h3>
-        <h2>{singleFacilitator.f_name}</h2>
-        <p>{singleFacilitator.l_name}</p>
+        <h2>{singleFacilitator.f_name} {singleFacilitator.l_name}</h2>
+
+        <h3>{singleFacilitator.role}</h3>
+        <h4>{singleFacilitator.default_location}</h4><br/>
       
+      
+      <div className="wrapper">
+        <h4>Skills:</h4> <ul>
+          {singleFacilitator.skills.map(skill => {
+          return <li key={skill._id}>{(skill.skill)}</li>
+          })}
+        </ul> <br/>
+
+          <h4>Contact Number:</h4>
+          <p>{singleFacilitator.contact_no}</p><br/>
+          <h4>Contact Email:</h4>
+          <p>{singleFacilitator.email}</p><br />
+          <h4>Availability:</h4>
+          <p>{singleFacilitator.availability}</p><br />
+        </div>
         <Link to={{
           pathname: `/facilitators/${singleFacilitator._id}/edit`,
           state: { singleFacilitator }
         }}>
           <button className="edit-button">Edit</button>
         </Link>
-
-        
-
-
-        <div className="wrapper">
-        {singleFacilitator.skills.map(skill => {
-                return <p key={skill._id}> 
-                <h5>{(skill.skill)}</h5>
-                </p>
-                })} 
-          <h3>Role:</h3>
-          <p>{singleFacilitator.role}</p><br />
-          <h4>Default Location:</h4>
-          <p>{singleFacilitator.default_location}</p><br />
-        </div>
-
-        <div className="wrapper">
-          <h3>contact_no:</h3>
-          <p>{singleFacilitator.contact_no}</p>
-        </div>
+        <Link to={{
+          pathname: `/facilitators/${singleFacilitator._id}/delete`,
+          state: { singleFacilitator }
+        }}>
+          <button className="delete-button">Delete</button>
+        </Link><br/>
         <Link to={'/facilitators'}><button>Back</button></Link>
       </div>
     )

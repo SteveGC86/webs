@@ -24,25 +24,48 @@ class EventEdit extends Component {
 
 
   handleChange = (e) => {
-    const facilitators = this.state.selectedFacilitator.map(facilitator => {
-      return facilitator
-    })
 
     const workshop_id = this.props.location.state.singleEvent._id
-    const url = `https://webs-backend-dev.now.sh/events/${workshop_id}`
-      axios.patch(url, {
+    const url = `${process.env.REACT_APP_API_URI}/events/${workshop_id}`
+      axios.patch(url, { 
+        "title": {
+          "id": this.state.selectedWorkshop.value
+        },
+        "facilitatorObjs": this.state.selectedFacilitator.map(facilitator => {
+          return {
+            "id": facilitator.value,
+            "status": "Pending"
+          }
+        }),
+        "attendees": 0,
+        "status": "Pending",
+        "creator": null,
+        "notes": e.target.notes.value,
+        "onsite": e.target.onsite.checked,
+        "organisation": {
+          "id": this.state.selectedOrganisation
+        },
+        "bookings": [
+          {
+          "start": new Date(this.state.startDate),
+          "end": new Date(this.state.endDate),
+          "location": this.state.selectedLocation,
+          }]
+      }
+        
+        {
         _id: workshop_id,
       title: this.state.selectedWorkshop,
       organisation: this.state.selectedOrganisation,
       notes: e.target.notes.value,
-      facilitators:  facilitators,
+      facilitators:  this.state.selectedFacilitators,
       attendees: e.target.attendees.value,
       onsite: e.target.onsite.checked,
       status: this.state.selectedStatus,
       bookings: [{
         location: this.state.selectedLocation,
-        start: this.state.startDate,
-        end: this.state.endDate
+        start: "2018-08-04T06:30:00.000Z",
+        end: "2018-08-08T06:00:00.000Z"
       }],
     })
     .then((res) => {
@@ -247,7 +270,7 @@ class EventEdit extends Component {
            
             ]}
           /><br/>
-            <input type="text"  ref={this.notes} placeholder="Notes" defaultValue={singleEvent.notes} name="notes" required/><br />
+            <input type="text"  ref={this.notes} placeholder="Notes" defaultValue={singleEvent.notes} name="notes"/><br />
 
             <div className="dates">
               <div className="singleBooking">
