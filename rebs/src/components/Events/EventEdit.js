@@ -27,6 +27,7 @@ class EventEdit extends Component {
     })
 
     const workshop_id = this.props.location.state.singleEvent._id
+    
   const url = `https://webs-backend-dev.now.sh/events/${workshop_id}`
       axios.patch(url, {
         _id: workshop_id,
@@ -209,11 +210,11 @@ class EventEdit extends Component {
           <p>Attendees: </p>
           <input type="number" placeholder="0" defaultValue={singleEvent.attendees} name="attendees" required/> <br />
 
-          <select name="status" defaultValue={singleEvent.status} name="status">
+          {/* <select name="status" defaultValue={singleEvent.status} name="status">
             <option value="confirmed">Confirmed</option>
             <option value="pending" >Pending</option>
             <option value="cancelled">Cancelled</option>
-          </select><br/>
+          </select><br/> */}
 
           <button value="submit">Submit</button>
           

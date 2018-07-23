@@ -28,7 +28,7 @@ class NewWorkshop extends Component {
 
     fetch(url, {
       method: 'POST',
-      body: JSON. stringify(data),
+      body: JSON.stringify(data),
       headers:{
         'Content-Type': 'application/json'
       }
@@ -79,7 +79,7 @@ class NewWorkshop extends Component {
             document.getElementById('newEventForm').requestFullscreen()
           }}>
 
-          <input type="text" name="workshop"/>
+          <input type="text" name="workshopTitle"/>
 
           <MultiSelect
             multi
