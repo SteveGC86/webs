@@ -30,10 +30,11 @@ class EventEdit extends Component {
 
     const workshop_id = this.props.location.state.singleEvent._id
     const url = `${process.env.REACT_APP_API_URI}/events/${workshop_id}`
-      axios.patch(url, { 
-        "title": {
-          "id": this.state.selectedWorkshop.value
-        },
+    const data = { 
+        "title": [{
+          "id": this.state.selectedWorkshop.value,
+          "workshop_name": this.state.selectedWorkshop.label
+        }],
         "facilitatorObjs": this.state.selectedFacilitator.map(facilitator => {
           return {
             "id": facilitator.value,
@@ -46,15 +47,19 @@ class EventEdit extends Component {
         "notes": e.target.notes.value,
         "onsite": e.target.onsite.checked,
         "organisation": {
-          "id": this.state.selectedOrganisation
+          "id": {
+            "_id": this.state.selectedOrganisation.value
+          },
         },
         "bookings": [
           {
           "start": new Date(this.state.startDate),
           "end": new Date(this.state.endDate),
-          "location": this.state.selectedLocation,
+          "location": this.state.selectedLocation.value,
           }]
-      })
+      }
+      console.log(data)
+      axios.patch(url, data)
     .then((res) => {
       console.log(res.data.title);
       console.log(res.data);
@@ -75,60 +80,51 @@ class EventEdit extends Component {
     }
 
     workshopSelect = (workshop) => {
-      console.log("workshop")
-      console.log(workshop)
-      // this.setState({ selectedWorkshop: workshop.value});
+      this.setState({ selectedWorkshop: workshop});
     }
     facilitatorSelect = (facilitator) => {
-      console.log("facilitator")
-      console.log(facilitator)
       this.setState({ selectedFacilitator: facilitator })
       }
 
     locationSelect = (location) => {
-      console.log("location")
-      console.log(location)
       this.setState({ selectedLocation: location });
       }
 
     organisationSelect = (organisation) => {
-      console.log("organisation")
-      console.log(organisation)
       this.setState({ selectedOrganisation: organisation})
     }
     statusSelect = (status) => {
-      console.log("status")
-      console.log(status)
       this.setState({ selectedStatus: status})
     }
 
     componentDidMount(){
       const singleEvent = this.props.location.state.singleEvent
+      console.log(singleEvent)
+      const facilitators = singleEvent.facilitatorObjs.map(facil => {
+        return { value: facil.id._id, label: `${facil.id.f_name} ${facil.id.l_name}`}
+      })
       this.setState({
         startDate: singleEvent.bookings[0].start,
         endDate: singleEvent.bookings[0].end,
-        selectedWorkshop: {value: singleEvent.title, label: singleEvent.title},
-        selectedFacilitator: {value: singleEvent.facilitators, label: singleEvent.facilitators},
+        selectedWorkshop: {value: singleEvent.title[0].id._id, label: singleEvent.title[0].id.workshop_name},
+        selectedFacilitator: facilitators,
         selectedLocation: {value: singleEvent.bookings[0].location, label: singleEvent.bookings[0].location},
-        selectedOrganisation: {value: singleEvent.organisation, label: singleEvent.organisation},
+        selectedOrganisation: {value: singleEvent.organisation.id._id, label: singleEvent.organisation.id.org_name},
         selectedStatus: {value: singleEvent.status, label: singleEvent.status}
       })
       axios.get(`${process.env.REACT_APP_API_URI}/users`)
       .then(users => {
         this.setState({users: users.data})
-        console.log(users.data)
       })
 
       axios.get(`${process.env.REACT_APP_API_URI}/organisations`)
       .then(orgs => {
         this.setState({orgs: orgs.data})
-        console.log(orgs.data)
       })
 
       axios.get(`${process.env.REACT_APP_API_URI}/workshops`)
       .then(workshops => {
         this.setState({workshops: workshops.data})
-        console.log(workshops.data)
       })
     }
 
@@ -199,12 +195,11 @@ class EventEdit extends Component {
           <form onSubmit={(e) =>{
             e.preventDefault()
             this.handleChange(e)
-            // console.log(this.input);
           }}>
                          
             <SingleSelect
               name="workshopTitle"
-              // value={selectedWorkshop}
+              value={selectedWorkshop}
               onChange={this.workshopSelect}
               required
               options={workshops.map(workshop => {
@@ -233,16 +228,16 @@ class EventEdit extends Component {
               <input type="checkbox" defaultChecked={singleEvent.onsite ? true : false} name="onsite" />
             </div>
 
-            {/* <SingleSelect
+            <SingleSelect
           name="organisation"
           placeholder="Organisation"
-          simpleValue
+          // simpleValue
           value={selectedOrganisation}
           onChange={this.organisationSelect}
           options={orgs.map(org => {
             return {value: org._id, label: org.org_name}
           })}
-          /><br/> */}
+          /><br/>
             <input type="text"  ref={this.notes} placeholder="Notes" defaultValue={singleEvent.notes} name="notes"/><br />
 
             <div className="dates">

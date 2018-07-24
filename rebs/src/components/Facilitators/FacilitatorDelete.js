@@ -35,7 +35,7 @@ class FacilitatorDelete extends Component {
       
           <button className="delete-button" onClick={() => {this.deleteFacilitator(facilitator)}}>Delete Facilitator</button>
           
-          <button className="edit-button" onClick={() => {this.cancel}}>Cancel</button>
+          <button className="edit-button" onClick={() => {this.cancel()}}>Cancel</button>
 
         <h2>{facilitator.f_name} {facilitator.l_name}</h2>
         <p>{facilitator.role}</p>

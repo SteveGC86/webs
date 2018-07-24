@@ -18,7 +18,6 @@ class NewEventForm extends React.Component {
     endDate: new Date(),
     users: null,
     orgs: null,
-    orgs_locations: null,
     workshops: null,
   }
     
@@ -105,7 +104,7 @@ class NewEventForm extends React.Component {
 
     
   render(){
-    const { startDate, endDate, redirect, selectedFacilitator, selectedOrganisation, selectedLocation, selectedWorkshop, users, orgs, orgs_locations, workshops } = this.state;
+    const { startDate, endDate, redirect, selectedFacilitator, selectedOrganisation, selectedLocation, selectedWorkshop, users, orgs, workshops } = this.state;
 
     
     

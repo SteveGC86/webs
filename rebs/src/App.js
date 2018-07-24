@@ -40,8 +40,8 @@ import FacilitatorDelete from './components/Facilitators/FacilitatorDelete';
 import OrganisationList from './components/Organisations/OrganisationList';
 import OrganisationView from './components/Organisations/OrganisationView';
 import NewOrganisationForm from './components/Organisations/OrganisationNew';
-import OrganisationDelete from './components/Organisations/OrganisationDelete';
-import OrganisationEdit from './components/Organisations/OrganisationEdit';
+// import OrganisationDelete from './components/Organisations/OrganisationDelete';
+// import OrganisationEdit from './components/Organisations/OrganisationEdit';
 
 require('dotenv').config()
 class App extends Component {

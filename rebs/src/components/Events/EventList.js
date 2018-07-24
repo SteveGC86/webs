@@ -26,9 +26,6 @@ class EventList extends Component {
         return <h1>Loading...</h1>
     }
 
-    events.map(event => {
-        console.log(event)
-    })
     return (
         <div className="container">
             <div className="fetch">
