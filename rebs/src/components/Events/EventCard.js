@@ -24,20 +24,31 @@ class EventCard extends React.Component {
             </p>
             })}
         </div>
-        <div>
-          <p>{singleEvent.status}</p>
-          <Link key={singleEvent._id} 
-            to={
-                {
-                    pathname: `/events/${singleEvent._id}/`,
-                    state: { singleEvent }
-                }
-            }> 
-              <button className="viewButton" name="viewEvent">View</button>
-          </Link>
+
+        <div className="eventDetails">
+          <div>
+            <h5>{singleEvent.facilitators}</h5>
+                {singleEvent.bookings.map(booking => {
+                  return <p key={booking._id}> 
+                    {moment(booking.start).format("ddd Do MMM YYYY")}<br/>
+                    {booking.location}
+                  </p>
+                  })}
+          </div>
+          <div>
+            <p>{singleEvent.status}</p>
+            <Link key={singleEvent._id} 
+              to={
+                  {
+                      pathname: `/events/${singleEvent._id}/`,
+                      state: { singleEvent }
+                  }
+              }> 
+                <button className="viewButton" name="viewEvent">View</button>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
     )}
 }
 

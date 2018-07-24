@@ -41,7 +41,7 @@ import OrganisationList from './components/Organisations/OrganisationList';
 import OrganisationView from './components/Organisations/OrganisationView';
 import NewOrganisationForm from './components/Organisations/OrganisationNew';
 // import OrganisationDelete from './components/Organisations/OrganisationDelete';
-// import OrganisationEdit from './components/Organisations/OrganisationEdit';
+import OrganisationEdit from './components/Organisations/OrganisationEdit';
 
 require('dotenv').config()
 class App extends Component {
@@ -124,7 +124,7 @@ class App extends Component {
                   return <OrganisationList updateHeaderTitle={this.updateHeaderTitle} />
                 }} />
 
-                {/* <Route path="/organisations/:id/edit" component={OrganisationEdit}/> */}
+                <Route path="/organisations/:id/edit" component={OrganisationEdit}/>
 
                 {/* Add New Organisation*/}
                 <Route exact strict path="/organisations/new" render={() => {
