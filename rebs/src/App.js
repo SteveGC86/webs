@@ -117,7 +117,7 @@ class App extends Component {
 
                 <Route path="/facilitators/:id/edit" component={ComingSoon}/>
                 
-                {/* <Route path="/facilitators/new" component={NewFacilitatorForm}/> */}
+                <Route path="/facilitators/new" component={NewFacilitatorForm}/>
 
                 {/* View All Organisations */}
                 <Route exact strict path="/organisations" render={() => {
