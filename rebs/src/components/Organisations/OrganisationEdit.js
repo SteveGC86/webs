@@ -1,9 +1,9 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
-import Select from 'react-select'
-import 'react-select/dist/react-select.css'
-import DateTimePicker from 'material-ui-pickers/DateTimePicker';
-import styled from 'styled-components';
+// import { Redirect } from 'react-router-dom';
+// import Select from 'react-select'
+// import 'react-select/dist/react-select.css'
+// import DateTimePicker from 'material-ui-pickers/DateTimePicker';
+// import styled from 'styled-components';
 import axios from 'axios';
 
 
