@@ -1,28 +1,289 @@
+:root {
+  --main-dark-color: #363637;
+  --main-light-blue: #45A7C5;
+  --main-dark-blue: #275480;
+ }
+ 
+ * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Alegreya Sans';
+}
+
+body {
+  background-color: #FAFAFA;
+ }
+ 
+ .header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  width: 100%;
+  background-color: var(--main-dark-blue);
+  margin-bottom: 3vh;
+  color: #FFFFFF;
+  font-family: 'Alegreya Sans', sans-serif;
+  font-size: calc(16px + 4vw);
+ }
+ 
+ h2 {
+  font-family: 'Alegreya', serif;
+  font-size: 8vh;
+  line-height: 85%;
+}
+
+h3 {
+  display: flex;
+  justify-content: center;
+  font-size: 4vh;
+}
+
+h4 {
+  font-size: 3vh;
+}
+
+h5 {
+  font-size: 2.5vh;
+}
+
+ul{ 
+  list-style-type: none;
+}
+
+li {
+  min-width: 75vw;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: center;  
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
+.dates{
+  margin-bottom: 2vh;
+  width: 60vw;  
+  /* background-color: purple; */
+}
+
+
+.singleBooking {
+  display: flex;
+  margin-left: 15vw;
+  width: 70vw;
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+.MuiInput-input-15 {
+  /* font: inherit; */
+  color: currentColor;
+  border: 0;
+  margin: 20vw;
+  padding: 6px 0 7px;
+  display: block;
+  min-width: 30vw;
+  flex-grow: 1;
+  box-sizing: content-box;
+  background: none;
+  font-size: 3vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.edit-button{
+  width: 20vw;
+  border-radius: 5px;
+  border: none;
+ }
+ 
+ .delete-button{
+  width: 20vw;
+  background-color: rgb(150, 26, 26);
+  border-radius: 5px;
+  border: none;
+}
+
 .App {
   text-align: center;
+  margin-bottom: 13vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+
+.eventview {
+  display: flex;
+  align-content: space-around;
+  justify-content: flex-start;
+  background: #fafafa;
+  
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+
+.eventCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #FFFFFF;
+  width: 90vw;
+  margin: 3vh;
+  padding: 2vh;
+ }
+
+ .eventDetails {
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-end;
+   padding-top: 2vh;
+   
+ }
+ 
+ input[type="text"] {
+  height: 4vh;
+  border: 1px solid #363637;
+  border-radius: 3px;
+  margin-bottom: 2vh;
+ }
+
+ .onsite {
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   margin: 0 30vw 3vh 30vw;
+ }
+ 
+ input[type="checkbox"] {
+  height: 3vh;
+  background-color: #FAFAFA;
+  margin: 0;
+  width: 5vw;
+ }
+
+select{
+  justify-content: center;
+  height: 3vh;
+  font-size: 2.5vh;
+  color:  #363637;  
 }
 
-.App-title {
-  font-size: 1.5em;
+input[type="text"] {
+  height: 4vh;
+  border: 1px solid #363637;
+  border-radius: 3px;
+  margin: 0 0 2vh 0;
 }
 
-.App-intro {
-  font-size: large;
+
+input[type="button"] { 
+  height: 4vh;
+  color: #FAFAFA;
+  border: none;
+  border-radius: 2px;
+  font-family: "Alegreya";
+  font-size: 2vh;
+  font-weight: normal;
+  background: #45A7C5;
+  margin-bottom: 2.5vh;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.viewButton {   
+  width: 15vh;
+  margin-left: 0;
 }
+
+input[name="addFacilitator"] {    
+  height: 4vh;
+  color: #FAFAFA;
+  border: none;
+  border-radius: 2px;
+  font-family: "Alegreya";
+  font-size: 2vh;
+  font-weight: normal;
+  background: #45A7C5;
+  margin-bottom: 2.5vh;
+}
+
+input[name="addEvent"] {     
+  height: 4vh;
+  color: #FAFAFA;
+  border: none;
+  border-radius: 2px;
+  font-family: "Alegreya";
+  font-size: 2vh;
+  font-weight: normal;
+  background: #45A7C5;
+  margin-bottom: 2.5vh;
+}
+
+/* input[name="viewCalender"] {   
+  width: 23vh;
+  height: 3vh;
+  color: #FAFAFA;
+  border: none;
+  border-radius: 3px;
+  font-family: 'Alegreya';
+  font-size: 2vh;
+  font-weight: normal;
+  background: #45A7C5;
+  margin-bottom: 2.5vh;
+} */
+
+input[name="startDate"] {
+  height: 4vh; 
+  border: 1px solid #363637;
+  margin-right: 2.5vh;
+}
+
+input[name="endDate"] {
+  height: 4vh;
+  margin-left: 2.5vh;
+  border: 1px solid #363637
+}
+
+input[type="number"] {
+  height: 4vh;
+  width: 15vw;
+  margin-left: 2.5vh;
+  border: 1px solid #363637
+}
+p {
+  color: #646464;
+  font-size: 3vh;
+}
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.confirmation {
+  display: flex;
+  flex-direction: column; 
+  align-self: flex-end;
+}
+
+
+ @media (min-width: 1000px) {
+  .eventDetails {
+    /* justify-content: space-around; */
+  }
+
+  .eventDetails {
+    text-align: left;
+  }
+
+  .onsite {
+    margin: 0 40vw 3vh 40vw;
+  }
+
+  .eventCard {
+    width: 60vw;
+    margin: 3vh;
+    padding: 2vh;
+   }
+
+ }
