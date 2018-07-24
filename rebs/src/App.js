@@ -7,6 +7,7 @@ import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 
 
 
+
 // IMPORT LAYOUT COMPONENTS
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
@@ -25,12 +26,24 @@ import LoginForm from'./components/Login/LoginForm';
 
 // IMPORT WORKSHOPS COMPONENTS
 import WorkshopsNew from './components/Workshops/WorkshopsNew';
-// import WorkshopsList from './components/Workshops/WorkshopsList';
+import WorkshopsList from './components/Workshops/WorkshopsList';
 import WorkshopsEdit from './components/Workshops/WorkshopsEdit';
 import WorkshopsView from './components/Workshops/WorkshopsView';
 
+// IMPORT FACILITATOR COMPONENTS
+import FacilitatorList from './components/Facilitators/FacilitatorList';
+import FacilitatorView from './components/Facilitators/FacilitatorView';
+import NewFacilitatorForm from './components/Facilitators/FacilitatorNew';
+import FacilitatorDelete from './components/Facilitators/FacilitatorDelete';
 
+// IMPORT ORGANISATIONS COMPONENTS
+import OrganisationList from './components/Organisations/OrganisationList';
+import OrganisationView from './components/Organisations/OrganisationView';
+import NewOrganisationForm from './components/Organisations/OrganisationNew';
+import OrganisationDelete from './components/Organisations/OrganisationDelete';
+import OrganisationEdit from './components/Organisations/OrganisationEdit';
 
+require('dotenv').config()
 class App extends Component {
   state = {
     title: 'Redhill Education WEBS',
@@ -91,20 +104,39 @@ class App extends Component {
                 {/* Delete Single Event */}
                 <Route exact strict path="/events/:id/delete" component={EventDelete}/> 
 
+                {/* View All Facilitators */}
+                <Route exact strict path="/facilitators" render={() => {
+                  return <FacilitatorList updateHeaderTitle={this.updateHeaderTitle} />
+                }} />
 
-                
-                <Route exact path="/facilitators" component={ComingSoon}/>
-                <Route exact path="/facilitators/:id" component={ComingSoon}/>
+                {/* View Single Facilitator */}
+                <Route exact strict path="/facilitators/:id/" component={FacilitatorView} />
+
+                {/* Delete Single Facilitator */}
+                <Route exact strict path="/facilitators/:id/delete" component={FacilitatorDelete} />
+
                 <Route path="/facilitators/:id/edit" component={ComingSoon}/>
-                <Route path="/facilitators/new" component={ComingSoon}/>
-                <Route exact path="/organisations" component={ComingSoon}/>
-                <Route exact path="/organisations/:id" component={ComingSoon}/>
-                <Route path="/organisations/:id/edit" component={ComingSoon}/>
-                <Route path="/organisations/new" component={ComingSoon}/>
+                
+                {/* <Route path="/facilitators/new" component={NewFacilitatorForm}/> */}
+
+                {/* View All Organisations */}
+                <Route exact strict path="/organisations" render={() => {
+                  return <OrganisationList updateHeaderTitle={this.updateHeaderTitle} />
+                }} />
+
+                {/* <Route path="/organisations/:id/edit" component={OrganisationEdit}/> */}
+
+                {/* Add New Organisation*/}
+                <Route exact strict path="/organisations/new" render={() => {
+                  return <NewOrganisationForm updateHeaderTitle={this.updateHeaderTitle} />
+                }} />
+
+                {/* View Single Organisation */}
+                <Route path="/organisations/:id" component={OrganisationView}/>
 
                 {/* List All Workshops w/ Workshops Card*/}
                 <Route exact path="/workshops" render={() => {
-                return <ComingSoon updateHeaderTitle={this.updateHeaderTitle}/>        
+                return <WorkshopsList updateHeaderTitle={this.updateHeaderTitle}/>        
                 }}/>
 
                 {/* View Single Workshop */}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EventCard from './EventCard';
 
+
 class EventList extends Component {
     state = {
         events: null,
@@ -8,7 +9,7 @@ class EventList extends Component {
 
     componentDidMount(){
         this.props.updateHeaderTitle("Upcoming Events");
-        fetch("https://webs-backend-dev.now.sh/events")
+        fetch(`${process.env.REACT_APP_API_URI}/events`)
         .then(res => res.json())
         .then(events => {
             this.setState({
@@ -24,10 +25,13 @@ class EventList extends Component {
     if(!events){
         return <h1>Loading...</h1>
     }
+
+    events.map(event => {
+        console.log(event)
+    })
     return (
         <div className="container">
             <div className="fetch">
-            {/* <input type="button" value="Calender View" name="viewCalender" /> */}
                 {
                 events.map(singleEvent => {
                     return <EventCard key={singleEvent._id} singleEvent={singleEvent}

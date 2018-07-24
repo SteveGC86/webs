@@ -14,6 +14,7 @@ class Settings extends Component {
     return (
         <div className="settings">
         <Link to={'/workshops'}><button>View Workshops</button></Link>
+        <Link to={'/facilitators'}><button>View Facilitators</button></Link>
         </div>
     );
   }

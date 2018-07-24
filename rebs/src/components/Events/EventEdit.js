@@ -12,41 +12,46 @@ class EventEdit extends Component {
   
   state = {
     redirect: false,
-    selectedOption: '',
     startDate: new Date(),
     endDate: new Date(),
     selectedWorkshop: '',
     selectedFacilitator: '',
+    selectedLocation: '',
+    selectedOrganisation: '',
+    selectedStatus: '',
   }
   
 
 
   handleChange = (e) => {
-    const facilitators = this.state.selectedFacilitator.map(facilitator => {
-      return facilitators
-    })
 
     const workshop_id = this.props.location.state.singleEvent._id
-    
-  const url = `https://webs-backend-dev.now.sh/events/${workshop_id}`
-      axios.patch(url, {
-        _id: workshop_id,
-      title: this.state.selectedWorkshop,
-      organisation: e.target.organisation.value,
-      notes: e.target.notes.value,
-      facilitators:  facilitators,
-      attendees: e.target.attendees.value,
-      onsite: e.target.onsite.checked,
-      status: e.target.status.value,
-      bookings: [{
-        location: e.target.location.value,
-        start: this.state.startDate,
-        end: this.state.endDate
-      }],
-      
-    
-   
-    })
+    const url = `${process.env.REACT_APP_API_URI}/events/${workshop_id}`
+      axios.patch(url, { 
+        "title": {
+          "id": this.state.selectedWorkshop.value
+        },
+        "facilitatorObjs": this.state.selectedFacilitator.map(facilitator => {
+          return {
+            "id": facilitator.value,
+            "status": "Pending"
+          }
+        }),
+        "attendees": 0,
+        "status": "Pending",
+        "creator": null,
+        "notes": e.target.notes.value,
+        "onsite": e.target.onsite.checked,
+        "organisation": {
+          "id": this.state.selectedOrganisation
+        },
+        "bookings": [
+          {
+          "start": new Date(this.state.startDate),
+          "end": new Date(this.state.endDate),
+          "location": this.state.selectedLocation,
+          }]
+      })
     .then((res) => {
       console.log(res.data.title);
       console.log(res.data);
@@ -56,11 +61,11 @@ class EventEdit extends Component {
       console.log(error);
     });
   }
+        
 
-
-      startDateChange = (date) => {
-        this.setState({ startDate: date });
-      }
+    startDateChange = (date) => {
+      this.setState({ startDate: date });
+    }
 
     endDateChange = (date) => {
       this.setState({ endDate: date });
@@ -71,32 +76,89 @@ class EventEdit extends Component {
     }
     
     facilitatorSelect = (facilitator) => {
+      this.setState({ selectedFacilitator: facilitator });
+    }
+    
+    facilitatorSelect = (facilitator) => {
       this.setState({ selectedFacilitator: facilitator })
       }
 
-      componentDidMount(){
-        const singleEvent = this.props.location.state.singleEvent
-        this.setState({
-          startDate: singleEvent.bookings[0].start,
-          endDate: singleEvent.bookings[0].end,
-        })
-      }
+      locationSelect = (location) => {
+        this.setState({ selectedLocation: location });
+        }
+
+    organisationSelect = (organisation) => {
+      this.setState({ selectedOrganisation: organisation})
+    }
+
+    statusSelect = (status) => {
+      this.setState({ selectedStatus: status})
+    }
+
+    componentDidMount(){
+      const singleEvent = this.props.location.state.singleEvent
+      this.setState({
+        startDate: singleEvent.bookings[0].start,
+        endDate: singleEvent.bookings[0].end,
+        selectedWorkshop: {value: singleEvent.title, label: singleEvent.title},
+        selectedFacilitator: {value: singleEvent.facilitators, label: singleEvent.facilitators},
+        selectedLocation: {value: singleEvent.bookings[0].location, label: singleEvent.bookings[0].location},
+        selectedOrganisation: {value: singleEvent.organisation, label: singleEvent.organisation},
+        selectedStatus: {value: singleEvent.status, label: singleEvent.status}
+      })
+    }
 
 
     render() {
       const singleEvent = this.props.location.state.singleEvent
-      const { startDate, endDate, redirect, selectedWorkshop, selectedFacilitator } = this.state;
+      const { startDate, endDate, redirect, selectedStatus, selectedWorkshop, selectedFacilitator, selectedLocation, selectedOrganisation } = this.state;
+
+
+
 
       const MultiSelect = styled(Select)`
-          &.Select--multi  {
-            diplay: flex;
-            align-content: center;
-            width: 70vw;
-            margin: 0 30vw 0 30vw;
-            border: 1px solid #363637;
-            border-radius: 3px;
-          }` 
+    &.Select--multi  {
+      width:70vw;
+      margin: 0 15vw 3vh 15vw;
+      font-size: 3vh;
+    }
+    @media (min-width: 1000px){
+      &.Select--multi  {
+        width:40vw;
+        margin: 0 30vw 3vh 30vw;
+        font-size: 3vh;
+      }
+    }
+  `
 
+      const SingleSelect = styled(Select)`
+        &.Select  {
+          width:70vw;
+          margin: 0 15vw 3vh 15vw;
+          font-size: 3vh;
+        }
+        @media (min-width: 1000px){
+          &.Select  {
+            width:40vw;
+            margin: 0 30vw 3vh 30vw;
+            font-size: 3vh;
+          }
+        }
+        `
+        const LocationSelect = styled(Select)`
+        &.Select  {
+          width:70vw;
+          margin: 3vh 15vw 3vh 0vw;
+          font-size: 3vh;
+        }
+        @media (min-width: 1000px){
+          &.Select  {
+            width:40vw;
+            margin: 3vh 0vw 3vh 15vw;
+            font-size: 3vh;
+          }
+        }
+        `
     if(redirect){
 
       return <Redirect to={{
@@ -106,21 +168,22 @@ class EventEdit extends Component {
     }
     return (
       <div className="eventEdit">
-        <h2>Edit Workshop</h2>
+        <h2>Edit Workshop</h2><br/><br/>
           <form onSubmit={(e) =>{
             e.preventDefault()
             this.handleChange(e)
             // console.log(this.input);
           }}>
             
-              <Select
-                    name="workshopTitle"
-                    simpleValue
-                    value={selectedWorkshop}
-                    onChange={this.workshopSelect}
-                    required
-                    options={[
-                      { value: 'Hands-on Coding for Beginners', label: 'Hands-on Coding for Beginners' },
+              
+            <SingleSelect
+              name="workshopTitle"
+              simpleValue
+              value={selectedWorkshop}
+              onChange={this.workshopSelect}
+              required
+              options={[
+                { value: 'Hands-on Coding for Beginners', label: 'Hands-on Coding for Beginners' },
                       { value: 'Hands-on Coding for Intermediate', label: 'Hands-on Coding for Intermediate' },
                       { value: 'Unity Gamemaker for Kids', label: 'Unity Gamemaker for Kids' },
                       { value: 'Build a Web App (HTML, CSS, JavaScript', label: 'Build a Web App (HTML, CSS, JavaScript) ' },
@@ -135,57 +198,66 @@ class EventEdit extends Component {
                       { value: 'Gamers Unite', label: 'Gamers Unite' },
                       { value: '3D Character Creation', label: '3D Character Creation ' },
                       { value: 'Virtual Reality (VR) Experience', label: 'Virtual Reality (VR) Experience' }
-                    ]}
+              ]}
+            />
+          
+          
+                <MultiSelect
+                  multi
+                  joinValues
+                  delimiter={','}
+                  name="facilitators"
+                  value={selectedFacilitator}
+                  onChange={this.facilitatorSelect}
+                  required
+                  options={[
+                    { value: 'userID1', label: 'Amos Jon Wilksch' },
+                    { value: 'userID2', label: 'Annabelle (Bella) Maguire' },
+                    { value: 'userID3', label: 'Andrew Madden' },
+                    { value: 'userID4', label: 'Arian Yusef' },
+                    { value: 'userID5', label: 'Billy' },
+                    { value: 'userID6', label: 'Bushra Malik' },
+                    { value: 'userID7', label: 'Camilla Stadlinger' },
+                    { value: 'userID8', label: 'Christian Saviane' },
+                    { value: 'userID9', label: 'Jacqueline tate ' },
+                    { value: 'userID10', label: 'Kelsey Birrel' },
+                    { value: 'userID11', label: 'Lani Gambino' },
+                    { value: 'userID12', label: 'Marc Pestamento' },
+                    { value: 'userID13', label: 'Najat Smeda' },
+                    { value: 'userID14', label: 'Pauline' },
+                    { value: 'userID15', label: 'Robert Wellington' },
+                    { value: 'userID16', label: 'Simon Dwyer' },
+                    { value: 'userID17', label: 'Sophie' },
+                    { value: 'userID18', label: 'Steve Christenson' },
+                    { value: 'userID19', label: 'Suzanne Thomson' },
+                    { value: 'userID20', label: 'Tyson Butler-Boschma' },
+                    { value: 'userID21', label: 'Teresa Fae' },
+                  ]}
                 />
-            
-            
-                  <MultiSelect
-                    multi
-                    joinValues
-                    delimiter={','}
-                    name="facilitators"
-                    value={selectedFacilitator}
-                    onChange={this.facilitatorSelect}
-                    required
-                    options={[
-                      { value: 'userID1', label: 'Amos Jon Wilksch' },
-                      { value: 'userID2', label: 'Annabelle (Bella) Maguire' },
-                      { value: 'userID3', label: 'Andrew Madden' },
-                      { value: 'userID4', label: 'Arian Yusef' },
-                      { value: 'userID5', label: 'Billy' },
-                      { value: 'userID6', label: 'Bushra Malik' },
-                      { value: 'userID7', label: 'Camilla Stadlinger' },
-                      { value: 'userID8', label: 'Christian Saviane' },
-                      { value: 'userID9', label: 'Jacqueline tate ' },
-                      { value: 'userID10', label: 'Kelsey Birrel' },
-                      { value: 'userID11', label: 'Lani Gambino' },
-                      { value: 'userID12', label: 'Marc Pestamento' },
-                      { value: 'userID13', label: 'Najat Smeda' },
-                      { value: 'userID14', label: 'Pauline' },
-                      { value: 'userID15', label: 'Robert Wellington' },
-                      { value: 'userID16', label: 'Simon Dwyer' },
-                      { value: 'userID17', label: 'Sophie' },
-                      { value: 'userID18', label: 'Steve Christenson' },
-                      { value: 'userID19', label: 'Suzanne Thomson' },
-                      { value: 'userID20', label: 'Tyson Butler-Boschma' },
-                      { value: 'userID21', label: 'Teresa Fae' },
-                    ]}
-                  />
              
               
               
             <div className="onsite" >
               <p>Onsite</p>
-              <input type="checkbox" defaultValue={singleEvent.onsite} name="onsite" required/>
+              <input type="checkbox" defaultChecked={singleEvent.onsite ? true : false} name="onsite" />
             </div>
 
-            <input type="text" ref={this.organistation} placeholder="Organisation" defaultValue={singleEvent.organisation}      name="organisation" /><br/>
-            <input type="text"  ref={this.notes} placeholder="Notes" defaultValue={singleEvent.notes} name="notes" required/><br />
+            <SingleSelect
+          name="organisation"
+          placeholder="Organisation"
+          simpleValue
+          value={selectedOrganisation}
+          onChange={this.organisationSelect}
+          options={[
+            { value: 'Coder Academy', label: 'Coder Academy' },
+            { value: 'RedHill', label: 'Red Hill' },
+           
+            ]}
+          /><br/>
+            <input type="text"  ref={this.notes} placeholder="Notes" defaultValue={singleEvent.notes} name="notes"/><br />
 
             <div className="dates">
-              {singleEvent.bookings.map((booking, i) => {
-                return <div key={booking._id} className="singleBooking"><h4>Booking {i+1}</h4>
-              
+              <div className="singleBooking">
               <div className="datesAlign">
                 <p>Start Time: <br/></p>
                   <DateTimePicker
@@ -200,21 +272,38 @@ class EventEdit extends Component {
                   />  
               </div>  
               
-                <input type="text" ref={this.location} defaultValue={booking.location} name="location" required/><br/>
+              <LocationSelect
+                name="location"
+                placeholder="Location"
+                simpleValue
+                value={selectedLocation}
+                onChange={this.locationSelect}
+                options={[
+                  { value: 'Melbourne', label: 'Melbourne' },
+                  { value: 'Sydney', label: 'Sydney' },
+                
+                  ]}
+                />
+            </div>            
             </div>
-              })}             
-            </div>
-            {/* <button value="Add Another Date" name="addEvent">Add Another Date</button> */}
 
               
           <p>Attendees: </p>
-          <input type="number" placeholder="0" defaultValue={singleEvent.attendees} name="attendees" required/> <br />
+          <input type="number" placeholder="0" defaultValue={singleEvent.attendees} name="attendees" required/> <br /><br/>
 
-          {/* <select name="status" defaultValue={singleEvent.status} name="status">
-            <option value="confirmed">Confirmed</option>
-            <option value="pending" >Pending</option>
-            <option value="cancelled">Cancelled</option>
-          </select><br/> */}
+          <SingleSelect
+          name="status"
+          placeholder="Workshop Status"
+          simpleValue
+          value={selectedStatus}
+          onChange={this.statusSelect}
+          options={[
+            { value: 'confirmed', label: 'Confirmed' },
+            { value: 'pending', label: 'Pending' },
+            { value: 'cancelled', label: 'Cancelled' },
+           
+            ]}
+          /><br/>
 
           <button value="submit">Submit</button>
           

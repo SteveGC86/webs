@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 
@@ -9,17 +9,20 @@ class EventDelete extends Component {
         redirect: false,
     }
 
-    deleteEvent(event_id){
-        const url = `https://webs-backend-dev.now.sh/events/${event_id}`
+    deleteEvent(event){
+        const url = `${process.env.REACT_APP_API_URI}/events/${event._id}`
         axios.delete(url)
         .then(()=>{
             this.setState({ redirect: true})
         })
     }
+
+    cancel(){
+      this.setState({redirect: true})
+  }
   
   render(){
     const singleEvent = this.props.location.state.singleEvent
-    console.log(singleEvent)
 
     if(this.state.redirect){
         return <Redirect to={`/events`}/>
@@ -27,23 +30,15 @@ class EventDelete extends Component {
     return (
       <div className="eventDelete">
       <h3>
-          Are you sure you want to delete the below event?
-      </h3>
+          Are you sure you want to delete this event?
+      </h3><br/>
       
-          <button className="delete-button" onClick={this.deleteEvent(singleEvent._id)}>Delete Event</button>
-          
-        <Link to={{
-          pathname: `/events/${singleEvent._id}`,
-          state: { singleEvent }
-        }}>
-          <button className="edit-button">Cancel</button>
-        </Link>
-
-
-        <h2>{singleEvent._id}</h2>
-        <h2>{singleEvent.title}</h2>
-        <p>{singleEvent.status}</p>
-        <div className="dates">
+          <button className="delete-button" onClick={() => {this.deleteEvent(singleEvent)}}>Delete Event</button>
+        
+          <button className="edit-button" onClick={() => {this.cancel()}}>Cancel</button>
+      <br/><br/>
+        <h3>{singleEvent.title}</h3>
+        <p>Status: {singleEvent.status}</p>
           <h3>Dates:</h3>
             <ul>
               {singleEvent.bookings.map(booking => {
@@ -57,7 +52,6 @@ class EventDelete extends Component {
           <p>{singleEvent.bookings[0].location}</p><br/>
           <h3>Organisation:</h3>
           <p>{singleEvent.organisation}</p>
-        </div>
       </div>
     )
   }
