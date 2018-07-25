@@ -14,6 +14,7 @@ class NewEventForm extends React.Component {
     selectedOrganisation: '',
     selectedLocation: '',
     selectedWorkshop: '',
+    selectedRoom: '',
     startDate: new Date(),
     endDate: new Date(),
     users: null,
@@ -25,10 +26,8 @@ class NewEventForm extends React.Component {
   //Handle info functions
   handleChange(event) {                                                       
     const url = `${process.env.REACT_APP_API_URI}/events/new`
-    axios.post(url, { 
-      "title": {
-        "id": this.state.selectedWorkshop.value
-      },
+    const data = { 
+      "title": this.state.selectedWorkshop.value,
       "facilitatorObjs": this.state.selectedFacilitator.map(facilitator => {
         return {
           "id": facilitator.value,
@@ -40,17 +39,21 @@ class NewEventForm extends React.Component {
       "creator": null,
       "notes": event.target.notes.value,
       "onsite": event.target.onsite.checked,
-      "organisation": {
-        "id": this.state.selectedOrganisation
-      },
+      "organisation": this.state.selectedOrganisation.value._id,
       "bookings": [
         {
         "start": new Date(this.state.startDate),
         "end": new Date(this.state.endDate),
-        "location": this.state.selectedLocation,
+        "location": `${this.state.selectedLocation.value.street_add}, ${this.state.selectedLocation.value.suburb}`,
+        "room": this.state.selectedRoom.label
         }]
-    })
+    }
 
+    console.log(this.state.selectedRoom.value)
+    console.log(data)
+
+
+    axios.post(url, data)
     .then(this.setState({redirect: true}))
     .catch(err => console.log(err.message))
   }
@@ -91,9 +94,13 @@ class NewEventForm extends React.Component {
     this.setState({ selectedLocation: location });
   }
 
+  roomSelect = (room) => {
+    this.setState({ selectedRoom: room });
+    // console.log(room)
+  }
+
   organisationSelect = (organisation) => {
   this.setState({ selectedOrganisation: organisation });
-  console.log(organisation)
 }
   
 
@@ -104,7 +111,7 @@ class NewEventForm extends React.Component {
 
     
   render(){
-    const { startDate, endDate, redirect, selectedFacilitator, selectedOrganisation, selectedLocation, selectedWorkshop, users, orgs, workshops } = this.state;
+    const { startDate, endDate, redirect, selectedFacilitator, selectedOrganisation, selectedLocation, selectedWorkshop, users, orgs, workshops, selectedRoom } = this.state;
 
     
     
@@ -146,6 +153,20 @@ class NewEventForm extends React.Component {
     if(!users || !orgs || !workshops){
       return <h3>Loading...</h3>
     }
+    
+    let locationsRange = null;
+    if(selectedOrganisation){
+      locationsRange = selectedOrganisation.value.locations.map(location => {
+        return {value: location, label: `${location.street_add} ${location.suburb}`}
+      })
+    }
+    let roomsRange = null;
+    if(selectedLocation){
+      roomsRange = selectedLocation.value.rooms.map(room => {
+        return {value: room._id, label: room.room}
+      })
+    }
+
     return (
       <form id="newEventForm" onSubmit={(e) => {
         e.preventDefault();
@@ -179,33 +200,36 @@ class NewEventForm extends React.Component {
 
           
 
-          <div className="onsite">
-            <p>Onsite:</p>
-            <input type="checkbox" name="onsite" />
-          </div>
+        <div className="onsite">
+          <p>Onsite:</p>
+          <input type="checkbox" name="onsite" />
+        </div>
 
-          <SingleSelect
+        <SingleSelect
           name="organisation"
           placeholder="Organisation"
-          simpleValue
           value={selectedOrganisation}
           onChange={this.organisationSelect}
           options={orgs.map(org => {
-            return {value: org._id, label: org.org_name}
+            return {value: org, label: org.org_name}
           })}
-          />
-        
-          <SingleSelect
+        />
+      
+        <SingleSelect
           name="location"
           placeholder="Location"
-          simpleValue
           value={selectedLocation}
           onChange={this.locationSelect}
-          options={[
-            {value: 'Melbourne', label: 'Melbourne'},
-            {value: 'Sydney', label: 'Sydney'}
-          ]}
-          />
+          options={locationsRange}
+        />
+
+        <SingleSelect
+          name="room"
+          placeholder="Room"
+          value={selectedRoom}
+          onChange={this.roomSelect}
+          options={roomsRange}
+        />
 
         <p>
         <input placeholder="Event Notes" type="text" name="notes" />

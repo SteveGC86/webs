@@ -19,6 +19,8 @@ class EventEdit extends Component {
     selectedLocation: '',
     selectedOrganisation: '',
     selectedStatus: '',
+    selectedRoom: '',
+    facilStatus: null,
     users: null,
     orgs: null,
     workshops: null,
@@ -31,43 +33,34 @@ class EventEdit extends Component {
     const workshop_id = this.props.location.state.singleEvent._id
     const url = `${process.env.REACT_APP_API_URI}/events/${workshop_id}`
     const data = { 
-        "title": [{
-          "id": this.state.selectedWorkshop.value,
-          "workshop_name": this.state.selectedWorkshop.label
-        }],
+        "title": this.state.selectedWorkshop.value,
         "facilitatorObjs": this.state.selectedFacilitator.map(facilitator => {
           return {
             "id": facilitator.value,
-            "status": "Pending"
           }
         }),
         "attendees": 0,
-        "status": "Pending",
+        "status": this.state.selectedStatus,
         "creator": null,
         "notes": e.target.notes.value,
         "onsite": e.target.onsite.checked,
-        "organisation": {
-          "id": {
-            "_id": this.state.selectedOrganisation.value
-          },
-        },
+        "organisation": this.state.selectedOrganisation.value._id,
         "bookings": [
           {
           "start": new Date(this.state.startDate),
           "end": new Date(this.state.endDate),
           "location": this.state.selectedLocation.value,
+          "room": this.state.selectedRoom.label
           }]
       }
       console.log(data)
-      axios.patch(url, data)
-    .then((res) => {
-      console.log(res.data.title);
-      console.log(res.data);
-      this.setState({redirect: true})
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    // axios.patch(url, data)
+    // .then((res) => {
+    //   this.setState({redirect: true})
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
   }
         
 
@@ -90,6 +83,11 @@ class EventEdit extends Component {
       this.setState({ selectedLocation: location });
       }
 
+      roomSelect = (room) => {
+        this.setState({ selectedRoom: room });
+        // console.log(room)
+      }
+
     organisationSelect = (organisation) => {
       this.setState({ selectedOrganisation: organisation})
     }
@@ -101,16 +99,16 @@ class EventEdit extends Component {
       const singleEvent = this.props.location.state.singleEvent
       console.log(singleEvent)
       const facilitators = singleEvent.facilitatorObjs.map(facil => {
-        return { value: facil.id._id, label: `${facil.id.f_name} ${facil.id.l_name}`}
+        return { value: facil.id._id, label: `${facil.id.f_name} ${facil.id.l_name}`, status: facil.id.status}
       })
       this.setState({
         startDate: singleEvent.bookings[0].start,
         endDate: singleEvent.bookings[0].end,
-        selectedWorkshop: {value: singleEvent.title[0].id._id, label: singleEvent.title[0].id.workshop_name},
+        selectedWorkshop: {value: singleEvent.title._id, label: singleEvent.title.workshop_name},
         selectedFacilitator: facilitators,
         selectedLocation: {value: singleEvent.bookings[0].location, label: singleEvent.bookings[0].location},
-        selectedOrganisation: {value: singleEvent.organisation.id._id, label: singleEvent.organisation.id.org_name},
-        selectedStatus: {value: singleEvent.status, label: singleEvent.status}
+        selectedRoom: {value: singleEvent.bookings[0].room, label: singleEvent.bookings[0].room},
+        selectedOrganisation: {value: singleEvent.organisation._id, label: singleEvent.organisation.org_name},
       })
       axios.get(`${process.env.REACT_APP_API_URI}/users`)
       .then(users => {
@@ -131,9 +129,21 @@ class EventEdit extends Component {
 
     render() {
       const singleEvent = this.props.location.state.singleEvent
-      const { startDate, endDate, redirect, selectedStatus, selectedWorkshop, selectedFacilitator, selectedLocation, selectedOrganisation, orgs, users, workshops } = this.state;
+      const { startDate, endDate, redirect, selectedStatus, selectedWorkshop, selectedFacilitator, selectedLocation, selectedRoom, selectedOrganisation, orgs, users, workshops } = this.state;
 
-
+      let locationsRange = null;
+    if(selectedOrganisation){
+      // locationsRange = selectedOrganisation.value.locations.map(location => {
+      //   return {value: location, label: `${location.street_add} ${location.suburb}`}
+      // })
+      console.log(selectedOrganisation.value)
+    }
+    let roomsRange = null;
+    if(selectedLocation){
+      // roomsRange = selectedLocation.value.rooms.map(room => {
+      //   return {value: room._id, label: room.room}
+      // })
+    }
 
 
       const MultiSelect = styled(Select)`
@@ -237,7 +247,26 @@ class EventEdit extends Component {
           options={orgs.map(org => {
             return {value: org._id, label: org.org_name}
           })}
-          /><br/>
+          />
+
+        <SingleSelect
+          name="location"
+          placeholder="Location"
+          value={selectedLocation}
+          onChange={this.locationSelect}
+          options={locationsRange}
+        />
+
+        <SingleSelect
+          name="room"
+          placeholder="Room"
+          value={selectedRoom}
+          onChange={this.roomSelect}
+          options={roomsRange}
+        />
+          
+          
+          <br/>
             <input type="text"  ref={this.notes} placeholder="Notes" defaultValue={singleEvent.notes} name="notes"/><br />
 
             <div className="dates">
@@ -255,19 +284,6 @@ class EventEdit extends Component {
                     onChange={this.endDateChange}
                   />  
               </div>  
-              
-              <LocationSelect
-                name="location"
-                placeholder="Location"
-                simpleValue
-                value={selectedLocation}
-                onChange={this.locationSelect}
-                options={[
-                  { value: 'Melbourne', label: 'Melbourne' },
-                  { value: 'Sydney', label: 'Sydney' },
-                
-                  ]}
-                />
             </div>            
             </div>
 

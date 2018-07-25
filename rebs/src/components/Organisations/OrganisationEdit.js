@@ -28,7 +28,7 @@ class OrganisationEdit extends React.Component {
   //Handle info functions
   handleChange(e) {
     const singleOrg = this.props.location.state.singleOrg                                                
-    const url = `${process.env.REACT_APP_API_URI}/organisations`
+    const url = `${process.env.REACT_APP_API_URI}/organisations/${singleOrg._id}`
     const data = {
       "org_name": e.target.org_name.value,
       "contact_name": e.target.contact_name.value,
@@ -52,7 +52,8 @@ class OrganisationEdit extends React.Component {
           }
       })
     }
-
+    // console.log(singleOrg)
+    // console.log(data)
 
     axios.patch(url, data)
     .then(this.setState({redirect: true}))

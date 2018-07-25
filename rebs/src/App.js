@@ -26,7 +26,7 @@ import LoginForm from'./components/Login/LoginForm';
 
 // IMPORT WORKSHOPS COMPONENTS
 import WorkshopsNew from './components/Workshops/WorkshopsNew';
-// import WorkshopsList from './components/Workshops/WorkshopsList';
+import WorkshopsList from './components/Workshops/WorkshopsList';
 import WorkshopsEdit from './components/Workshops/WorkshopsEdit';
 import WorkshopsView from './components/Workshops/WorkshopsView';
 
@@ -136,18 +136,14 @@ class App extends Component {
 
                 {/* List All Workshops w/ Workshops Card*/}
                 <Route exact path="/workshops" render={() => {
-                return <ComingSoon updateHeaderTitle={this.updateHeaderTitle}/>        
+                return <WorkshopsList updateHeaderTitle={this.updateHeaderTitle}/>        
                 }}/>
 
                 {/* View Single Workshop */}
-                <Route exact path="/workshops/:id" render={() => {
-                return <WorkshopsView updateHeaderTitle={this.updateHeaderTitle}/>        
-                }}/>
+                <Route exact path="/workshops/:id" component={WorkshopsView}/>
 
                 {/* Edit Single Workshop */}
-                <Route path="/workshops/:id/edit" render={() => {
-                return <WorkshopsEdit updateHeaderTitle={this.updateHeaderTitle}/>        
-                }}/>
+                <Route path="/workshops/:id/edit" component={WorkshopsEdit}/>
 
                 {/* Add New Workshop */}
                 <Route path="/workshops/new" render={() => {
