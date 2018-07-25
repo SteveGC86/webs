@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import NotificationList from '../Notifications/NotificationList';
 
 
 class Settings extends Component {
@@ -10,20 +10,22 @@ class Settings extends Component {
     }
 
   render() {
-
+    
     return (
         <div className="settings">
           <div className="notifications">
             <h3>Recent Notifications</h3>
-              <button>View Notifications</button>       {/* TODO: Add links to components*/}
+              <NotificationList />                      {/* TODO:Change to specific user */}
+             <button>View Notifications</button>      {/* TODO: Add links to components*/}
           </div>
           <div className="contactDetails">
             <h3>Contact Details</h3>
-            <button>Edit</button>
+              
+              <button>Edit</button>
           </div>
-            <button>View Workshops</button>         {/* TODO: Add links to components*/}
-            <button>View Facilitators</button>      {/* TODO: Add links to components*/} 
-            <button>Logout</button>                 {/* TODO: Add links to components*/} 
+          <button>View Workshops</button>        {/* TODO: Add links to components*/}
+          <button>View Facilitators</button>     {/* TODO: Add links to components*/} 
+          <button>Logout</button>                {/* TODO: Add links to components*/} 
        </div>
     );
   }
