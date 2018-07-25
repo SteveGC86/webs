@@ -13,9 +13,18 @@ class Settings extends Component {
 
     return (
         <div className="settings">
-        <Link to={'/workshops'}><button>View Workshops</button></Link>
-        <Link to={'/facilitators'}><button>View Facilitators</button></Link>
-        </div>
+          <div className="notifications">
+            <h3>Recent Notifications</h3>
+              <button>View Notifications</button>       {/* TODO: Add links to components*/}
+          </div>
+          <div className="contactDetails">
+            <h3>Contact Details</h3>
+            <button>Edit</button>
+          </div>
+            <button>View Workshops</button>         {/* TODO: Add links to components*/}
+            <button>View Facilitators</button>      {/* TODO: Add links to components*/} 
+            <button>Logout</button>                 {/* TODO: Add links to components*/} 
+       </div>
     );
   }
 }
