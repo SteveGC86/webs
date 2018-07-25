@@ -21,7 +21,7 @@ class WorkshopsEdit extends Component {
 
     const workshop_id = this.props.singleWorkshop._id
 
-    const url = `https://webs-backend-dev.now.sh/workshops/${workshop_id}`
+    const url = `${process.env.REACT_APP_API_URI}/workshops/${workshop_id}`
       axios.patch(url, {
         _id: workshop_id,
         title: this.state.selecectWorkshop,

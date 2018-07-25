@@ -214,6 +214,7 @@ class EventEdit extends Component {
                 return {value: workshop._id, label: workshop.workshop_name}
               })}
             />
+             
           
 
             <MultiSelect
@@ -234,9 +235,9 @@ class EventEdit extends Component {
             <div className="onsite" >
               <p>Onsite</p>
               <input type="checkbox" defaultChecked={singleEvent.onsite ? true : false} name="onsite" />
-            </div>
+            
 
-            {/* <SingleSelect
+             <SingleSelect
           name="organisation"
           placeholder="Organisation"
           // simpleValue
@@ -273,10 +274,9 @@ class EventEdit extends Component {
                 options={[
                   { value: 'Melbourne', label: 'Melbourne' },
                   { value: 'Sydney', label: 'Sydney' },
-                
                   ]}
                 />
-            </div>            
+              </div>            
             </div>
 
               
@@ -298,13 +298,13 @@ class EventEdit extends Component {
           /><br/>
 
           <button value="submit">Submit</button>
-          
+          </div>
         </form>
-
+          
       </div>
     )
   }
 }
 
 
-export default EventEdit
+export default EventEdit 

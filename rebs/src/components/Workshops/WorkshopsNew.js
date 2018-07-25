@@ -19,7 +19,7 @@ class NewWorkshop extends Component {
     this.setState({ [e.target.name]: e.target.value });
     console.log(this.selectedSkills)
 
-    const url ='https://webs-backend-dev.now.sh/workshops/new'         
+    const url =`${process.env.REACT_APP_API_URI}/workshops/new`         
     const data = {
       title: e.target.workshop.value,
       skills: skills

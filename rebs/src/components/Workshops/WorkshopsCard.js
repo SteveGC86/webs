@@ -11,7 +11,7 @@ class WorkshopCard extends React.Component {
         <h3>{singleWorkshop.title}</h3>
       
 
-      <div className="workshopDetails">
+      <div className="eventCard">
         <h5>{singleWorkshop.skills.map(skill => {
           return <p key={skill._id}> 
           {skill}<br/></p>
