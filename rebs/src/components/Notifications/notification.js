@@ -1,9 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Notification extends Component {
+class Notification extends React.Component {
 
   render(){
-    
+    return(
+      <div>
+        
+      </div>
+    )
   } 
 
 }

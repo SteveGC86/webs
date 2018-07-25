@@ -43,6 +43,9 @@ import NewOrganisationForm from './components/Organisations/OrganisationNew';
 // import OrganisationDelete from './components/Organisations/OrganisationDelete';
 // import OrganisationEdit from './components/Organisations/OrganisationEdit';
 
+// IMPORT NOTIFICATIONS COMPONENTS
+import Notification from './components/Notifications/Notification'
+
 require('dotenv').config()
 class App extends Component {
   state = {
