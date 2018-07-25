@@ -78,7 +78,9 @@ class App extends Component {
           <Header title={this.state.title}/>
         <BrowserRouter>
           <div>
-            <Navbar/>
+            <Navbar>
+              <Notification />
+            </Navbar>
             <Switch>
                 {/* Login Form */}
                 <Route exact path="/" render={() => {
