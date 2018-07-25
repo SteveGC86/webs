@@ -54,13 +54,15 @@ class EventEdit extends Component {
           }]
       }
       console.log(data)
-    // axios.patch(url, data)
-    // .then((res) => {
-    //   this.setState({redirect: true})
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
+      axios.patch(url, data)
+    .then((res) => {
+      console.log(res.data.title);
+      console.log(res.data);
+      this.setState({redirect: true})
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
         
 
@@ -73,9 +75,13 @@ class EventEdit extends Component {
     }
 
     workshopSelect = (workshop) => {
-      this.setState({ selectedWorkshop: workshop});
+      console.log("workshop")
+      console.log(workshop)
+      // this.setState({ selectedWorkshop: workshop.value});
     }
     facilitatorSelect = (facilitator) => {
+      console.log("facilitator")
+      console.log(facilitator)
       this.setState({ selectedFacilitator: facilitator })
       }
 
@@ -89,9 +95,13 @@ class EventEdit extends Component {
       }
 
     organisationSelect = (organisation) => {
+      console.log("organisation")
+      console.log(organisation)
       this.setState({ selectedOrganisation: organisation})
     }
     statusSelect = (status) => {
+      console.log("status")
+      console.log(status)
       this.setState({ selectedStatus: status})
     }
 
@@ -238,7 +248,7 @@ class EventEdit extends Component {
               <input type="checkbox" defaultChecked={singleEvent.onsite ? true : false} name="onsite" />
             </div>
 
-            <SingleSelect
+            {/* <SingleSelect
           name="organisation"
           placeholder="Organisation"
           // simpleValue
