@@ -238,11 +238,7 @@ class EventEdit extends Component {
               <input type="checkbox" defaultChecked={singleEvent.onsite ? true : false} name="onsite" />
             
 
-<<<<<<< HEAD
-            <SingleSelect
-=======
              <SingleSelect
->>>>>>> settings
           name="organisation"
           placeholder="Organisation"
           // simpleValue
@@ -288,24 +284,10 @@ class EventEdit extends Component {
                     onChange={this.endDateChange}
                   />  
               </div>  
-<<<<<<< HEAD
-            </div>            
-=======
+              </div>
+              </div>
               
-              <LocationSelect
-                name="location"
-                placeholder="Location"
-                simpleValue
-                value={selectedLocation}
-                onChange={this.locationSelect}
-                options={[
-                  { value: 'Melbourne', label: 'Melbourne' },
-                  { value: 'Sydney', label: 'Sydney' },
-                  ]}
-                />
-              </div>            
->>>>>>> settings
-            </div>
+              
 
               
           <p>Attendees: </p>
