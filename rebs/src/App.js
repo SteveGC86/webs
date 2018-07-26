@@ -40,7 +40,7 @@ import FacilitatorDelete from './components/Facilitators/FacilitatorDelete';
 import OrganisationList from './components/Organisations/OrganisationList';
 import OrganisationView from './components/Organisations/OrganisationView';
 import NewOrganisationForm from './components/Organisations/OrganisationNew';
-// import OrganisationDelete from './components/Organisations/OrganisationDelete';
+import OrganisationDelete from './components/Organisations/OrganisationDelete';
 import OrganisationEdit from './components/Organisations/OrganisationEdit';
 
 require('dotenv').config()
@@ -132,7 +132,9 @@ class App extends Component {
                 }} />
 
                 {/* View Single Organisation */}
-                <Route path="/organisations/:id" component={OrganisationView}/>
+                <Route exact path="/organisations/:id" component={OrganisationView}/>
+
+                <Route exact strict path="/organisations/:id/delete" component={OrganisationDelete}/>
 
                 {/* List All Workshops w/ Workshops Card*/}
                 <Route exact path="/workshops" render={() => {

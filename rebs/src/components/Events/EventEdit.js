@@ -42,7 +42,7 @@ class EventEdit extends Component {
           }
         }),
         "attendees": 0,
-        "status": this.state.selectedStatus,
+        "status": this.state.selectedStatus.label,
         "creator": null,
         "notes": e.target.notes.value,
         "onsite": e.target.onsite.checked,
@@ -149,6 +149,7 @@ class EventEdit extends Component {
         selectedLocation: {value: singleEvent.bookings[0].location, label: singleEvent.bookings[0].location},
         selectedRoom: {value: singleEvent.bookings[0].room, label: singleEvent.bookings[0].room},
         selectedOrganisation: {value: singleEvent.organisation, label: singleEvent.organisation.org_name},
+        selectedStatus: {value: singleEvent.status, label: singleEvent.status}
       })
      
     }
@@ -296,9 +297,9 @@ class EventEdit extends Component {
           value={selectedStatus}
           onChange={this.statusSelect}
           options={[
-            { value: 'confirmed', label: 'Confirmed' },
-            { value: 'pending', label: 'Pending' },
-            { value: 'cancelled', label: 'Cancelled' },
+            { value: 'Confirmed', label: 'Confirmed' },
+            { value: 'Pending', label: 'Pending' },
+            { value: 'Cancelled', label: 'Cancelled' },
            
             ]}
           /><br/>
