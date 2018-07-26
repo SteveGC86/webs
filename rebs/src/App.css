@@ -56,6 +56,12 @@ li {
   min-width: 75vw;
 }
 
+.logo {
+  width: 80vw;
+  height: auto;
+  margin: 5vh 10vw 10vh 10vw;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -102,6 +108,23 @@ li {
   border: none;
  }
  
+.notification {
+  background: #DB5461;
+  width: 100%;
+}
+.settingsbuttons {
+  width: 40vw;
+  height: 10vh;
+}
+
+.detailsButton {
+  width: 20vw;
+}
+
+.logoutButton {
+  width: 50vw;
+}
+
  .delete-button{
   width: 20vw;
   background-color: rgb(150, 26, 26);
@@ -139,6 +162,7 @@ li {
    justify-content: space-between;
    align-items: flex-end;
    padding-top: 2vh;
+   text-align: left;
    
  }
  
@@ -268,6 +292,10 @@ p {
 
 
  @media (min-width: 1000px) {
+   .logo {
+     width: 50vw;
+     height: auto;
+   }
   .eventDetails {
     /* justify-content: space-around; */
   }
@@ -285,5 +313,11 @@ p {
     margin: 3vh;
     padding: 2vh;
    }
+
+   .settingsbuttons {
+    width: 40vw;
+    height: 10vh;
+    width: 100%;
+  }
 
  }

@@ -40,8 +40,11 @@ import FacilitatorEdit from './components/Facilitators/FacilitatorEdit';
 import OrganisationList from './components/Organisations/OrganisationList';
 import OrganisationView from './components/Organisations/OrganisationView';
 import NewOrganisationForm from './components/Organisations/OrganisationNew';
-// import OrganisationDelete from './components/Organisations/OrganisationDelete';
+import OrganisationDelete from './components/Organisations/OrganisationDelete';
 import OrganisationEdit from './components/Organisations/OrganisationEdit';
+
+// IMPORT NOTIFICATIONS COMPONENTS
+import Notification from './components/Notifications/Notification'
 
 require('dotenv').config()
 class App extends Component {
@@ -49,11 +52,22 @@ class App extends Component {
     title: 'Redhill Education WEBS',
     isLoggedIn: false,
     isAdmin: false,
+    notifications: null,
   }
 
   updateHeaderTitle = (title) => {
     this.setState({
       title
+    })
+  }
+
+  componentDidMount() {
+    fetch(`${process.env.REACT_APP_API_URI}/notifications`)
+    .then(res => res.json())
+    .then(notifications => {
+      this.setState({
+        notifications
+      })
     })
   }
 
@@ -73,13 +87,20 @@ class App extends Component {
   }
 
   render() {
+    const notifications = this.state.notifications
+    
     return (
       <div className="App">
           <MuiPickersUtilsProvider utils={MomentUtils}>
           <Header title={this.state.title}/>
+
+        
+              
         <BrowserRouter>
           <div>
-            <Navbar/>
+            <Navbar>
+              {/* <Notification notifications={this.state.notifications}/> */}
+            </Navbar>
             <Switch>
                 {/* Login Form */}
                 <Route exact path="/" render={() => {
@@ -134,7 +155,9 @@ class App extends Component {
                 }} />
 
                 {/* View Single Organisation */}
-                <Route path="/organisations/:id" component={OrganisationView}/>
+                <Route exact path="/organisations/:id" component={OrganisationView}/>
+
+                <Route exact strict path="/organisations/:id/delete" component={OrganisationDelete}/>
 
                 {/* List All Workshops w/ Workshops Card*/}
                 <Route exact path="/workshops" render={() => {
@@ -142,14 +165,10 @@ class App extends Component {
                 }}/>
 
                 {/* View Single Workshop */}
-                <Route exact path="/workshops/:id" render={() => {
-                return <WorkshopsView updateHeaderTitle={this.updateHeaderTitle}/>        
-                }}/>
+                <Route exact path="/workshops/:id" component={WorkshopsView}/>
 
                 {/* Edit Single Workshop */}
-                <Route path="/workshops/:id/edit" render={() => {
-                return <WorkshopsEdit updateHeaderTitle={this.updateHeaderTitle}/>        
-                }}/>
+                <Route path="/workshops/:id/edit" component={WorkshopsEdit}/>
 
                 {/* Add New Workshop */}
                 <Route path="/workshops/new" render={() => {
@@ -158,7 +177,7 @@ class App extends Component {
 
                 {/* Settings Page */}
                 <Route exact path="/settings" render={() => {
-                return <Settings updateHeaderTitle={this.updateHeaderTitle}/>        
+                return <Settings updateHeaderTitle={this.updateHeaderTitle} notifications={this.state.notifications}/>        
                 }}/> 
             </Switch>
           </div>

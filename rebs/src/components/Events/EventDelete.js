@@ -23,6 +23,7 @@ class EventDelete extends Component {
   
   render(){
     const singleEvent = this.props.location.state.singleEvent
+    console.log(singleEvent)
 
     if(this.state.redirect){
         return <Redirect to={`/events`}/>
@@ -33,11 +34,11 @@ class EventDelete extends Component {
           Are you sure you want to delete this event?
       </h3><br/>
       
-          <button className="delete-button" onClick={() => {this.deleteEvent(singleEvent)}}>Delete Event</button>
+          <button className="delete-button" onClick={() => {this.deleteEvent(singleEvent)}}>Delete</button>
         
           <button className="edit-button" onClick={() => {this.cancel()}}>Cancel</button>
       <br/><br/>
-        <h3>{singleEvent.title}</h3>
+        <h3>{singleEvent.title.workshop_name}</h3>
         <p>Status: {singleEvent.status}</p>
           <h3>Dates:</h3>
             <ul>
@@ -51,7 +52,7 @@ class EventDelete extends Component {
           <h3>Location - {singleEvent.onsite ? "Onsite" : "Offsite"}</h3>
           <p>{singleEvent.bookings[0].location}</p><br/>
           <h3>Organisation:</h3>
-          <p>{singleEvent.organisation}</p>
+          <p>{singleEvent.organisation.org_name}</p>
       </div>
     )
   }

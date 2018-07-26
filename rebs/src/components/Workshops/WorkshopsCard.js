@@ -6,19 +6,21 @@ class WorkshopCard extends React.Component {
 
   render() {
     const singleWorkshop = this.props.singleWorkshop
+    console.log(singleWorkshop);
     return(
-      <div key={singleWorkshop._id} className="eventWorkshop">
-        <h3>{singleWorkshop.title}</h3>
+      <div key={singleWorkshop._id} className="eventCard">
+        <h3>{singleWorkshop.workshop_name}</h3>
       
 
       <div className="workshopDetails">
-        <h5>{singleWorkshop.skills.map(skill => {
-          return <p key={skill._id}> 
-          {skill}<br/></p>
-        })}</h5>
+      <p>
+        {singleWorkshop.skills_required.map(skill => {
+          return `${skill} `
+        })}
+      </p>
       </div>
       <div>
-        <Link Key={singleWorkshop._id}
+        <Link key={singleWorkshop._id}
           to={
               { 
                 pathname: `/workshops/${singleWorkshop._id}/`,

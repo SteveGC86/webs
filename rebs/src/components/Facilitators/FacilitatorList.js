@@ -6,7 +6,7 @@ import FacilitatorCard from './FacilitatorCard';
 
 class FacilitatorList extends Component {
     state = {
-        events: null,
+        users: null,
     }
     
     

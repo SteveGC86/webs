@@ -8,10 +8,10 @@ class WorkshopsList extends Component {
 
     componentDidMount(){
         this.props.updateHeaderTitle("View Workshops");
-        fetch(`${process.env.REACT_APP_API_URI}workshops`)
+        fetch(`${process.env.REACT_APP_API_URI}/workshops`)
         .then(res => res.json())
-        .then( workshops => {
-          this.setState({
+        .then(workshops => {
+          this.setState({ 
             workshops
           })
         })

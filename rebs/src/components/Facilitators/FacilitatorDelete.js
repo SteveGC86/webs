@@ -33,7 +33,7 @@ class FacilitatorDelete extends Component {
           Are you sure you want to delete the below facilitator?
       </h3>
       
-          <button className="delete-button" onClick={() => {this.deleteFacilitator(facilitator)}}>Delete Facilitator</button>
+          <button className="delete-button" onClick={() => {this.deleteFacilitator(facilitator)}}>Delete</button>
           
           <button className="edit-button" onClick={() => {this.cancel()}}>Cancel</button>
 

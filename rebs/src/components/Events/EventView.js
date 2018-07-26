@@ -11,7 +11,7 @@ class EventView extends Component {
     console.log(singleEvent)
     return (
       <div className="eventView">
-        <h2>{singleEvent.title[0].id.workshop_name}</h2>
+        <h2>{singleEvent.title.workshop_name}</h2>
         <h3><br/>Status: {singleEvent.status ? singleEvent.status : "Pending"}</h3><br/>
 
         <div className="wrapper">
@@ -36,7 +36,7 @@ class EventView extends Component {
         </div>
         <div className="wrapper">
           <h3>Organisation:</h3>
-          <p>{singleEvent.organisation.id.org_name}<br/></p>
+          <p>{singleEvent.organisation.org_name}<br/></p>
 
           </div>
 
