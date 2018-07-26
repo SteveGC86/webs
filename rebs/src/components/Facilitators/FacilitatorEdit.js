@@ -18,22 +18,22 @@ class FacilitatorEdit extends Component {
     const user_id = this.props.location.state.singleFacilitator._id
     const url = `${process.env.REACT_APP_API_URI}/users/${user_id}`
     
-    // console.log(this.state.selectedSkills)
+    console.log(this.state.selectedSkills)
      
     // const skillsArrayOfStrings = this.state.selectedSkills.split(",")
     
    
     const data = {
-      "_id": user_id,
-      "email": e.target.email.value,
-      "f_name": e.target.f_name.value,
-      "l_name": e.target.l_name.value,
-      "role": e.target.role.value,
-      "contact_no": e.target.contact_no.value,
-      "default_location": e.target.default_location.value,
-      "skills": this.state.selectedSkills
+      // _id: user_id,
+      email: e.target.email.value,
+      f_name: e.target.f_name.value,
+      l_name: e.target.l_name.value,
+      role: e.target.role.value,
+      contact_no: e.target.contact_no.value,
+      default_location: e.target.default_location.value,
+      skills: this.state.selectedSkills,
+      availability: e.target.availability.checked
     }
-
     console.log(data)
     // ["VBA", "ReactJS", "MongoDb"]
     axios.patch(url, data)
@@ -125,25 +125,24 @@ class FacilitatorEdit extends Component {
 
 
           <br />
+          <p>Email:</p>
           <input type="text" ref={this.email} placeholder="email" defaultValue={singleFacilitator.email} name="email" required /><br />
-          <br />
+          <p>First Name:</p>
           <input type="text" ref={this.f_name} placeholder="f_name" defaultValue={singleFacilitator.f_name} name="f_name" required /><br />
-          <br />
+          <p>Surname:</p>
           <input type="text" ref={this.l_name} placeholder="l_name" defaultValue={singleFacilitator.l_name} name="l_name" required /><br />
-          <br />
+          
           <div className="onsite" >
             <p>Availability</p>
-            <input type="checkbox" defaultChecked={singleFacilitator.availability ? true : false} name="availability" />
-          </div>
+            <input type="checkbox" defaultChecked={singleFacilitator.availability ? true : false} name="availability" /><br/>
+            <p>Role:</p>
           <input type="text" ref={this.role} placeholder="role" defaultValue={singleFacilitator.role} name="role" required /><br />
-          <br />
+          <p>Contact Number:</p>
           <input type="text" ref={this.contact_no} placeholder="contact_no" defaultValue={singleFacilitator.contact_no} name="contact_no" required /><br />
-          <br />
+          <p>Default Location:</p>
           <input type="text" ref={this.default_location} placeholder="default_location" defaultValue={singleFacilitator.default_location} name="default_location" required /><br />
-          <br />
-
-          <br />
-
+        
+            </div>
           <button value="submit">Submit</button>
 
         </form>

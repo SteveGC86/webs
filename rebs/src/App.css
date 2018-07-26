@@ -73,6 +73,7 @@ li {
 
 .dates{
   margin-bottom: 2vh;
+  margin-right: 10vw;
   width: 60vw;  
   /* background-color: purple; */
 }
@@ -80,7 +81,6 @@ li {
 
 .singleBooking {
   display: flex;
-  margin-left: 15vw;
   width: 70vw;
   justify-content: center;
   flex-direction: column;
@@ -175,6 +175,7 @@ li {
 
  .onsite {
    display: flex;
+   flex-direction: column;
    align-items: center;
    justify-content: space-around;
    margin: 0 30vw 3vh 30vw;
@@ -259,12 +260,12 @@ input[name="addEvent"] {
 input[name="startDate"] {
   height: 4vh; 
   border: 1px solid #363637;
-  margin-right: 2.5vh;
+  margin-right: 2.5vw;
 }
 
 input[name="endDate"] {
   height: 4vh;
-  margin-left: 2.5vh;
+  margin-left: 2.5vw;
   border: 1px solid #363637
 }
 
