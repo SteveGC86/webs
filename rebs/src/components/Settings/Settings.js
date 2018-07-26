@@ -37,12 +37,36 @@ class Settings extends Component {
               
               <button className="detailsButton">Edit</button>
           </div>
-          <button className="settingsbuttons">View Workshops</button>        {/* TODO: Add links to components*/}
-          <button className="settingsbuttons">View Facilitators</button>     {/* TODO: Add links to components*/} 
-          <button className="logoutButton">Logout</button>                {/* TODO: Add links to components*/} 
+          <Link to={
+              {
+                    pathname: `/workshops`
+                }
+              }> 
+              <button className="settingsbuttons">View Workshops</button>               
+          </Link>
+          
+          <Link to={
+              {
+                    pathname: `/facilitators`
+                }
+              }> 
+              <button className="settingsbuttons">View Facilitators</button>            
+          </Link>
+
+          
+          <Link to={
+                  {
+                      pathname: `/logout`
+                  }
+              }> 
+                <button className="logoutButton">Logout</button>                
+            </Link>
        </div>
     );
   }
 }
 
 export default Settings;
+
+
+

@@ -10,23 +10,23 @@ class WorkshopsView extends Component {
     console.log(singleWorkshop)
     return (
         <div className="workshopsView">
-        <h2>{singleWorkshop.title}</h2>
-        <div className="skills">
-          <ul>
-            
-              {singleWorkshop.skills.map(skill => {
-                return<li key={singleWorkshop._id}><p>{skill}</p></li>
-              })}
-            
+          <h2>{singleWorkshop.workshop_name}</h2>
+          <div className="skills">
+            <ul>
+              
+                {singleWorkshop.skills_required.map(skill => {
+                  return<li key={singleWorkshop._id}><p>{skill}</p></li>
+                })}
+              
 
-            <Link to={{
-          pathname: `/workshops/${singleWorkshop._id}/edit`,
-          state: { singleWorkshop }
-        }}>
-          <button className="edit-button">Edit</button>
-        </Link>
-          </ul>
-        </div>
+              <Link to={{
+            pathname: `/workshops/${singleWorkshop._id}/edit`,
+            state: { singleWorkshop }
+          }}>
+            <button className="edit-button">Edit</button>
+          </Link>
+            </ul>
+          </div>
         </div>
     );
   }

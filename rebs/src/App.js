@@ -161,9 +161,8 @@ class App extends Component {
                 }}/>
 
                 {/* View Single Workshop */}
-                <Route exact path="/workshops/:id" render={() => {
-                return <WorkshopsView updateHeaderTitle={this.updateHeaderTitle}/>        
-                }}/>
+                <Route exact path="/workshops/:id" component={WorkshopsView}/>
+                
 
                 {/* Edit Single Workshop */}
                 <Route path="/workshops/:id/edit" render={() => {
