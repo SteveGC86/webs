@@ -108,6 +108,23 @@ li {
   border: none;
  }
  
+.notification {
+  background: #DB5461;
+  width: 100%;
+}
+.settingsbuttons {
+  width: 40vw;
+  height: 10vh;
+}
+
+.detailsButton {
+  width: 20vw;
+}
+
+.logoutButton {
+  width: 50vw;
+}
+
  .delete-button{
   width: 20vw;
   background-color: rgb(150, 26, 26);
@@ -296,5 +313,11 @@ p {
     margin: 3vh;
     padding: 2vh;
    }
+
+   .settingsbuttons {
+    width: 40vw;
+    height: 10vh;
+    width: 100%;
+  }
 
  }

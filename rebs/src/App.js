@@ -43,17 +43,31 @@ import NewOrganisationForm from './components/Organisations/OrganisationNew';
 import OrganisationDelete from './components/Organisations/OrganisationDelete';
 import OrganisationEdit from './components/Organisations/OrganisationEdit';
 
+// IMPORT NOTIFICATIONS COMPONENTS
+import Notification from './components/Notifications/Notification'
+
 require('dotenv').config()
 class App extends Component {
   state = {
     title: 'Redhill Education WEBS',
     isLoggedIn: false,
     isAdmin: false,
+    notifications: null,
   }
 
   updateHeaderTitle = (title) => {
     this.setState({
       title
+    })
+  }
+
+  componentDidMount() {
+    fetch(`${process.env.REACT_APP_API_URI}/notifications`)
+    .then(res => res.json())
+    .then(notifications => {
+      this.setState({
+        notifications
+      })
     })
   }
 
@@ -72,13 +86,20 @@ class App extends Component {
   }
 
   render() {
+    const notifications = this.state.notifications
+    
     return (
       <div className="App">
           <MuiPickersUtilsProvider utils={MomentUtils}>
           <Header title={this.state.title}/>
+
+        
+              
         <BrowserRouter>
           <div>
-            <Navbar/>
+            <Navbar>
+              {/* <Notification notifications={this.state.notifications}/> */}
+            </Navbar>
             <Switch>
                 {/* Login Form */}
                 <Route exact path="/" render={() => {
@@ -154,7 +175,7 @@ class App extends Component {
 
                 {/* Settings Page */}
                 <Route exact path="/settings" render={() => {
-                return <Settings updateHeaderTitle={this.updateHeaderTitle}/>        
+                return <Settings updateHeaderTitle={this.updateHeaderTitle} notifications={this.state.notifications}/>        
                 }}/> 
             </Switch>
           </div>
