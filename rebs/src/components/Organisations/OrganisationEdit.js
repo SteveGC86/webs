@@ -28,7 +28,7 @@ class OrganisationEdit extends React.Component {
   }
 
   componentDidMount(){
-    this.props.updateHeaderTitle("New Organisation");                                                       
+    // this.props.updateHeaderTitle("New Organisation");                                                       
   }
     
   render(){

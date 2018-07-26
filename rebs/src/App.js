@@ -35,13 +35,13 @@ import FacilitatorList from './components/Facilitators/FacilitatorList';
 import FacilitatorView from './components/Facilitators/FacilitatorView';
 import NewFacilitatorForm from './components/Facilitators/FacilitatorNew';
 import FacilitatorDelete from './components/Facilitators/FacilitatorDelete';
-
+import FacilitatorEdit from './components/Facilitators/FacilitatorEdit';
 // IMPORT ORGANISATIONS COMPONENTS
 import OrganisationList from './components/Organisations/OrganisationList';
 import OrganisationView from './components/Organisations/OrganisationView';
 import NewOrganisationForm from './components/Organisations/OrganisationNew';
 // import OrganisationDelete from './components/Organisations/OrganisationDelete';
-// import OrganisationEdit from './components/Organisations/OrganisationEdit';
+import OrganisationEdit from './components/Organisations/OrganisationEdit';
 
 require('dotenv').config()
 class App extends Component {
@@ -58,7 +58,8 @@ class App extends Component {
   }
 
   handleLoginSubmit = (email) => {
-    const url = 'http://localhost:3000/login';
+    // const url = 'http://localhost:3000/login';
+    const url = `${process.env.REACT_APP_API_URI}/login`
     const email_address = {email_address: email};
 
     fetch(url, {
@@ -114,8 +115,9 @@ class App extends Component {
 
                 {/* Delete Single Facilitator */}
                 <Route exact strict path="/facilitators/:id/delete" component={FacilitatorDelete} />
-
-                <Route path="/facilitators/:id/edit" component={ComingSoon}/>
+                
+                {/* Edit Single Facilitator */}
+                <Route path="/facilitators/:id/edit" component={FacilitatorEdit}/>
                 
                 <Route path="/facilitators/new" component={NewFacilitatorForm}/>
 
@@ -124,7 +126,7 @@ class App extends Component {
                   return <OrganisationList updateHeaderTitle={this.updateHeaderTitle} />
                 }} />
 
-                {/* <Route path="/organisations/:id/edit" component={OrganisationEdit}/> */}
+                <Route path="/organisations/:id/edit" component={OrganisationEdit}/>
 
                 {/* Add New Organisation*/}
                 <Route exact strict path="/organisations/new" render={() => {

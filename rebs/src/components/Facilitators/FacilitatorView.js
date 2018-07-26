@@ -17,11 +17,11 @@ class FacilitatorView extends Component {
         <h3>{singleFacilitator.role}</h3>
         <h4>{singleFacilitator.default_location}</h4><br/>
       
-      
+        {/* item.split("").reverse().join("") */}
       <div className="wrapper">
         <h4>Skills:</h4> <ul>
           {singleFacilitator.skills.map(skill => {
-          return <li key={skill._id}>{(skill.skill)}</li>
+          return <li>{(skill.split(",").join(""))}</li>
           })}
         </ul> <br/>
 

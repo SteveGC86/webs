@@ -236,7 +236,7 @@ class EventEdit extends Component {
               <input type="checkbox" defaultChecked={singleEvent.onsite ? true : false} name="onsite" />
             </div>
 
-            {/* <SingleSelect
+            /* <SingleSelect
           name="organisation"
           placeholder="Organisation"
           // simpleValue
