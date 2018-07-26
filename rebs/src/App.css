@@ -56,6 +56,11 @@ li {
   min-width: 75vw;
 }
 
+.logo {
+  width: 90vw;
+  height: auto;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;

@@ -6,7 +6,7 @@ import './LoginForm.css';
 export default function LoginForm({handleLoginSubmit}) {
     return (
         <div className="login">
-        <img src={require('./redhill_logo.jpeg')} className="logo" alt={"Redhill Education Logo"}/>
+        <img src={require('./redhill.png')} className="logo" alt={"Redhill Education Logo"}/>
         <form onSubmit={(e) => {
             e.preventDefault()
             const form = e.target.elements

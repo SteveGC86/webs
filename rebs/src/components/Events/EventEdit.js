@@ -16,14 +16,16 @@ class EventEdit extends Component {
     endDate: new Date(),
     selectedWorkshop: '',
     selectedFacilitator: '',
-    selectedLocation: '',
-    selectedOrganisation: '',
+    selectedLocation: null,
+    selectedOrganisation: null,
     selectedStatus: '',
     selectedRoom: '',
     facilStatus: null,
     users: null,
     orgs: null,
     workshops: null,
+    locationsRange: null,
+    roomsRange: null
   }
   
 
@@ -49,7 +51,7 @@ class EventEdit extends Component {
           {
           "start": new Date(this.state.startDate),
           "end": new Date(this.state.endDate),
-          "location": this.state.selectedLocation.value,
+          "location": this.state.selectedLocation.label,
           "room": this.state.selectedRoom.label
           }]
       }
@@ -87,7 +89,11 @@ class EventEdit extends Component {
 
     locationSelect = (location) => {
       this.setState({ selectedLocation: location });
-      }
+      this.setState({roomsRange: location.value.rooms.map(room => {
+            return {value: room._id, label: room.room}
+          })
+      })
+    console.log(this.state.selectedLocation)}
 
       roomSelect = (room) => {
         this.setState({ selectedRoom: room });
@@ -98,7 +104,13 @@ class EventEdit extends Component {
       console.log("organisation")
       console.log(organisation)
       this.setState({ selectedOrganisation: organisation})
-    }
+      
+      this.setState({locationsRange: organisation.value.locations.map(location => {
+        return {value: location, label: `${location.street_add} ${location.suburb}`}
+      })
+    })
+  }
+
     statusSelect = (status) => {
       console.log("status")
       console.log(status)
@@ -107,19 +119,11 @@ class EventEdit extends Component {
 
     componentDidMount(){
       const singleEvent = this.props.location.state.singleEvent
-      console.log(singleEvent)
+      console.log('single event', singleEvent)
       const facilitators = singleEvent.facilitatorObjs.map(facil => {
         return { value: facil.id._id, label: `${facil.id.f_name} ${facil.id.l_name}`, status: facil.id.status}
-      })
-      this.setState({
-        startDate: singleEvent.bookings[0].start,
-        endDate: singleEvent.bookings[0].end,
-        selectedWorkshop: {value: singleEvent.title._id, label: singleEvent.title.workshop_name},
-        selectedFacilitator: facilitators,
-        selectedLocation: {value: singleEvent.bookings[0].location, label: singleEvent.bookings[0].location},
-        selectedRoom: {value: singleEvent.bookings[0].room, label: singleEvent.bookings[0].room},
-        selectedOrganisation: {value: singleEvent.organisation._id, label: singleEvent.organisation.org_name},
-      })
+      }) 
+      
       axios.get(`${process.env.REACT_APP_API_URI}/users`)
       .then(users => {
         this.setState({users: users.data})
@@ -128,49 +132,47 @@ class EventEdit extends Component {
       axios.get(`${process.env.REACT_APP_API_URI}/organisations`)
       .then(orgs => {
         this.setState({orgs: orgs.data})
+        
       })
+      
 
       axios.get(`${process.env.REACT_APP_API_URI}/workshops`)
       .then(workshops => {
         this.setState({workshops: workshops.data})
       })
+      
+      this.setState({
+        startDate: singleEvent.bookings[0].start,
+        endDate: singleEvent.bookings[0].end,
+        selectedWorkshop: {value: singleEvent.title._id, label: singleEvent.title.workshop_name},
+        selectedFacilitator: facilitators,
+        selectedLocation: {value: singleEvent.bookings[0].location, label: singleEvent.bookings[0].location},
+        selectedRoom: {value: singleEvent.bookings[0].room, label: singleEvent.bookings[0].room},
+        selectedOrganisation: {value: singleEvent.organisation, label: singleEvent.organisation.org_name},
+      })
+     
     }
 
 
     render() {
       const singleEvent = this.props.location.state.singleEvent
-      const { startDate, endDate, redirect, selectedStatus, selectedWorkshop, selectedFacilitator, selectedLocation, selectedRoom, selectedOrganisation, orgs, users, workshops } = this.state;
-
-      let locationsRange = null;
-    if(selectedOrganisation){
-      // locationsRange = selectedOrganisation.value.locations.map(location => {
-      //   return {value: location, label: `${location.street_add} ${location.suburb}`}
-      // })
-      console.log(selectedOrganisation.value)
-    }
-    let roomsRange = null;
-    if(selectedLocation){
-      // roomsRange = selectedLocation.value.rooms.map(room => {
-      //   return {value: room._id, label: room.room}
-      // })
-    }
+      const { startDate, endDate, redirect, selectedStatus, selectedWorkshop, selectedFacilitator, selectedLocation, selectedRoom, selectedOrganisation, orgs, users, workshops, locationsRange, roomsRange } = this.state;
 
 
       const MultiSelect = styled(Select)`
-    &.Select--multi  {
-      width:70vw;
-      margin: 0 15vw 3vh 15vw;
-      font-size: 3vh;
-    }
-    @media (min-width: 1000px){
-      &.Select--multi  {
-        width:40vw;
-        margin: 0 30vw 3vh 30vw;
-        font-size: 3vh;
-      }
-    }
-  `
-
+        &.Select--multi  {
+          width:70vw;
+          margin: 0 15vw 3vh 15vw;
+          font-size: 3vh;
+        }
+        @media (min-width: 1000px){
+          &.Select--multi  {
+            width:40vw;
+            margin: 0 30vw 3vh 30vw;
+            font-size: 3vh;
+          }
+        }
+      `
       const SingleSelect = styled(Select)`
         &.Select  {
           width:70vw;
@@ -184,21 +186,7 @@ class EventEdit extends Component {
             font-size: 3vh;
           }
         }
-        `
-        const LocationSelect = styled(Select)`
-        &.Select  {
-          width:70vw;
-          margin: 3vh 15vw 3vh 0vw;
-          font-size: 3vh;
-        }
-        @media (min-width: 1000px){
-          &.Select  {
-            width:40vw;
-            margin: 3vh 0vw 3vh 15vw;
-            font-size: 3vh;
-          }
-        }
-        `
+      `
     if(redirect){
 
       return <Redirect to={{
@@ -248,14 +236,14 @@ class EventEdit extends Component {
               <input type="checkbox" defaultChecked={singleEvent.onsite ? true : false} name="onsite" />
             </div>
 
-            {/* <SingleSelect
+            <SingleSelect
           name="organisation"
           placeholder="Organisation"
           // simpleValue
           value={selectedOrganisation}
           onChange={this.organisationSelect}
           options={orgs.map(org => {
-            return {value: org._id, label: org.org_name}
+            return {value: org, label: org.org_name}
           })}
           />
 
