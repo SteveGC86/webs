@@ -52,11 +52,22 @@ class App extends Component {
     title: 'Redhill Education WEBS',
     isLoggedIn: false,
     isAdmin: false,
+    notifications: null,
   }
 
   updateHeaderTitle = (title) => {
     this.setState({
       title
+    })
+  }
+
+  componentDidMount() {
+    fetch(`${process.env.REACT_APP_API_URI}/notifications`)
+    .then(res => res.json())
+    .then(notifications => {
+      this.setState({
+        notifications
+      })
     })
   }
 
@@ -75,14 +86,19 @@ class App extends Component {
   }
 
   render() {
+    const notifications = this.state.notifications
+    
     return (
       <div className="App">
           <MuiPickersUtilsProvider utils={MomentUtils}>
           <Header title={this.state.title}/>
+
+        
+              
         <BrowserRouter>
           <div>
             <Navbar>
-              <Notification />
+              {/* <Notification notifications={this.state.notifications}/> */}
             </Navbar>
             <Switch>
                 {/* Login Form */}
@@ -161,7 +177,7 @@ class App extends Component {
 
                 {/* Settings Page */}
                 <Route exact path="/settings" render={() => {
-                return <Settings updateHeaderTitle={this.updateHeaderTitle}/>        
+                return <Settings updateHeaderTitle={this.updateHeaderTitle} notifications={this.state.notifications}/>        
                 }}/> 
             </Switch>
           </div>

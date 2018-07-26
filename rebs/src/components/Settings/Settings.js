@@ -4,28 +4,42 @@ import NotificationList from '../Notifications/NotificationList';
 
 
 class Settings extends Component {
-
+  
+  state = {
+    user: null,
+  }
     componentDidMount(){
         this.props.updateHeaderTitle("Settings");
-    }
-
-  render() {
+        fetch(`${process.env.REACT_APP_API_URI}/users`)
+        .then(res => res.json())
+        .then(user => {
+          this.setState({
+            user
+          })
+        })
+      }
     
+    
+   
+    
+  render() {
+    const user = this.state.user
+    const notifications = this.props.notifications
     return (
         <div className="settings">
           <div className="notifications">
-            <h3>Recent Notifications</h3>
-              <NotificationList />                      {/* TODO:Change to specific user */}
+            <h3 className="notifcationButton">Recent Notifications</h3>
+              <NotificationList notifications={this.props.notifications}/>                      {/* TODO:Change to specific user */}
              <button>View Notifications</button>      {/* TODO: Add links to components*/}
           </div>
           <div className="contactDetails">
             <h3>Contact Details</h3>
               
-              <button>Edit</button>
+              <button className="detailsButton">Edit</button>
           </div>
-          <button>View Workshops</button>        {/* TODO: Add links to components*/}
-          <button>View Facilitators</button>     {/* TODO: Add links to components*/} 
-          <button>Logout</button>                {/* TODO: Add links to components*/} 
+          <button className="settingsbuttons">View Workshops</button>        {/* TODO: Add links to components*/}
+          <button className="settingsbuttons">View Facilitators</button>     {/* TODO: Add links to components*/} 
+          <button className="logoutButton">Logout</button>                {/* TODO: Add links to components*/} 
        </div>
     );
   }

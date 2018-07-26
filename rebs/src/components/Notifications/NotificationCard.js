@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 class NotificationCard extends React.Component {
@@ -8,10 +9,10 @@ class NotificationCard extends React.Component {
     return(
       <div key ={singleNotification._id} className="eventCard">
         <div className="eventName">
-          <h3>{singleNotification._id}</h3>
+          <p>{singleNotification.message}</p>
           </div>
           <div className="eventDetails">
-            <p>{singleNotification.message}</p>
+            <p>{moment(singleNotification.date).format("ddd Do MMM YYYY")}</p>
           </div>
       </div>
     )
@@ -20,3 +21,4 @@ class NotificationCard extends React.Component {
 }
 
 export default NotificationCard
+

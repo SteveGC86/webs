@@ -4,8 +4,8 @@ class Notification extends React.Component {
 
   render(){
     return(
-      <div>
-        
+      <div className="notification">
+        <p></p>
       </div>
     )
   } 
