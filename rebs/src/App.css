@@ -57,8 +57,9 @@ li {
 }
 
 .logo {
-  width: 90vw;
+  width: 80vw;
   height: auto;
+  margin: 5vh 10vw 10vh 10vw;
 }
 
 .wrapper {
@@ -274,6 +275,10 @@ p {
 
 
  @media (min-width: 1000px) {
+   .logo {
+     width: 50vw;
+     height: auto;
+   }
   .eventDetails {
     /* justify-content: space-around; */
   }
